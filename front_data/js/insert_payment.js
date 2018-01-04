@@ -129,17 +129,17 @@ $(document).ready(function(){
          var quantity            = $("#quantity").val();
          var date                = $("#date").val();
 
-         alert(get_product_id);
-          alert(get_project_id);
-           alert(get_supplier_id);
-             alert(payment_description);
-                alert(price);
-                 alert(quantity);   
-                  alert(date);
+         // alert("get_product_id "+ get_product_id);
+           alert("get_project_id  "+get_project_id);
+         //   alert("get_supplier_id  "+get_supplier_id);
+         //     alert("payment_description  "+payment_description);
+         //        alert("price "+ price);
+         //         alert("quantity "+quantity);   
+         //         alert("date  "+ date);
          $.ajax({
                url:  base_url+'index.php/PaymentController/SavePayment',
                type: 'post',
-               data:{get_product_id:get_product_id,get_project_id:get_project_id,get_supplier_id:get_supplier_id,add_product_name:add_product_name,payment_description:payment_description,add_project_name:add_project_name,add_supplier_name:add_supplier_name,price:price,quantity:quantity,date:date},
+               data:{get_product_id:get_product_id,get_project_id:get_project_id,get_supplier_id:get_supplier_id,payment_description:payment_description,price:price,quantity:quantity,date:date},
                success:function(d){
                   alert(d);
                   alert("Hello");

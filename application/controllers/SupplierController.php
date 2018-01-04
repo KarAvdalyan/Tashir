@@ -6,18 +6,36 @@ class SupplierController extends CI_Controller {
          	parent::__Construct();
          	
          	 $this->load->model('SupplierModel');
+             $this->load->library('serviceClass');
          }
          
          
          public function ShowSuppliers($startDate="''",$endDate ="''",$supplier_id="''",$supplier_description="''",
          	$supplierName="''")
          {
+            $autocompleteMode=0;
+            
+            $result = $this->SupplierModel->GetSuppliers
+         	($startDate,$endDate,$supplier_id,$supplier_description,$supplierName,$autocompleteMode);
 
-            $data['Suppliers'] = $this->SupplierModel->GetSuppliers
-         	($startDate,$endDate,$supplier_id,$supplier_description,$supplierName);
-
+            $data['Suppliers'] = $result->result_array();
          	$this->load->view('SupplierView',$data);
          
+         }
+
+         public function ShowSuppliersAjax()
+         {
+            $projectName=$this->input->post('get_supplier_name');
+            $startDate="";
+            $endDate ="";
+            $project_id="";
+            $project_description="";
+            $autocompleteMode=1;
+            $result =  $this->SupplierModel->GetSuppliers
+            ($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode);
+                       
+            echo $this->serviceclass->GetAutoCompleteList($result);
+            
          }
 
          Public function SaveSupplier()

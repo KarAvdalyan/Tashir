@@ -12,7 +12,7 @@
 
               <h3 style="text-align:center;" >Գործարք</h3>
  
-  <form>
+ 
     <div class="form-group row">
  
  
@@ -24,9 +24,15 @@
          <input    id="get_product_id" class="form-control" style="width:60%;" type="number" placeholder="Պրոդուկտ ID " >      
          <input    id="add_product_name" class="form-control"  type="text" placeholder="0Պրոդուկտի անուն" style="margin-top:8px;"  >
          <div id ="productList"></div>
+
          <textarea id="payment_description" class="form-control" rows="3"  placeholder="Նկարագրություն" style="margin-top:8px;"></textarea>
+         
          <input    id="add_project_name" class="form-control"  type="text" placeholder="1Պրոյեկտի անուն" style="margin-top:8px;">
-         <input    id="add_supplier_name" class="form-control"  type="text" placeholder="Մատակարարի անուն" style="margin-top:8px;">
+         <div id ="projectList"></div>
+         
+        <input    id="add_supplier_name" class="form-control"  type="text" placeholder="Մատակարարի անուն" style="margin-top:8px;">
+        <div id ="supplierList"></div>
+
          <input    id="price" class="form-control" style="width:30%; margin-top:8px;" type="number" placeholder="Գին"  >
          <input    id="quantity" class="form-control" style="width:40%; margin-top:8px;" type="number" placeholder="Քանակ">
          <input    id="date" class="form-control"  type="date" style="margin-top:8px;">
@@ -55,7 +61,7 @@
                                                                  <!-- #add_supplier -->
 
     </div>
-  </form>
+
 
 
         </div>

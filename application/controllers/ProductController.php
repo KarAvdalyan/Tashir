@@ -6,19 +6,41 @@ class ProductController extends CI_Controller {
          	parent::__Construct();
          	
          	 $this->load->model('ProductModel');
+             $this->load->library('serviceClass');
          }
          
          
-         public function ShowProducts($startDate="''",$endDate ="''",$product_id="''",$product_description="''",
-         	$productName="''")
+         public function ShowProducts()
          {
+            
+            $startDate=$this->input->post('start_date');
+            $endDate =$this->input->post('end_date');
+            $product_id=$this->input->post('product_id');
+            $product_description=$this->input->post('product_description');
+            $productName=$this->input->post('product_name');
             $autocompleteMode=0;
 
-            $data['Products'] = $this->ProductModel->GetProducts
+            $result = $this->ProductModel->GetProducts
          	($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode);
+
+            $data['Products'] = $result->result_array();
 
          	$this->load->view('index',$data);
          
+         }
+
+         public function GetProductById()
+         {
+            $product_id=$this->input->post('product_id');  
+            $productName="";
+            $startDate="";
+            $endDate ="";
+            $product_description="";
+            $autocompleteMode=0;
+
+            $result = $this->ProductModel->GetProducts
+            ($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode);
+            echo json_encode($result->row());
          }
 
          public function ShowProductsAjax()
@@ -32,8 +54,8 @@ class ProductController extends CI_Controller {
             
             $result = $this->ProductModel->GetProducts
             ($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode);
-                       
-            echo $result;
+            
+            echo $this->serviceclass->GetAutoCompleteList($result);
             
          }
 

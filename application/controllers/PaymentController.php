@@ -8,7 +8,11 @@ class PaymentController extends CI_Controller {
          	$this->load->model('PaymentModel');
          }
          
-         
+         public function Index()
+         {
+            $this->load->view('index');
+            
+         }
          public function ShowPayments()
          {
             $startDate=$this->input->post('start_date');
@@ -21,11 +25,10 @@ class PaymentController extends CI_Controller {
             $minPrice=$this->input->post('min_price');
             $maxPrice=$this->input->post('max_price');
 
-            $data['Payments'] = $this->PaymentModel->GetPayments
+            //$data['Payments'] = '';
+            echo $this->PaymentModel->GetPayments
          	($startDate,$endDate,$payment_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice);
 
-         	$this->load->view('index',$data);
-         
          }
 
          Public function SavePayment(){
@@ -37,9 +40,9 @@ class PaymentController extends CI_Controller {
             $quantity=$this->input->post('date');
             $description=$this->input->post('payment_description');
 
-           //alert("hello PaymentController");
-            $this->PaymentModel->SavePayment($productID,$supplierID,$projectID,$description,$registrationDate,$price,
-               $quantity);
+           
+            echo $this->PaymentModel->SavePayment($productID,$supplierID,$projectID,$description,$registrationDate,
+               $price,$quantity);
          }
 
 

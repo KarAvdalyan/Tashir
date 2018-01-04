@@ -4,10 +4,10 @@
   <h2 style="text-align:center;">Վերջին 7 օրվա գործարքները</h2>
      
    <div class="form-group row">
-    <form method="post" action="<?= base_url('index.php/PaymentController/ShowPayments'); ?>">
+    <form>
      <div class="col-xs-2">
         <label>Սկիզբ</label>
-        <input class="form-control" id="start_date" type="date" name="start_date">
+        <input class="form-control" id="start_date" type="date" name="start_date"> 
      </div>
      
      <div class="col-xs-2">
@@ -51,7 +51,7 @@
      </div>
     
       <div style="margin-top:15px;">
-     <button style="margin-top:40px;" type="form-control button" class="btn btn-info">
+     <button style="margin-top:40px;" id="search_payment" type="button" class="btn btn-info">
       <span class="glyphicon glyphicon-search"></span> Search
     </button>
  
@@ -76,21 +76,8 @@
         <th>Փոփոխել</th>
       </tr>
     </thead>
-    <tbody>
-        <?php foreach ($Payments as  $value) { ?>
-      <tr>
-        <td><?= $value['registration_date']; ?></td>
-        <td><?= $value['productName']; ?></td>
-        <td><?= $value['id']; ?></td>
-        <td><?= $value['description']; ?></td>
-        <td><?= $value['projectName']; ?></td>
-        <td><?= $value['supplierName']; ?></td>
-        <td><?= $value['price']; ?></td>
-        <td><?= $value['quantity']; ?></td>
+    <tbody id ="payments_result">
         
-        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#update_payment">Փոփոխել</button></td>
-      </tr>
-      <?php } ?>
     </tbody>
   </table>
 

@@ -3,37 +3,15 @@ class ProductModel extends CI_Model
 {
 	
 
-	public function GetProducts($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode=0) 
+	public function GetProducts($startDate,$endDate,$product_id,$product_description,
+		$productName,$autocompleteMode=0) 
 	{
 		try {
 			   $sql = "call pr_search_products('$startDate','$endDate','$product_id','$product_description',
 			   '$productName',$autocompleteMode)";
 			   $result = $this->db->query($sql);
 		   		
-		   		if ($autocompleteMode==1)
-		   		{
-					$output = '<ul class = "list-unstyled">';
-
-					if ($result->num_rows() > 0)
-			            {
-			                foreach ($result->result() as $row)
-			                {
-			                        $output.='<li>'.$row->name.'</li>';
-			                }
-			            }
-			            else
-			            {
-			                $output='<li> not found</li>';
-			            }
-
-			            $output.='</ul>';
-			            return $output;
-		   		}
-		   		else
-		   		{
-		   			return $result->result_array();
-		   		}
-			   
+			   return $result;
 			}
 
 		catch (Exception $e) 

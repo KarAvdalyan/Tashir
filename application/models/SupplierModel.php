@@ -3,12 +3,14 @@ class SupplierModel extends CI_Model
 {
 	
 
-	public function GetSuppliers($startDate,$endDate,$supplier_id,$supplier_description,$supplierName) 
+	public function GetSuppliers($startDate,$endDate,$supplier_id,$supplier_description,$supplierName,
+		$autocompleteMode=0) 
 	{
-	   $sql = "call pr_search_suppliers('$startDate','$endDate','$supplier_id','$supplier_description','$supplierName')";
+	   $sql = "call pr_search_suppliers('$startDate','$endDate','$supplier_id','$supplier_description',
+	   '$supplierName',$autocompleteMode)";
 	   $result = $this->db->query($sql);
 
-	   return $result->result_array();
+	   return $result;
 	 
 	}	
 

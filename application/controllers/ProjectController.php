@@ -6,18 +6,37 @@ class ProjectController extends CI_Controller {
          	parent::__Construct();
          	
          	 $this->load->model('ProjectModel');
+             $this->load->library('serviceClass');
          }
          
          
          public function ShowProjects($startDate="''",$endDate ="''",$project_id="''",$project_description="''",
          	$projectName="''")
          {
+            $autocompleteMode=0;
 
-            $data['Projects'] = $this->ProjectModel->GetProjects
-         	($startDate,$endDate,$project_id,$project_description,$projectName);
-
+            
+            $result = $this->ProjectModel->GetProjects
+         	($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode);
+            
+            $data['Projects'] =  $result->result_array();
          	$this->load->view('ProjectView',$data);
          
+         }
+
+         public function ShowProjectsAjax()
+         {
+            $projectName=$this->input->post('get_project_name');
+            $startDate="";
+            $endDate ="";
+            $project_id="";
+            $project_description="";
+            $autocompleteMode=1;
+            $result =  $this->ProjectModel->GetProjects
+            ($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode);
+                       
+            echo $this->serviceclass->GetAutoCompleteList($result);
+            
          }
 
          Public function SaveProject()

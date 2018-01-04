@@ -3,13 +3,19 @@ class ProjectModel extends CI_Model
 {
 	
 
-	public function GetProjects($startDate,$endDate,$project_id,$project_description,$projectName) 
+	public function GetProjects($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode=0) 
 	{
-	   $sql = "call pr_search_projects('$startDate','$endDate','$project_id','$project_description','$projectName')";
-	   $result = $this->db->query($sql);
+		try {
+			   $sql = "call pr_search_projects('$startDate','$endDate','$project_id',
+			   '$project_description','$projectName',$autocompleteMode)";
+			   $result = $this->db->query($sql);
+		   		return $result;
+			}
 
-	   return $result->result_array();
-	 
+		catch (Exception $e) 
+			{
+				echo "<div style='color:red;'> ".$e->getMessage()."</div>";
+			}
 	}	
 
 	 public function SaveProject($name,$description,$registrationDate)

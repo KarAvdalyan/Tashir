@@ -14,8 +14,25 @@ class PaymentModel extends CI_Model
 	   $sql = "call pr_search_payments('$startDate','$endDate','$payment_id','$product_description','$productName',
 	   '$projectName','$supplierName','$minPrice','$maxPrice')";
 	   $result = $this->db->query($sql);
-	   $a = $result->result_array();
-   	     return $a;
+
+	   $output='';
+	   //$a = $result->result_array();
+	   foreach ($result->result() as $row) {
+	   		$output.=' <tr>';
+	   		$output.='<td>'.$row->registration_date.'</td>';
+	   		$output.='<td>'.$row->productName.'</td>';
+	   		$output.='<td>'.$row->id.'</td>';
+	   		$output.='<td>'.$row->description.'</td>';
+	   		$output.='<td>'.$row->projectName.'</td>';
+	   		$output.='<td>'.$row->supplierName.'</td>';
+	   		$output.='<td>'.$row->price.'</td>';
+	   		$output.='<td>'.$row->quantity.'</td>';
+	   		$output.='<td><button type="button" class="btn btn-info btn-lg" data-toggle="modal"';
+   		    $output.='data-target="#update_payment">Փոփոխել</button></td>';
+	   		$output.=' </tr>';
+
+	   }
+   	   return $output;
 
 
 	 }
@@ -37,23 +54,26 @@ class PaymentModel extends CI_Model
  			  }
 
  			  $checkingResult = $this->db->query("select 1 from tbl_projects where id ='$projectID' ");
- 			  if ($checkingResult->num_rows() > 0)
+ 			  if ($checkingResult->num_rows() == 0)
  			  {
 	  			 throw new Exception("Պրոյեկտը մուտքագրված չէ։", 0);	 
  			  }
 
  			  $checkingResult = $this->db->query("select 1 from tbl_suppliers where id ='$supplierID' ");
- 			  if ($checkingResult->num_rows() > 0)
+ 			  if ($checkingResult->num_rows() == 0)
  			  {
 	  			 throw new Exception("Մատակարարը մուտքագրված չէ։", 0);	 
  			  }
 			
      		  $this->db->trans_start();
- 		  	  
- 		  	  $this->db->query("insert into tbl_payments(product_id,supplier_id,project_id,description,registration_date,price,quantity) 
+ 		  	  $a="insert into tbl_payments(product_id,supplier_id,project_id,description,registration_date,price,quantity) 
 			  		values($productID,$supplierID,$projectID,'$description','$registrationDate',
-			  		$price,$quantity);");
+			  		$price,$quantity);";
+ 		  	 
+ 		  	 $this->db->query($a);
+ 		  	 print_r($registrationDate);
 
+ 		  	 
  			  $result = $this->db->query("select max(id)  as id from tbl_payments;");
 
 			   $a = $result->result_array();
@@ -64,7 +84,12 @@ class PaymentModel extends CI_Model
 			catch (Exception $e) 
 			{
 				$this->db->trans_rollback();
-				echo "<div style='color:red;'> ".$e->getMessage()."</div>";
+				echo "<div style='color:red;'> ".$e->getMessage() ."</div>";
+				echo "<script>
+                       $(document).ready(function(){
+                              alert('kk');
+                       });
+				</script>";
 		    }
 	   
 	 }
