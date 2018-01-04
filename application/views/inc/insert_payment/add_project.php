@@ -33,3 +33,6 @@
   </div>
 
   <!-- add_project -->
+
+    <!--setting default date -->
+  <script type="text/javascript">$("#get_project_date").val(FormatDate(new Date()));</script>

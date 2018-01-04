@@ -4,7 +4,7 @@ class ServiceClass
 	public function GetAutoCompleteList ($result)
 	{
 
-		$output = '<ul class = "list-unstyled">';
+		$output = '<ul style="z-index: 5042" class = "list-unstyled">';
 
 		if ($result->num_rows() > 0)
 	        {

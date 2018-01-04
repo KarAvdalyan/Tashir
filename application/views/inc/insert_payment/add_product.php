@@ -1,6 +1,6 @@
 
 <!-- add_product -->
-  <div class="modal fade" id="add_product" role="dialog">
+  <div style="z-index: 2042" class="modal fade" id="add_product" role="dialog">
     <div class="modal-dialog ">
       <div class="modal-content">
         <div class="modal-header">
@@ -32,5 +32,6 @@
       </div>
     </div>
   </div>
-
+  <!--setting default date -->
+<script type="text/javascript">$("#get_product_date").val(FormatDate(new Date()));</script>
   <!-- add_product -->

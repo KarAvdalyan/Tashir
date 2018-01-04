@@ -32,8 +32,7 @@ class SupplierModel extends CI_Model
 	  		  $this->db->trans_start();
 			  
 			  	$this->db->query("insert into tbl_suppliers(name,description,registration_date) 
-			  		values('$name','$description','$registrationDate');
-			  		select max(id) from tbl_suppliers;");
+			  		values('$name','$description','$registrationDate');");
 				
 				$result = $this->db->query("select max(id) as id from tbl_suppliers;");
 

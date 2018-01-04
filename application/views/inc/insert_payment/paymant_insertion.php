@@ -71,5 +71,8 @@
       </div>
     </div>
   </div>
+  
+  <!--setting default date -->
+<script type="text/javascript">$("#date").val(FormatDate(new Date()));</script>
 
 <!-- paymant insertion -->
