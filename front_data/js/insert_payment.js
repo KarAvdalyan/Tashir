@@ -15,7 +15,9 @@ $(document).ready(function(){
      $("#sub_add_product").click(function(){ 
 
         var add_product_name = $("#add_product_name").val();
+        var add_update_product_name = $("#update_product_name").val();
         $("#get_product_name").val(add_product_name);
+        $("#get_product_name").val(add_update_product_name);
       
       });
 
@@ -117,7 +119,7 @@ $(document).ready(function(){
 
 
 
-     //  script supplier
+     //  script paymants
 
      $("#add_payment").click(function(){
 
@@ -150,8 +152,7 @@ $(document).ready(function(){
 
      });
 
-
-
+            
 
 
 });

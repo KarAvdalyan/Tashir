@@ -83,5 +83,34 @@ $(document).ready(function(){
 
 
 
+     // get payment by id
+     $("#1").click(function(){
+         var payment_id = $(this).attr('id');
+          
+             $.ajax({
+               url:  base_url+'index.php/PaymentController/GetPaymentByID',
+               type: 'post',
+               dataType: 'json',
+               data:{payment_id:payment_id},
+               success:function(d){
+                  $('#get_product_id').val(d[0].product_id); 
+                  $('#get_project_id').val(d[0].project_id); 
+                  $('#get_supplier_id').val(d[0].supplier_id); 
+                  $('#add_product_name').val(d[0].productName); 
+                  $('#payment_description').val(d[0].description); 
+                  $('#add_project_name').val(d[0].projectName); 
+                  $('#add_supplier_name').val(d[0].supplierName); 
+                  $('#price').val(d[0].price); 
+                  $('#quantity').val(d[0].quantity); 
+                  $('#date').val(FormatDate(new Date(d[0].registration_date))); 
+
+                  
+               }
+                
+          }); 
+     });
+
+
+
 
 });
