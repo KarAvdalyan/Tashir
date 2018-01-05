@@ -13,7 +13,7 @@
               <h3 style="text-align:center;" >Գործարք</h3>
  
  
-    <div class="form-group row">
+    <div  class="form-group row">
  
  
       <div class="col-xs-6">
@@ -21,8 +21,8 @@
          <input type="hidden" id="get_project_id">
          <input type="hidden" id="get_supplier_id">
 
-         <input    id="get_product_id" class="form-control" style="width:60%;" type="number" placeholder="Պրոդուկտ ID " >      
-         <input    id="add_product_name" class="form-control"  type="text" placeholder="0Պրոդուկտի անուն" style="margin-top:8px;"  >
+         <input    id="get_product_id" class="form-control  " style="width:60%;" type="number" placeholder="Պրոդուկտ ID " >      
+         <input    id="add_product_name" class="form-control "  type="text" placeholder="0Պրոդուկտի անուն" style="margin-top:8px;"  >
          <div id ="productList"></div>
 
          <textarea id="payment_description" class="form-control" rows="3"  placeholder="Նկարագրություն" style="margin-top:8px;"></textarea>

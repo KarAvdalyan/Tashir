@@ -27,7 +27,7 @@ class PaymentModel extends CI_Model
 		   		$output.='<td>'.$row->description.'</td>';
 		   		$output.='<td>'.$row->projectName.'</td>';
 		   		$output.='<td>'.$row->supplierName.'</td>';
-		   		$output.='<td>'.$row->price.'</td>';
+		   		$output.='<td>'.number_format($row->price, 2, '.', '').'</td>';
 		   		$output.='<td>'.$row->quantity.'</td>';
 		   		$output.='<td><button type="button" class="btn btn-info btn-lg" data-toggle="modal"';
 	   		    $output.='data-target="#update_payment">Փոփոխել</button></td>';
