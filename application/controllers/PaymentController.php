@@ -74,14 +74,21 @@ class PaymentController extends CI_Controller {
          }
 
 
-        Public function UpdateProduct()
+        Public function updatePayment()
         {
-            $paymentID=4;
-            $name='Hello Malmo';
-            $registrationDate='12/dec/2017';
-            $description ="Hello";
-            $this->PaymentModel->updatePayment($paymentID,$name,$description,$registrationDate);
+            $paymentID            = $this->input->post('payment_id');
+            $productID            = $this->input->post('get_product_id'); 
+            $projectID            = $this->input->post('get_project_id');
+            $supplierID           = $this->input->post('get_supplier_id');
+            $paymentDescription   = $this->input->post('payment_description');
+            $price                = $this->input->post('price');
+            $quantity             = $this->input->post('quantity');
+            $registrationDate     = $this->input->post('date');
+           
+            $this->PaymentModel->updatePayment($paymentID,$productID,$projectID,$supplierID,$paymentDescription,$price,$quantity,$registrationDate);
         }
+
+
          
          function DeletePayment()
          {

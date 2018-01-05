@@ -61,7 +61,7 @@ class ProductController extends CI_Controller {
 
         Public function SaveProduct()
         {
-            echo "hello from SaveProduct";
+            
             $name=$this->input->post('get_product_name');
             $registrationDate=$this->input->post('get_product_date');
             $description =$this->input->post('get_product_discripshen');

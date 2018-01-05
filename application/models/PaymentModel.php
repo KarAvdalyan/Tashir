@@ -146,19 +146,19 @@ class PaymentModel extends CI_Model
 	   
 	 }
 
-  	 public function updatePayment($paymentID,$name,$description,$registrationDate)
+  	 public function updatePayment($paymentID,$productID,$projectID,$supplierID,$paymentDescription,$price,$quantity,$registrationDate)
 	 {
 	 	try {
- 			$checkingResult = $this->db->query("select 1 from tbl_payments where id = $paymentID");
+
+ 			$checkingResult = $this->db->query("select 1 from tbl_payments where id = 1");
 
 			if($checkingResult->num_rows() == 0)
 			{
 				throw new Exception("Գործարքը գտնված չէ։", 0);				
 			}
-
-			$res = $this->db->query("update tbl_payments set name =$name, description=$description, 
-			  	registration_date=$registration_date where id = $paymentID");
-
+        //throw new Exception("update tbl_payments set product_id = $productID, project_id = $projectID, supplier_id = $supplierID, description = $paymentDescription, price = $price, quantity = $quantity, registration_date = $registrationDate  where id = 1", 0);
+			$res = $this->db->query("update tbl_payments set product_id = $productID, project_id = $projectID, supplier_id = $supplierID, description = '$paymentDescription', price = $price, quantity = $quantity, registration_date = '$registrationDate'  where id = $paymentID");
+            
 			}
 			catch (Exception $e) 
 			{

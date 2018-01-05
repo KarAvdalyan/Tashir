@@ -17,7 +17,7 @@
  
  
       <div class="col-xs-6">
-
+      
          <input type="hidden" id="get_project_id">
          <input type="hidden" id="get_supplier_id">
 
@@ -33,10 +33,11 @@
         <input    id="add_supplier_name" class="form-control"  type="text" placeholder="Մատակարարի անուն" style="margin-top:8px;">
         <div id ="supplierList"></div>
 
-         <input    id="price" class="form-control" style="width:30%; margin-top:8px;" type="number" placeholder="Գին"  >
+         <input    id="price" class="form-control" style="width:50%; margin-top:8px;" type="number" placeholder="Գին"  >
          <input    id="quantity" class="form-control" style="width:40%; margin-top:8px;" type="number" placeholder="Քանակ">
          <input    id="date" class="form-control"  type="date" style="margin-top:8px;">
-         <input    id="add_payment" class="form-control"  type="submit" value="Ավելացնել" style="margin-top:8px;">
+         <input    id="add_payment" class="form-control" data-toggle="modal" data-target="#payment"  type="submit" value="Ավելացնել" style="margin-top:8px;">
+         <input    id="" class="form-control update_payment" data-toggle="modal" data-target="#payment"  type="submit" value="Փոփոխել" style="margin-top:8px;">
 
       </div>
       

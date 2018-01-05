@@ -94,11 +94,39 @@ $("#myTable").on("click",'tbody tr td .update_save',function(){
                   $('#price').val(d[0].price); 
                   $('#quantity').val(d[0].quantity); 
                   $('#date').val(FormatDate(new Date(d[0].registration_date))); 
-
-                  
+                  $(".update_payment").attr('id',payment_id);
                }
                 
           }); 
+      
      });
+
+
+               //  Update  Payments
+
+         $(".update_payment").on('click',function(){
+             var payment_id          = $(this).attr('id');
+             var get_product_id      = $('#get_product_id').val(); 
+             var get_project_id      = $('#get_project_id').val();
+             var get_supplier_id     = $('#get_supplier_id').val();
+             var payment_description = $('#payment_description').val();
+             var price               = $('#price').val();
+             var quantity            = $('#quantity').val();
+             var date                = $('#date').val();
+             //alert(date);
+
+             $.ajax({
+                   url:  base_url+'index.php/PaymentController/UpdatePayment',
+                   type: 'post',
+                   data:{payment_id:payment_id,get_product_id:get_product_id,get_project_id:get_project_id,get_supplier_id:get_supplier_id,payment_description:payment_description,price:price,quantity:quantity,date:date},
+                   success:function(d){
+                       alert(d);
+                          
+                      
+                       ShowPayments();
+
+                   }
+             });
+         });
 
 });

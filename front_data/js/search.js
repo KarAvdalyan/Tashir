@@ -118,54 +118,9 @@ $('#end_date').val(today);
 
 // search payments
    $("#search_payment").click(function(){
-         var start_date = $("#start_date").val();
-         var end_date   = $("#end_date").val();
-         var idd        = $("#idd").val();
-         var description= $("#description").val();
-         var product    = $("#product").val();
-         var supplier   = $("#supplier").val();
-         var min_price  = $("#min_price").val();     
-         var max_price  = $("#max_price").val();     
-         
-        /*get payments*/
-       $.ajax({
-         url:  base_url+'index.php/PaymentController/ShowPayments',
-         type: 'post',
-         //dataType: 'json',
-         data:{start_date:start_date,end_date:end_date,idd:idd,description:description,
-          product:product,supplier:supplier,min_price:min_price,max_price:max_price},
-         success:function(d){
-          //console.log(d);
-          $("#payments_result").html(d);
-         }
-          
-    }); 
+         ShowPayments();
       
-      
-      /*get min/max prices*/
-       $.ajax({
-         url:  base_url+'index.php/PaymentController/GetMinMaxPrices',
-         type: 'post',
-         dataType: 'json',
-         data:{start_date:start_date,end_date:end_date,idd:idd,description:description,
-          product:product,supplier:supplier,min_price:min_price,max_price:max_price},
-         success:function(d){
-          if (d.length!=0)
-          {
-            var max_price = d[0].max_price;
-            var min_price = d[0].min_price;
 
-            $("#result_max_price").text((+max_price).toFixed(2));
-            console.log(max_price);
-            console.log(min_price);
-            $("#result_min_price").text((+min_price).toFixed(2));
-          //alert (result);            
-          }
-
-          
-         }
-          
-    });
   });
 
 $( "#search_payment" ).trigger( "click" );

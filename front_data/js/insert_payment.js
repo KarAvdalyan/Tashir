@@ -13,12 +13,8 @@ $(document).ready(function(){
           // Product script
       
      $("#sub_add_product").click(function(){ 
-
         var add_product_name = $("#add_product_name").val();
-        var add_update_product_name = $("#update_product_name").val();
         $("#get_product_name").val(add_product_name);
-        $("#get_product_name").val(add_update_product_name);
-      
       });
 
      $("#get_product_name").keyup(function(){
@@ -131,21 +127,14 @@ $(document).ready(function(){
          var quantity            = $("#quantity").val();
          var date                = $("#date").val();
 
-         // alert("get_product_id "+ get_product_id);
-         //alert("get_project_id  "+get_project_id);
-         //   alert("get_supplier_id  "+get_supplier_id);
-         //     alert("payment_description  "+payment_description);
-         //        alert("price "+ price);
-         //         alert("quantity "+quantity);   
-         //         alert("date  "+ date);
+        
          $.ajax({
                url:  base_url+'index.php/PaymentController/SavePayment',
                type: 'post',
                data:{get_product_id:get_product_id,get_project_id:get_project_id,get_supplier_id:get_supplier_id,payment_description:payment_description,price:price,quantity:quantity,date:date},
                success:function(d){
                   alert(d);
-                  //alert("Hello");
-
+                  ShowPayments();
                }
                   
           }); 
