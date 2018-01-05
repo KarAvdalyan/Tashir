@@ -4,7 +4,7 @@
 
 <ul class="nav navbar-nav">
                                     <!-- Trigger the Payment with a button -->
-  <button id="1" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#payment">Գործարք</button>
+  <button  type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#payment">Գործարք</button>
 
                                    <!-- Trigger the Product full with a button -->
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add_product">Պրոդուկտի մուտքագրում</button>
