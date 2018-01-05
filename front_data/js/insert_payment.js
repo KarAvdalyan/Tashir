@@ -141,8 +141,8 @@ $(document).ready(function(){
                type: 'post',
                data:{get_product_id:get_product_id,get_project_id:get_project_id,get_supplier_id:get_supplier_id,payment_description:payment_description,price:price,quantity:quantity,date:date},
                success:function(d){
-                  /*alert(d);
-                  alert("Hello");*/
+                  alert(d);
+                  //alert("Hello");
 
                }
                   

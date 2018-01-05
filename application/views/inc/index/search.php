@@ -51,12 +51,21 @@
      </div>
     
       <div style="margin-top:15px;">
-     <button style="margin-top:40px;" id="search_payment" type="button" class="btn btn-info">
+     <button style="margin-top:40px; margin-bottom: 40px;" id="search_payment" type="button" class="btn btn-info  col-xs-1">
       <span class="glyphicon glyphicon-search"></span> Search
-    </button>
- 
-     </form>
-  </div><br>
+     </button>
+
+     <div class="col-xs-2" style="margin-top:15px;">
+      <label>Առավելագույն գին</label>
+        <label style="background-color: #eee; text-align: right;" class="form-control" id="result_max_price" name="result_max_price"></label>
+     </div>
+
+     <div class="col-xs-2" style="margin-top:15px;">
+      <label>Նվազագույն գին</label>
+        <label style="background-color: #eee;text-align: right;" class="form-control" id="result_min_price" name="result_min_price"></label>
+     </div>
+ </form>
+</div><br>
 
 
   <!-- show search -->
