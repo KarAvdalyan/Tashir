@@ -44,6 +44,30 @@ class PaymentModel extends CI_Model
 
 	 }
 
+	public function GetPaymentByID($paymentID) 
+	{
+		try 
+		{
+		   $sql = "SELECT PD.id product_id,PJ.id project_id,S.id supplier_id, P.registration_date, PD.name productName, p.description,    
+					PJ.name projectName, S.name supplierName,
+					price,quantity FROM tbl_payments P 
+					INNER JOIN tbl_suppliers S ON P.supplier_id=S.id
+					INNER JOIN tbl_products PD ON PD.ID=P.product_id
+					INNER JOIN tbl_projects PJ ON PJ.id=P.project_id    WHERE P.id=$paymentID;";
+		   $result = $this->db->query($sql);
+
+		   $a = $result->result_array();
+		   
+	   	   return $a;
+		}
+
+		catch (Exception $e) 
+		{
+			echo "<div style='color:red;'> ".$e->getMessage() ."</div>";
+	    }
+
+	 }
+
  	public function GetMinMaxPrices($startDate,$endDate,$payment_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice) 
 	{
 		try 

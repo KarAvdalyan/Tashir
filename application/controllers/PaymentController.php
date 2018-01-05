@@ -32,6 +32,15 @@ class PaymentController extends CI_Controller {
 
          }
 
+           public function GetPaymentByID()
+         {
+            $paymentID=$this->input->post('payment_id');
+
+            $result=$this->PaymentModel->GetPaymentByID($paymentID);
+            echo json_encode($result);
+
+         }
+
          public function GetMinMaxPrices()
          {
             $startDate=$this->input->post('start_date');
