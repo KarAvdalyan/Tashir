@@ -83,6 +83,7 @@
         <th>Գին</th>
         <th>Քանակ</th>
         <th>Փոփոխել</th>
+        <th>Հեռացնել</th>
       </tr>
     </thead>
     <tbody id ="payments_result">
