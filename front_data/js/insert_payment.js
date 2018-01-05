@@ -154,5 +154,9 @@ $(document).ready(function(){
 
             
 
+ $('#insert').on('click',function () {
+      $('#payment').removeData('.input');
+    });
+
 
 });

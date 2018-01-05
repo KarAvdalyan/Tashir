@@ -8,15 +8,6 @@ $(document).ready(function(){
          $("#get_upd_product_name").val(update_product_name);
          $(".get_upd_product_id").val(update_product_id);
             
-             // $.ajax({
-             //    url: 'get.php',
-             //    type: 'post',
-             //    data: {chk:inp},               
-             //    success:function(d){
-             //        alert(d);
-             //                       }
-             //      });    
-     
       });
 
 
@@ -84,7 +75,7 @@ $(document).ready(function(){
 
 
      // get payment by id
-     $("#1").click(function(){
+$("#myTable").on("click",'tbody tr td .update_save',function(){
          var payment_id = $(this).attr('id');
           
              $.ajax({
@@ -109,8 +100,5 @@ $(document).ready(function(){
                 
           }); 
      });
-
-
-
 
 });

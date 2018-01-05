@@ -70,7 +70,7 @@
 
   <!-- show search -->
 
- <table class="table table-bordered" >
+ <table id="myTable" class="table table-bordered" >
   
     <thead>
       <tr>
