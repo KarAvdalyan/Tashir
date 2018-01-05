@@ -155,7 +155,18 @@ $(document).ready(function(){
             
 
  $('#insert').on('click',function () {
-      $('#payment').removeData('.input');
+      $("#payment").find(':input').each(function() {
+        switch(this.type) {
+            case 'text':
+            case 'number':
+            case 'textarea':
+            case 'date':
+                $(this).val('');
+                break;
+        }
+    });
+      $("#date").val(FormatDate(new Date()));
+
     });
 
 
