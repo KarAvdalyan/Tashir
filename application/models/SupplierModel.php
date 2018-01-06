@@ -46,7 +46,7 @@ class SupplierModel extends CI_Model
 			catch (Exception $e) 
 			{
 				$this->db->trans_rollback();
-				echo "<div style='color:red;'> ".$e->getMessage()."</div>";
+				echo $e->getMessage();
 			}
 	   
 	 }
@@ -67,7 +67,7 @@ class SupplierModel extends CI_Model
 			}
 			catch (Exception $e) 
 			{
-				echo "<div style='color:red;'> ".$e->getMessage()."</div>";
+				echo $e->getMessage();
 			}
 	   
 	 }
@@ -95,7 +95,7 @@ class SupplierModel extends CI_Model
 			}
 			catch (Exception $e) 
 			{
-				echo "<div style='color:red;'> ".$e->getMessage()."</div>";
+				echo $e->getMessage();
 			}
 	   
 	 }
@@ -110,7 +110,7 @@ class SupplierModel extends CI_Model
 	   
  		catch (Exception $e) 
 		{
-			echo "<div style='color:red;'> ".$e->getMessage()."</div>";
+			echo $e->getMessage();
 	    }
 
 	 }			
