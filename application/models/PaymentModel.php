@@ -30,10 +30,9 @@ class PaymentModel extends CI_Model
 		   		 $output.='<td>'.number_format($row->price, 2, '.', '').'</td>';
 		   		$output.='<td>'.$row->quantity.'</td>';
 		   		
-		   		$output.='<td><button id ="'.$row->id.'" type="button"  class="update_save btn btn-info btn-lg" data-toggle="modal" data-target="#payment">Փոփոխել</button></td>';
+		   		$output.='<td><button id ="'.$row->id.'" type="button"  class="update_save btn btn-primary btn-md" data-toggle="modal" data-target="#payment">Փոփոխել</button></td>';
 	   		    
-	   		    $output.='<td><button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-	   		    data-target="#update_payment">Հեռացնել</button></td>';
+	   		    $output.='<td><button id="'.$row->id.'" type="button" class="delete_payment btn btn-primary btn-md" >Հեռացնել</button></td>';
 		   		$output.=' </tr>';
 
 		   }
@@ -167,12 +166,12 @@ class PaymentModel extends CI_Model
 	   
 	 }
 
-	public function DeletePayment($PaymentID) 
+	public function DeletePayment($paymentID) 
 	{
+
 		try
 		{
-			$sql = "delete from tbl_payments where id=$PaymentID)";
-	   		$result = $this->db->query($sql);
+	   		$this->db->delete('tbl_payments', array('id' => $paymentID)); 
 		}
 	   
  		catch (Exception $e) 

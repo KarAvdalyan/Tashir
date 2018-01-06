@@ -92,7 +92,7 @@ class PaymentController extends CI_Controller {
          
          function DeletePayment()
          {
-            $paymentID=2;
+            $paymentID = $this->input->post('delete_payment_id');
             $this->PaymentModel->DeletePayment($paymentID);
          }
 

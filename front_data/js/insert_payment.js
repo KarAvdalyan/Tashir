@@ -141,8 +141,9 @@ $(document).ready(function(){
 
      });
 
+ 
             
-
+//  empty  value  Insert
  $('#insert').on('click',function () {
       $("#payment").find(':input').each(function() {
         switch(this.type) {

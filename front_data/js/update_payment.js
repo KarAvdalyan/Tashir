@@ -121,12 +121,53 @@ $("#myTable").on("click",'tbody tr td .update_save',function(){
                    data:{payment_id:payment_id,get_product_id:get_product_id,get_project_id:get_project_id,get_supplier_id:get_supplier_id,payment_description:payment_description,price:price,quantity:quantity,date:date},
                    success:function(d){
                        alert(d);
-                          
+
                       
                        ShowPayments();
 
                    }
              });
          });
+
+
+        // delete  payments
+       $("#myTable").on("click",'tbody tr td .delete_payment',function(){
+            var delete_payment_id = $(this).attr('id');
+            $(this).parent().parent().remove();
+            
+            $.ajax({
+                url:  base_url+'index.php/PaymentController/DeletePayment',
+                type: 'post',
+                data:{delete_payment_id:delete_payment_id},
+                success:function(d){
+                       alert(d);
+                }
+            });
+        });
+
+
+       //  show  product
+       $("#show_product").click(function(){
+         $("body").load(base_url+'index.php/ProductController/ShowProducts');
+       });
+
+       //  show  project
+       $("#show_project").click(function(){
+         $("body").load(base_url+'index.php/ProjectController/ShowProjects');
+       });
+
+       // show  supplier
+       $("#show_supplier").click(function(){
+         $("body").load(base_url+'index.php/ProductController/ShowProducts');
+       });
+
+         // home paige
+        $("#home").click(function(){
+         $("body").load(base_url+'index.php/PaymentController/Index');
+       });
+
+
+
+
 
 });

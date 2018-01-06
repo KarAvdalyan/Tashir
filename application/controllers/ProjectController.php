@@ -10,17 +10,31 @@ class ProjectController extends CI_Controller {
          }
          
          
-         public function ShowProjects($startDate="''",$endDate ="''",$project_id="''",$project_description="''",
-         	$projectName="''")
+         // public function ShowProjects($startDate="''",$endDate ="''",$project_id="''",$project_description="''",
+         // 	$projectName="''")
+         // {
+         //    $autocompleteMode=0;
+
+            
+         //    $result = $this->ProjectModel->GetProjects
+         // 	($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode);
+            
+         //    $data['Projects'] =  $result->result_array();
+         // 	$this->load->view('ProjectView',$data);
+         
+         // }
+
+
+          public function ShowProjects()
          {
             $autocompleteMode=0;
 
             
             $result = $this->ProjectModel->GetProjects
-         	($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode);
+            ($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode);
             
             $data['Projects'] =  $result->result_array();
-         	$this->load->view('ProjectView',$data);
+            $this->load->view('show_project',$data);
          
          }
 

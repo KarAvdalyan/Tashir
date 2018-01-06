@@ -25,7 +25,7 @@ class ProductController extends CI_Controller {
 
             $data['Products'] = $result->result_array();
 
-         	$this->load->view('index',$data);
+         	$this->load->view('show_product',$data);
          
          }
 

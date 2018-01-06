@@ -51,7 +51,7 @@
      </div>
     
       <div style="margin-top:15px;">
-     <button style="margin-top:40px; margin-bottom: 40px;" id="search_payment" type="button" class="btn btn-info  col-xs-1">
+     <button style="margin-top:40px; margin-bottom: 40px;" id="search_payment" type="button" class="btn btn-primary  col-xs-1">
       <span class="glyphicon glyphicon-search"></span> Search
      </button>
 

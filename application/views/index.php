@@ -16,6 +16,7 @@
   <script type="text/javascript" src="<?= base_url('front_data/js/update_payment.js'); ?>"></script>
   <script type="text/javascript" src="<?= base_url('front_data/js/search.js'); ?>"></script>
   <!-- <script type="text/javascript" src="<?= base_url('jquery.auto-complete.min.js'); ?>"></script> -->
+ 
 
 </head>
 <body>
