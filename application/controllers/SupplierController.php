@@ -23,6 +23,14 @@ class SupplierController extends CI_Controller {
          
          }
 
+         public function GetSupplierIdByName()
+         {
+            $name=$this->input->post('name');  
+
+            $result = $this->SupplierModel->GetSupplierIdByName($name);
+            echo $result;
+         }
+
          public function ShowSuppliersAjax()
          {
             $projectName=$this->input->post('get_supplier_name');

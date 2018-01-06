@@ -75,6 +75,35 @@ class ProjectModel extends CI_Model
 	   
 	 }
 
+	 public function GetProjectIdByName($name)
+	 {
+	 	try {
+ 				
+			$res = $this->db->query("select id from tbl_projects where name = ifnull('$name','');");
+
+			$row = $res->row();
+
+			if (isset($row))
+			{
+			    $result = $row->id;
+			}
+			else
+			{
+				$result ='0';
+			}
+			
+			return $result;
+             
+
+			}
+			catch (Exception $e) 
+			{
+				echo "<div style='color:red;'> ".$e->getMessage()."</div>";
+			}
+	   
+	 }
+
+
 	 public function DeleteProject($projectID) 
 	 {
 		try

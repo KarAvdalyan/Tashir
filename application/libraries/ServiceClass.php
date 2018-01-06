@@ -4,7 +4,7 @@ class ServiceClass
 	public function GetAutoCompleteList ($result)
 	{
 
-		$output = '<ul style="z-index: 9042!important;cursor:pointer;" class = "list-unstyled">';
+		/*$output = '<ul style="z-index: 9042!important;cursor:pointer;" class = "list-unstyled">';
 
 		if ($result->num_rows() > 0)
 	        {
@@ -19,7 +19,8 @@ class ServiceClass
 	        }
 
 	        $output.='</ul>';
-	        return $output;
+	        return $output;*/
+	        return json_encode($result->result_array());
 	}	
 }
 

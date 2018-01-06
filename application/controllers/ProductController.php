@@ -43,6 +43,14 @@ class ProductController extends CI_Controller {
             echo json_encode($result->row());
          }
 
+         public function GetProductIdByName()
+         {
+            $name=$this->input->post('name');  
+
+            $result = $this->ProductModel->GetProductIdByName($name);
+            echo $result;
+         }
+
          public function ShowProductsAjax()
          {
             $productName=$this->input->post('get_product_name');
@@ -55,7 +63,7 @@ class ProductController extends CI_Controller {
             $result = $this->ProductModel->GetProducts
             ($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode);
             
-            echo $this->serviceclass->GetAutoCompleteList($result);
+            echo json_encode($result->result_array());
             
          }
 

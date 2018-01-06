@@ -10,19 +10,7 @@ class ProjectController extends CI_Controller {
          }
          
          
-         // public function ShowProjects($startDate="''",$endDate ="''",$project_id="''",$project_description="''",
-         // 	$projectName="''")
-         // {
-         //    $autocompleteMode=0;
 
-            
-         //    $result = $this->ProjectModel->GetProjects
-         // 	($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode);
-            
-         //    $data['Projects'] =  $result->result_array();
-         // 	$this->load->view('ProjectView',$data);
-         
-         // }
 
 
           public function ShowProjects()
@@ -36,6 +24,14 @@ class ProjectController extends CI_Controller {
             $data['Projects'] =  $result->result_array();
             $this->load->view('show_project',$data);
          
+         }
+
+         public function GetProjectIdByName()
+         {
+            $name=$this->input->post('name');  
+
+            $result = $this->ProjectModel->GetProjectIdByName($name);
+            echo $result;
          }
 
          public function ShowProjectsAjax()

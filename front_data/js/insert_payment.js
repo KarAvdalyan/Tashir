@@ -33,6 +33,7 @@ $(document).ready(function(){
              $.ajax({
                url:  base_url+'index.php/ProductController/SaveProduct',
                type: 'post',
+               dataType: 'json',
                data:{get_product_name:get_product_name,get_product_discripshen:get_product_discripshen,get_product_date:get_product_date},
                success:function(d){
                   $('#get_product_id').val(d); 
@@ -66,6 +67,7 @@ $(document).ready(function(){
              $.ajax({
                url:  base_url+'index.php/ProjectController/SaveProject',
                type: 'post',
+               dataType: 'json',
                data:{get_project_name:get_project_name,get_project_discripshen:get_project_discripshen,get_project_date:get_project_date},
                success:function(d){
                   $('#get_project_id').val(d);  
@@ -103,6 +105,7 @@ $(document).ready(function(){
              $.ajax({
                url:  base_url+'index.php/SupplierController/SaveSupplier',
                type: 'post',
+               dataType: 'json',
                data:{get_supplier_name:get_supplier_name,get_supplier_discripshen:get_supplier_discripshen,get_supplier_date:get_supplier_date},
                success:function(d){
                   $('#get_supplier_id').val(d);  

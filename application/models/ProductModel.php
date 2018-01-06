@@ -79,6 +79,35 @@ class ProductModel extends CI_Model
 	   
 	 }
 
+  	 public function GetProductIdByName($name)
+	 {
+	 	try {
+ 				
+			$res = $this->db->query("select id from tbl_products where name = ifnull('$name','');");
+
+			$row = $res->row();
+
+			if (isset($row))
+			{
+			    $result = $row->id;
+			}
+			else
+			{
+				$result ='0';
+			}
+
+			
+			return $result;
+             
+
+			}
+			catch (Exception $e) 
+			{
+				echo "<div style='color:red;'> ".$e->getMessage()."</div>";
+			}
+	   
+	 }
+
 	 public function DeleteProduct($productID) 
 	 {
 		try

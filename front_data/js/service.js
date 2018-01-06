@@ -15,6 +15,7 @@
 		return date;
 
 	}	
+
 function ShowPayments ()
       {
           
@@ -53,8 +54,6 @@ function ShowPayments ()
             var min_price = d[0].min_price;
 
             $("#result_max_price").text((+max_price).toFixed(2));
-            console.log(max_price);
-            console.log(min_price);
             $("#result_min_price").text((+min_price).toFixed(2));
           //alert (result);            
           }

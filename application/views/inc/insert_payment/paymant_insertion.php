@@ -22,7 +22,7 @@
          <input type="hidden" id="get_supplier_id">
 
          <input    id="get_product_id" class="form-control  " style="width:60%;" type="number" placeholder="Պրոդուկտ ID " >      
-         <input    id="add_product_name" class="form-control "  type="text" placeholder="0Պրոդուկտի անուն" style="margin-top:8px;"  >
+         <input    id="add_product_name" class="form-control " type="text" placeholder="0Պրոդուկտի անուն" style="margin-top:8px;"  >
          <div id ="productList"></div>
 
          <textarea id="payment_description" class="form-control" rows="3"  placeholder="Նկարագրություն" style="margin-top:8px;"></textarea>
