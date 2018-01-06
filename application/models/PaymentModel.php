@@ -30,9 +30,9 @@ class PaymentModel extends CI_Model
 		   		 $output.='<td>'.number_format($row->price, 2, '.', '').'</td>';
 		   		$output.='<td>'.$row->quantity.'</td>';
 		   		
-		   		$output.='<td><button id ="'.$row->id.'" type="button"  class="update_save btn btn-primary btn-md" data-toggle="modal" data-target="#payment">Փոփոխել</button></td>';
+		   		$output.='<td style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;" id ="'.$row->id.'" class="update_save" data-toggle="modal" data-target="#payment">Փոփոխել</td>';
 	   		    
-	   		    $output.='<td><button id="'.$row->id.'" type="button" class="delete_payment btn btn-primary btn-md" >Հեռացնել</button></td>';
+	   		    $output.='<td style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;" id="'.$row->id.'" class="delete_payment" >Հեռացնել</td>';
 		   		$output.=' </tr>';
 
 		   }

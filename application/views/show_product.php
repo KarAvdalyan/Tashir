@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Index</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="<?= base_url('front_data/css/front_style.css'); ?>">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    var base_url="<?= base_url(); ?>"
+  </script>
+  <script type="text/javascript" src="<?= base_url('front_data/js/service.js'); ?>"></script>
+  <script type="text/javascript" src="<?= base_url('front_data/js/insert_payment.js'); ?>"></script>
+  <script type="text/javascript" src="<?= base_url('front_data/js/update_payment.js'); ?>"></script>
+  <script type="text/javascript" src="<?= base_url('front_data/js/search.js'); ?>"></script>
+  <script type="text/javascript" src="<?= base_url('front_data/js/delete.js'); ?>"></script>
+  <!-- <script type="text/javascript" src="<?= base_url('jquery.auto-complete.min.js'); ?>"></script> -->
+ 
+
+</head>
+<body>
 
  <!-- header -->
  <?php  $this->load->view('inc/index/header.php'); ?>
@@ -19,30 +42,7 @@
  <?php  $this->load->view('inc/insert_payment/paymant_insertion'); ?>
  <!-- paymant_insertion -->
 
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Index</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="<?= base_url('front_data/css/front_style.css'); ?>">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-    var base_url="<?= base_url(); ?>"
-  </script>
-  <script type="text/javascript" src="<?= base_url('front_data/js/service.js'); ?>"></script>
-  <script type="text/javascript" src="<?= base_url('front_data/js/insert_payment.js'); ?>"></script>
-  <script type="text/javascript" src="<?= base_url('front_data/js/update_payment.js'); ?>"></script>
-  <script type="text/javascript" src="<?= base_url('front_data/js/search.js'); ?>"></script>
-  <!-- <script type="text/javascript" src="<?= base_url('jquery.auto-complete.min.js'); ?>"></script> -->
- 
-
-</head>
-<body>
-
-
+  
   <div class="container">
 
   <h2 style="text-align:center;">Պրոդուկտ Դիտում և որոնում</h2>
@@ -76,7 +76,7 @@
 
       <div style="margin-top:15px;">
      <button style="margin-top:25px; margin-bottom: 40px;" id="search_payment" type="button" class="btn btn-primary  col-xs-1">
-      <span class="glyphicon glyphicon-search"></span> Search
+      <span class="glyphicon glyphicon-search"></span> Որոնել
      </button>
 
      
@@ -88,23 +88,23 @@
             
   <table class="table table-bordered">
     <thead>
-      <tr>
-        <th>ID</th>
-        <th>Պրոդուկտ</th>
-        <th>Նկարագիր</th>
-        <th>Ամսաթիվ</th>
-        <th>Փոփոխել</th>
-        <th>Հեռացնել</th>
+      <tr style="background-color:darkgray;text-align:center;">
+        <th style="text-align:center;">ID</th>
+        <th style="text-align:center;">Պրոդուկտ</th>
+        <th style="text-align:center;">Նկարագիր</th>
+        <th style="text-align:center;">Ամսաթիվ</th>
+        <th style="text-align:center;">Փոփոխել</th>
+        <th style="text-align:center;">Հեռացնել</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr style="text-align:center;">
         <td contenteditable="true">John</td>
         <td contenteditable="true">Doe</td>
         <td contenteditable="true">john@example.com</td>
-        <td><input id="date" class="form-control" type="date" style="width:100%;"></td>
-        <td><button id="19" type="button" class="update_save btn btn-primary btn-md" data-toggle="modal" data-target="#payment">Փոփոխել</button></td>
-        <td><button id="19" type="button" class="delete_payment btn btn-primary btn-md">Հեռացնել</button></td>
+        <td><input id="date" class="form-control" type="date" style="width:100%;height:25px;"></td>
+        <td id="19"  style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Փոփոխել</td>
+        <td id="19"  style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Հեռացնել</td>
       </tr>
      
     </tbody>

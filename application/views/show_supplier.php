@@ -1,6 +1,4 @@
-
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Index</title>
@@ -17,12 +15,12 @@
   <script type="text/javascript" src="<?= base_url('front_data/js/insert_payment.js'); ?>"></script>
   <script type="text/javascript" src="<?= base_url('front_data/js/update_payment.js'); ?>"></script>
   <script type="text/javascript" src="<?= base_url('front_data/js/search.js'); ?>"></script>
+  <script type="text/javascript" src="<?= base_url('front_data/js/delete.js'); ?>"></script>
   <!-- <script type="text/javascript" src="<?= base_url('jquery.auto-complete.min.js'); ?>"></script> -->
  
 
 </head>
 <body>
-
 
  <!-- header -->
  <?php  $this->load->view('inc/index/header.php'); ?>
@@ -83,7 +81,7 @@
         
       <div style="margin-top:15px;">
      <button style="margin-top:40px; margin-bottom: 40px;" id="search_payment" type="button" class="btn btn-primary  col-xs-1">
-      <span class="glyphicon glyphicon-search"></span> Search
+      <span class="glyphicon glyphicon-search"></span> Որոնել
      </button>
 
  </form>
@@ -92,13 +90,13 @@
             
   <table class="table table-bordered">
     <thead>
-      <tr>
-        <th>ID</th>
-        <th>Մատակարար</th>
-        <th>Նկարագիր</th>
-        <th>Ամսաթիվ</th>
-        <th>Փոփոխել</th>
-        <th>Հեռացնել</th>
+      <tr style="background-color:darkgray;text-align:center;">
+        <th style="text-align:center;">ID</th>
+        <th style="text-align:center;">Մատակարար</th>
+        <th style="text-align:center;">Նկարագիր</th>
+        <th style="text-align:center;">Ամսաթիվ</th>
+        <th style="text-align:center;">Փոփոխել</th>
+        <th style="text-align:center;">Հեռացնել</th>
       </tr>
     </thead>
     <tbody>
@@ -106,9 +104,9 @@
         <td contenteditable="true">John</td>
         <td contenteditable="true">Doe</td>
         <td contenteditable="true">john@example.com</td>
-        <td><input id="date" class="form-control" type="date" style="width:100%;"></td>
-        <td><button id="19" type="button" class="update_save btn btn-primary btn-md" data-toggle="modal" data-target="#payment">Փոփոխել</button></td>
-        <td><button id="19" type="button" class="delete_payment btn btn-primary btn-md">Հեռացնել</button></td>
+        <td><input id="date" class="form-control" type="date" style="width:100%;height:25px;"></td>
+        <td id="19"  style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Փոփոխել</td>
+        <td id="19"  style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Հեռացնել</td>
       </tr>
      
     </tbody>

@@ -75,7 +75,7 @@ $(document).ready(function(){
 
 
      // get payment by id
-$("#myTable").on("click",'tbody tr td .update_save',function(){
+$("#myTable").on("click",'tbody tr .update_save',function(){
          var payment_id = $(this).attr('id');
           
              $.ajax({
@@ -130,20 +130,7 @@ $("#myTable").on("click",'tbody tr td .update_save',function(){
          });
 
 
-        // delete  payments
-       $("#myTable").on("click",'tbody tr td .delete_payment',function(){
-            var delete_payment_id = $(this).attr('id');
-            $(this).parent().parent().remove();
-            
-            $.ajax({
-                url:  base_url+'index.php/PaymentController/DeletePayment',
-                type: 'post',
-                data:{delete_payment_id:delete_payment_id},
-                success:function(d){
-                       alert(d);
-                }
-            });
-        });
+       
 
 
        //  show  product

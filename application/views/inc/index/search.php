@@ -52,7 +52,7 @@
     
       <div style="margin-top:15px;">
      <button style="margin-top:40px; margin-bottom: 40px;" id="search_payment" type="button" class="btn btn-primary  col-xs-1">
-      <span class="glyphicon glyphicon-search"></span> Search
+      <span class="glyphicon glyphicon-search"></span> Որոնել
      </button>
 
      <div class="col-xs-2" style="margin-top:15px;">
@@ -73,17 +73,17 @@
  <table id="myTable" class="table table-bordered" >
   
     <thead>
-      <tr>
-        <th>Ամսաթիվ</th>
-        <th>Պրոդուկտ</th>
-        <th>ID</th>
-        <th>Նկարագիր</th>
-        <th>Պրոյեկտ</th>
-        <th>Մատակարար</th>
-        <th>Գին</th>
-        <th>Քանակ</th>
-        <th>Փոփոխել</th>
-        <th>Հեռացնել</th>
+      <tr style="background-color:darkgray;text-align:center;">
+        <th style="text-align:center;" >Ամսաթիվ</th>
+        <th style="text-align:center;" >Պրոդուկտ</th>
+        <th style="text-align:center;" >ID</th>
+        <th style="text-align:center;" >Նկարագիր</th>
+        <th style="text-align:center;" >Պրոյեկտ</th>
+        <th style="text-align:center;" >Մատակարար</th>
+        <th style="text-align:center;" >Գին</th>
+        <th style="text-align:center;" >Քանակ</th>
+        <th style="text-align:center;" >Փոփոխել</th>
+        <th style="text-align:center;" >Հեռացնել</th>
       </tr>
     </thead>
     <tbody id ="payments_result">
