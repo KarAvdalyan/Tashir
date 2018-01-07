@@ -191,4 +191,26 @@ $('#end_date').val(today);
   //search when main form is loaded
   $( "#search_payment" ).trigger( "click" );
 
+ //search_products
+ $("#search_product").click(function(){
+         var start_date = $("#product_start_date").val();
+         var end_date   = $("#product_end_date").val();
+         var idd        = $("#product_idd").val();
+         var description= $("#product_description").val();
+         var product_name= $("#product_name").val();
+
+       $.ajax({
+         url:  base_url+'index.php/ProductController/ShowProducts',
+         type: 'post',
+         data:{start_date:start_date,end_date:end_date,idd:idd,description:description,
+          product_name:product_name},
+         success:function(d){
+          
+         }
+      });
+    
+
+  });
+
+
  });

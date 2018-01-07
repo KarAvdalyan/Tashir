@@ -100,15 +100,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td contenteditable="true">John</td>
-        <td contenteditable="true">Doe</td>
-        <td contenteditable="true">john@example.com</td>
-        <td><input id="date" class="form-control" type="date" style="width:100%;height:25px;"></td>
-        <td id="19"  style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Փոփոխել</td>
-        <td id="19"  style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Հեռացնել</td>
+      <?php foreach ($Suppliers->result() as $value) { ?>
+      <tr style="text-align:center;">
+        <td contenteditable="true"><?= $value->id; ?></td>
+        <td contenteditable="true"><?= $value->name; ?></td>
+        <td contenteditable="true"><?= $value->description; ?></td>
+        <td contenteditable="true"><?= $value->registration_date; ?></td>
+        <!-- <td contenteditable="true"><input id="date" class="form-control" type="date" style="width:100%;height:25px;"
+          value='"'+ <?= $value->registration_date; ?> + '"'></td> -->
+        <td id=<?= $value->id ?>  style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Փոփոխել</td>
+        <td id=<?= $value->id ?> style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Հեռացնել</td>
       </tr>
-     
+     <?php } ?>
     </tbody>
   </table>
 </div>

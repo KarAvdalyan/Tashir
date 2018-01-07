@@ -51,31 +51,31 @@
     <form>
      <div class="col-xs-2">
         <label>Սկիզբ</label>
-        <input class="form-control" id="start_date" type="date" name="start_date"> 
+        <input class="form-control" id="product_start_date" type="date" name="product_start_date"> 
      </div>
      
      <div class="col-xs-2">
      <label>Վերջ</label>
-        <input class="form-control" id="end_date" type="date" name="end_date">
+        <input class="form-control" id="product_end_date" type="date" name="product_end_date">
      </div>
      
      <div class="col-xs-2">
      <label>Պրոդուկտ</label>
-        <input class="form-control" id="product" placeholder="Պրոդուկտ" type="text" name="product">
+        <input class="form-control" id="product_name" placeholder="Պրոդուկտ" type="text" name="product_name">
      </div>
      
      <div class="col-xs-2">
      <label>ID</label>
-        <input class="form-control" id="idd" placeholder="ID" type="number" name="idd">
+        <input class="form-control" id="product_idd" placeholder="ID" type="number" name="product_idd">
      </div>
      
      <div class="col-xs-2">
      <label>Նկարագիր</label>
-        <input class="form-control" id="description" placeholder="Նկարագիր" type="number" name="description">
+        <input class="form-control" id="product_description" placeholder="Նկարագիր" type="number" name="product_description">
      </div>
 
       <div style="margin-top:15px;">
-     <button style="margin-top:25px; margin-bottom: 40px;" id="search_payment" type="button" class="btn btn-primary  col-xs-1">
+     <button style="margin-top:25px; margin-bottom: 40px;" id="search_product" type="button" class="btn btn-primary  col-xs-1">
       <span class="glyphicon glyphicon-search"></span> Որոնել
      </button>
 
@@ -104,9 +104,10 @@
         <td contenteditable="true"><?= $value->name; ?></td>
         <td contenteditable="true"><?= $value->description; ?></td>
         <td contenteditable="true"><?= $value->registration_date; ?></td>
-        <td><input id="date" class="form-control" type="date" style="width:100%;height:25px;"></td>
-        <td id="19"  style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Փոփոխել</td>
-        <td id="19"  style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Հեռացնել</td>
+        <!-- <td contenteditable="true"><input id="date" class="form-control" type="date" style="width:100%;height:25px;"
+          value='"'+ <?= $value->registration_date; ?> + '"'></td> -->
+        <td id=<?= $value->id ?>  style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Փոփոխել</td>
+        <td id=<?= $value->id ?> style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Հեռացնել</td>
       </tr>
      <?php } ?>
     </tbody>

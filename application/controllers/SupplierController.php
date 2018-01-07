@@ -13,12 +13,17 @@ class SupplierController extends CI_Controller {
          public function ShowSuppliers($startDate="''",$endDate ="''",$supplier_id="''",$supplier_description="''",
          	$supplierName="''")
          {
+            $startDate=$this->input->post('start_date');
+            $endDate =$this->input->post('end_date');
+            $supplier_id=$this->input->post('supplier_id');
+            $supplier_description=$this->input->post('supplier_description');
+            $supplierName=$this->input->post('supplier_name');
             $autocompleteMode=0;
             
             $result = $this->SupplierModel->GetSuppliers
          	($startDate,$endDate,$supplier_id,$supplier_description,$supplierName,$autocompleteMode);
 
-            $data['Suppliers'] = $result->result_array();
+            $data['Suppliers'] = $result;
          	$this->load->view('SupplierView',$data);
          
          }

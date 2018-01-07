@@ -15,13 +15,18 @@ class ProjectController extends CI_Controller {
 
           public function ShowProjects()
          {
+            $startDate=$this->input->post('start_date');
+            $endDate =$this->input->post('end_date');
+            $project_id=$this->input->post('project_id');
+            $project_description=$this->input->post('project_description');
+            $projectName=$this->input->post('project_name');
             $autocompleteMode=0;
 
             
             $result = $this->ProjectModel->GetProjects
             ($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode);
             
-            $data['Projects'] =  $result->result_array();
+            $data['Projects'] =  $result;
             $this->load->view('show_project',$data);
          
          }
