@@ -134,6 +134,57 @@ $('#end_date').val(today);
       });
 
 
+      $('#product').autoComplete({
+    minChars: 0,
+    source: function(term, response){
+        $.getJSON(base_url+'index.php/ProductController/ShowProductsAjax',  term, 
+          function(data)
+          {
+            result = [].map.call(data, function(obj)
+            {
+              return obj.name;
+            });
+            response(result);
+          });
+          }
+      });
+
+    $('#project').autoComplete({
+    minChars: 0,
+    source: function(term, response){
+        $.getJSON(base_url+'index.php/ProjectController/ShowProjectsAjax',  term, 
+          function(data)
+          {
+            result = [].map.call(data, function(obj)
+            {
+              return obj.name;
+            });
+            response(result);
+          });
+          }
+      });
+
+    $('#supplier').autoComplete({
+    minChars: 0,
+    source: function(term, response){
+        $.getJSON(base_url+'index.php/SupplierController/ShowSuppliersAjax',  term, 
+          function(data)
+          {
+            result = [].map.call(data, function(obj)
+            {
+              return obj.name;
+            });
+            response(result);
+          });
+          }
+      });
+
+
+
+
+
+
+
 /*   $("#projectList").on('click','li',function(){
     $('#add_project_name').val($(this).text());
     $('#get_project_id').val($(this).attr('id'));

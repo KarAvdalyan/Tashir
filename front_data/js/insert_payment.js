@@ -136,7 +136,17 @@ $(document).ready(function(){
                type: 'post',
                data:{get_product_id:get_product_id,get_project_id:get_project_id,get_supplier_id:get_supplier_id,payment_description:payment_description,price:price,quantity:quantity,date:date},
                success:function(d){
-                  alert(d);
+                  if(Number.isInteger(parseInt(d)))
+                  {
+                    $('#add_payment').attr('data-target','#payment');
+                    
+                  }
+                  else
+                  {
+                    $('#add_payment').attr('data-target','#paymentt');
+                    alert (d);
+                  }
+                  console.log(d);
                   ShowPayments();
                }
                   
