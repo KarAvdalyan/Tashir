@@ -17,7 +17,7 @@ class SupplierModel extends CI_Model
 	public function SaveSupplier($name,$description,$registrationDate)
 	 {
 	 	try {
-	 		  if($name=="" || $description =="" || $registrationDate=="" )
+	 		  if($name=="" || $registrationDate=="" )
 	 		  {
 	 		  	throw new Exception("Տվյալները ճիշտ լրացված չեն։", 0);	 
 	 		  }

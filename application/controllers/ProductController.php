@@ -22,9 +22,7 @@ class ProductController extends CI_Controller {
 
             $result = $this->ProductModel->GetProducts
          	($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode);
-
-            $data['Products'] = $result->result_array();
-
+            $data['Products'] = $result;
          	$this->load->view('show_product',$data);
          
          }

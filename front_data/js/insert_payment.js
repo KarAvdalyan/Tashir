@@ -33,11 +33,17 @@ $(document).ready(function(){
              $.ajax({
                url:  base_url+'index.php/ProductController/SaveProduct',
                type: 'post',
-               dataType: 'json',
                data:{get_product_name:get_product_name,get_product_discripshen:get_product_discripshen,get_product_date:get_product_date},
                success:function(d){
-                  $('#get_product_id').val(d); 
-                  alert(d);
+                  if(!Number.isInteger(parseInt(d)))
+                  {
+                    alert (d);
+                  }
+                  else
+                  {
+                    $('#get_product_id').val(JSON.parse(d)); 
+                    $('#add_product').modal('toggle');
+                  }
                }
                 
           }); 
@@ -67,11 +73,17 @@ $(document).ready(function(){
              $.ajax({
                url:  base_url+'index.php/ProjectController/SaveProject',
                type: 'post',
-               dataType: 'json',
                data:{get_project_name:get_project_name,get_project_discripshen:get_project_discripshen,get_project_date:get_project_date},
                success:function(d){
-                  $('#get_project_id').val(d);  
-                   alert(d);
+                  if(!Number.isInteger(parseInt(d)))
+                  {
+                    alert (d);
+                  }
+                  else
+                  {
+                    $('#get_project_id').val(JSON.parse(d));  
+                    $('#add_project').modal('toggle');
+                  }
 
                }
                 
@@ -105,11 +117,18 @@ $(document).ready(function(){
              $.ajax({
                url:  base_url+'index.php/SupplierController/SaveSupplier',
                type: 'post',
-               dataType: 'json',
                data:{get_supplier_name:get_supplier_name,get_supplier_discripshen:get_supplier_discripshen,get_supplier_date:get_supplier_date},
                success:function(d){
-                  $('#get_supplier_id').val(d);  
-                   alert(d);
+                  
+                  if(!Number.isInteger(parseInt(d)))
+                  {
+                    alert (d);
+                  }
+                  else
+                  {
+                    $('#get_supplier_id').val(JSON.parse(d));  
+                    $('#add_supplier').modal('toggle');
+                  }
 
                }
                 
@@ -136,18 +155,17 @@ $(document).ready(function(){
                type: 'post',
                data:{get_product_id:get_product_id,get_project_id:get_project_id,get_supplier_id:get_supplier_id,payment_description:payment_description,price:price,quantity:quantity,date:date},
                success:function(d){
-                  if(Number.isInteger(parseInt(d)))
+
+                  if(!Number.isInteger(parseInt(d)))
                   {
-                    $('#add_payment').attr('data-target','#payment');
-                    
+                    alert (d);
                   }
                   else
                   {
-                    $('#add_payment').attr('data-target','#paymentt');
-                    alert (d);
+                    $('#payment').modal('toggle');
+                    ShowPayments();
                   }
-                  console.log(d);
-                  ShowPayments();
+                  
                }
                   
           }); 

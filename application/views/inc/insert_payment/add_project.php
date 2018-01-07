@@ -16,7 +16,7 @@
          <input    id="get_project_name" class="form-control"  type="text" placeholder="Անուն" ><br>
          <textarea id="get_project_discripshen" class="form-control" rows="3"  placeholder="Նկարագրություն"></textarea><br>
          <input    id="get_project_date" class="form-control"  type="date"><br>
-         <input    id="insert_project" class="btn btn-primary btn-md" data-toggle="modal" data-target="#add_project"   type="submit" value="Ավելացնել"><br>
+         <input    id="insert_project" class="btn btn-primary btn-md" type="submit" value="Ավելացնել"><br>
 
       </div>
       

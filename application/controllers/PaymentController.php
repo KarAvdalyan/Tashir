@@ -18,17 +18,16 @@ class PaymentController extends CI_Controller {
          {
             $startDate=$this->input->post('start_date');
             $endDate =$this->input->post('end_date');
-            $payment_id=$this->input->post('idd');
+            $product_id=$this->input->post('idd');
             $product_description=$this->input->post('description');
             $productName=$this->input->post('product');
             $projectName=$this->input->post('project');
             $supplierName=$this->input->post('supplier');
             $minPrice=$this->input->post('min_price');
             $maxPrice=$this->input->post('max_price');
-
-            //$data['Payments'] = '';
+            
             echo $this->PaymentModel->GetPayments
-         	($startDate,$endDate,$payment_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice);
+         	($startDate,$endDate,$product_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice);
 
          }
 

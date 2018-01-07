@@ -54,7 +54,7 @@ class ProjectController extends CI_Controller {
             $name=$this->input->post('get_project_name');
             $registrationDate=$this->input->post('get_project_date');
             $description =$this->input->post('get_project_discripshen');
-            $this->ProjectModel->SaveProject($name,$description,$registrationDate);
+            echo $this->ProjectModel->SaveProject($name,$description,$registrationDate);
          }
 
         Public function UpdateProject()

@@ -22,7 +22,7 @@ class ProjectModel extends CI_Model
 	 {
 	 	try {
 	 		
- 			  if($name=="" || $description =="" || $registrationDate=="" )
+ 			  if($name=="" || $registrationDate=="" )
 	 		  {
 	 		  	throw new Exception("Տվյալները ճիշտ լրացված չեն։", 0);	 
 	 		  }

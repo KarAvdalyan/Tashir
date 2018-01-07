@@ -17,7 +17,7 @@
          <input    id="get_product_name" class="form-control"  type="text" placeholder="eeԱնուն" ><br>
          <textarea id="get_product_discripshen" class="form-control" rows="3"  placeholder="Նկարագրություն"></textarea><br>
          <input    id="get_product_date" class="form-control"  type="date"><br>
-         <input    id="insert_product"  class="btn btn-primary btn-md" data-toggle="modal" data-target="#add_product"   type="submit" value="Ավելացնել"><br>
+         <input    id="insert_product"  class="btn btn-primary btn-md" type="submit" value="Ավելացնել"><br>
 
       </div>
       

@@ -51,7 +51,7 @@ class SupplierController extends CI_Controller {
             $name=$this->input->post('get_supplier_name');
             $registrationDate=$this->input->post('get_supplier_date');
             $description =$this->input->post('get_supplier_discripshen');
-            $this->SupplierModel->SaveSupplier($name,$description,$registrationDate);
+            echo $this->SupplierModel->SaveSupplier($name,$description,$registrationDate);
          }
 
         Public function UpdateSupplier()

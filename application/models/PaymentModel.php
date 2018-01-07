@@ -9,12 +9,13 @@ class PaymentModel extends CI_Model
 		
 	}
 
-	public function GetPayments($startDate,$endDate,$payment_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice) 
+	public function GetPayments($startDate,$endDate,$product_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice) 
 	{
 		try
 		{
-		   $sql = "call pr_search_payments('$startDate','$endDate','$payment_id','$product_description','$productName',
-		   '$projectName','$supplierName','$minPrice','$maxPrice')";
+		   $sql = "call pr_search_payments('$startDate','$endDate','$product_id','$product_description',
+		   '$productName','$projectName','$supplierName','$minPrice','$maxPrice')";
+		   
 		   $result = $this->db->query($sql);
 
 		   $output='';
@@ -36,6 +37,7 @@ class PaymentModel extends CI_Model
 		   		$output.=' </tr>';
 
 		   }
+		   throw new Exception($output, 0);	 
 	   	   return $output;
    	   	}
 
@@ -95,9 +97,19 @@ class PaymentModel extends CI_Model
 	 	try {
 	 		
 	 		  if($productID=="" || $supplierID=="" || $projectID =="" 
-	 		  	|| $description=="" || $registrationDate=="" || $price =="" || $quantity=="")
+	 		  	 || $registrationDate=="" || $price =="" || $quantity=="")
 	 		  {
 	 		  	throw new Exception("Տվյալները ճիշտ լրացված չեն։", 0);	 
+	 		  }
+
+	 		  if($price<0 )
+	 		  {
+	 		  	throw new Exception("Գինը չի կարող լինել բացասական մեծություն։", 0);	 	
+	 		  }
+
+	 		  if($quantity<0)
+	 		  {
+	 		  	throw new Exception("Քանակը չի կարող լինել բացասական մեծություն։", 0);	 	
 	 		  }
 
 			  $checkingResult = $this->db->query("select 1 from tbl_products where id ='$productID' ");

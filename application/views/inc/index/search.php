@@ -27,7 +27,7 @@
      
      <div class="col-xs-2">
      <label>Նկարագիր</label>
-        <input class="form-control" id="description" placeholder="Նկարագիր" type="number" name="description">
+        <input class="form-control" id="description" placeholder="Նկարագիր" type="text" name="description">
      </div>
      
      <div class="col-xs-2">
