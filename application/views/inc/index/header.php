@@ -4,13 +4,12 @@
   <title>Index</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= base_url('front_data/css/bootstrap.css'); ?>">
   <link rel="stylesheet" type="text/css" href="<?= base_url('front_data/css/front_style.css'); ?>">
   <link rel="stylesheet" type="text/css" href="<?= base_url('front_data/jQuery-autoComplete-master/jquery.auto-complete.css'); ?>">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- <script src="<?= base_url('front_data/jquery/jquery-3.2.1.min.js'); ?>"></script> -->
+  <script src="<?= base_url('front_data/js/jquery.js'); ?>"></script>
   <script type="text/javascript" src="<?= base_url('front_data/jQuery-autoComplete-master/jquery.auto-complete.min.js'); ?>"></script> 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="<?= base_url('front_data/js/bootstrap.js'); ?>"></script>
   <script type="text/javascript">
     var base_url="<?= base_url(); ?>"
   </script>
@@ -22,7 +21,6 @@
 
 </head>
 <body>
-  
 
 <nav class="navbar navbar-default" id="header">
   <h1 style="text-align:center;">Welcome</h1>
@@ -59,3 +57,4 @@
     </ul>
   </div>
 </nav>
+
