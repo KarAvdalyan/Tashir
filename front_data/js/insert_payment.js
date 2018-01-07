@@ -1,14 +1,5 @@
 $(document).ready(function(){
 
-      // var now = new Date();
-      // var day = ("0" + now.getDate()).slice(-2);
-      // var month = ("0" + (now.getMonth() + 1)).slice(-2);
-      // var today = (day)+"-"+(month)+"-"+ now.getFullYear();
-
-
-
-      
-
 
           // Product script
       
@@ -187,6 +178,8 @@ $(document).ready(function(){
         }
     });
       $("#date").val(FormatDate(new Date()));
+      $('.update_payment').hide();
+      $('#add_payment').show();
 
     });
 

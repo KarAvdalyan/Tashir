@@ -95,6 +95,9 @@ $("#myTable").on("click",'tbody tr .update_save',function(){
                   $('#quantity').val(d[0].quantity); 
                   $('#date').val(FormatDate(new Date(d[0].registration_date))); 
                   $(".update_payment").attr('id',payment_id);
+
+                  $('#add_payment').hide();
+                  $('.update_payment').show();
                }
                 
           }); 
