@@ -24,7 +24,7 @@ class SupplierController extends CI_Controller {
          	($startDate,$endDate,$supplier_id,$supplier_description,$supplierName,$autocompleteMode);
 
             $data['Suppliers'] = $result;
-         	$this->load->view('SupplierView',$data);
+         	$this->load->view('show_supplier',$data);
          
          }
 

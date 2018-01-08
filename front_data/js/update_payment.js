@@ -148,7 +148,7 @@ $("#myTable").on("click",'tbody tr .update_save',function(){
 
        // show  supplier
        $("#show_supplier").click(function(){
-         $("body").load(base_url+'index.php/ProductController/ShowProducts');
+         $("body").load(base_url+'index.php/SupplierController/ShowSuppliers');
        });
 
          // home paige
