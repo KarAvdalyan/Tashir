@@ -11,7 +11,14 @@ weekAgo = FormatDate(weekAgo);
 $('#start_date').val(weekAgo);
 $('#end_date').val(today);
 
-
+var $loading = $('#loading').hide();
+$(document)
+  .ajaxStart(function () {
+    $loading.show();
+  })
+  .ajaxStop(function () {
+    $loading.hide();
+  });
 
    // auto complete for products
    $('#add_product_name').autoComplete({

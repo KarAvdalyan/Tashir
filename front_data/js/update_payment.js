@@ -123,7 +123,7 @@ $("#myTable").on("click",'tbody tr .update_save',function(){
                    type: 'post',
                    data:{payment_id:payment_id,get_product_id:get_product_id,get_project_id:get_project_id,get_supplier_id:get_supplier_id,payment_description:payment_description,price:price,quantity:quantity,date:date},
                    success:function(d){
-                       alert(d);
+                       $('#payment').modal('toggle');
 
                       
                        ShowPayments();
@@ -138,21 +138,25 @@ $("#myTable").on("click",'tbody tr .update_save',function(){
 
        //  show  product
        $("#show_product").click(function(){
+        $.LoadingOverlay("show");
          $("body").load(base_url+'index.php/ProductController/ShowProducts');
        });
 
        //  show  project
        $("#show_project").click(function(){
+        $.LoadingOverlay("show");
          $("body").load(base_url+'index.php/ProjectController/ShowProjects');
        });
 
        // show  supplier
        $("#show_supplier").click(function(){
+        $.LoadingOverlay("show");
          $("body").load(base_url+'index.php/SupplierController/ShowSuppliers');
        });
 
          // home paige
         $("#home").click(function(){
+          $.LoadingOverlay("show");
          $("body").load(base_url+'index.php/PaymentController/Index');
        });
 
