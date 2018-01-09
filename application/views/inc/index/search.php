@@ -1,7 +1,7 @@
    <!-- search  -->
 <div class="container">
 
-  <h2 style="text-align:center;">Վերջին 7 օրվա գործարքները</h2>
+  
      
    <div class="form-group row">
     <form>
