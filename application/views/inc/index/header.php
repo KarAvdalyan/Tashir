@@ -5,8 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?= base_url('front_data/css/bootstrap.min.css'); ?>">
-    <script src="<?= base_url('front_data/js/jquery.min.js'); ?>"></script>
+     <script src="<?= base_url('front_data/js/jquery.min.js'); ?>"></script>
      <script src="<?= base_url('front_data/js/bootstrap.min.js'); ?>"></script>
+
   <link rel="stylesheet" type="text/css" href="<?= base_url('front_data/css/front_style.css'); ?>">
   <link rel="stylesheet" type="text/css" href="<?= base_url('front_data/jQuery-autoComplete-master/jquery.auto-complete.css'); ?>">
 
@@ -65,24 +66,38 @@ Move the mouse over the button to open the dropdown menu.
 .dropdown:hover .dropbtn {
     background-color: #2e597d;
 }
+
+
+
 </style>
 </head>
 <body>
+  
+  <?php
+  if($this->session->userdata('session_name') != true)
+               { 
+               redirect(base_url('index.php/Admin/index'));
+               }
+  ?>
+
 
 <nav class="navbar navbar-default" id="header">
-  <h1 style="text-align:center;">Welcome</h1>
+  <h1 style="text-align:center;"><?=  $this->session->userdata('session_name').'<br>'; ?></h1>
   <div class="container-fluid">
 
 <ul class="nav navbar-nav">
                                            <!--  Home paige -->
                  <button id="home"  type="button" class="btn btn-primary btn-md" >Գլխավոր</button>
 
+
+                                           <!-- Insert  data -->
+
 <div class="dropdown">
   <button class="dropbtn btn btn-primary btn-md">Մւտքագրել</button>
   <div class="dropdown-content">
 
                                 <!-- Trigger the Payment with a button -->
-    <a class="btn btn-info btn-md" id="insert" data-toggle="modal" data-target="#payment" href="#">Գործարք</a>
+     <a class="btn btn-info btn-md" id="insert" data-toggle="modal" data-target="#payment" href="#">Գործարք</a>
 
                                 <!-- Trigger the Product full with a button -->
      <a class="btn btn-info btn-md" data-toggle="modal" data-target="#add_product" href="#">Պրոդուկտի մուտքագրում</a>
@@ -96,7 +111,7 @@ Move the mouse over the button to open the dropdown menu.
 </div>
 
 
-                <!--  Show data -->
+                                              <!--  Show data -->
                                   
 <div class="dropdown">
   <button class="dropbtn btn btn-primary btn-md">Դիտում</button>
@@ -114,7 +129,30 @@ Move the mouse over the button to open the dropdown menu.
     </div>
 </div>
 
+                                       <!-- show  users -->
+ <div class="dropdown">
+  <button class="dropbtn btn btn-primary btn-md">Օգտատերերի դիտում</button>
+    <div class="dropdown-content">
+
+                                  <!-- Show users button -->
+              <a id="show_users1"  class="btn btn-info btn-md users" href="#/show_users1">user1</a>
+              <a id="show_users2"  class="btn btn-info btn-md users" href="#/show_users2">user1</a>
+             
+    </div>
+</div>
+
+
+
+
+
+
     </ul>
+
+                                               <!-- Signup -->
+    <a style="float:right;" class="btn btn-primary btn-md" href="<?= site_url('admin/logout'); ?>">Logout</a>
+    <a id="signup" style="float:right;" class="btn btn-primary btn-md" href="#">Signup</a>
+
+
   </div>
 </nav>
 

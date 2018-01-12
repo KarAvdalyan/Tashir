@@ -6,6 +6,7 @@ class PaymentController extends CI_Controller {
          	parent::__Construct();
          	
          	$this->load->model('PaymentModel');
+
          }
          
          public function Index()

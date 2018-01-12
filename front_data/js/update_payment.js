@@ -138,27 +138,48 @@ $("#myTable").on("click",'tbody tr .update_save',function(){
 
        //  show  product
        $("#show_product").click(function(){
-        $.LoadingOverlay("show");
-         $("body").load(base_url+'index.php/ProductController/ShowProducts');
+         //$.LoadingOverlay("show");
+         //$("body").load(base_url+'index.php/ProductController/ShowProducts');
+         window.location.replace(base_url+'index.php/ProductController/ShowProducts');
        });
 
        //  show  project
        $("#show_project").click(function(){
-        $.LoadingOverlay("show");
-         $("body").load(base_url+'index.php/ProjectController/ShowProjects');
+         //$.LoadingOverlay("show");
+         //$("body").load(base_url+'index.php/ProjectController/ShowProjects');
+         window.location.replace(base_url+'index.php/ProjectController/ShowProjects');
        });
 
        // show  supplier
        $("#show_supplier").click(function(){
-        $.LoadingOverlay("show");
-         $("body").load(base_url+'index.php/SupplierController/ShowSuppliers');
+         //$.LoadingOverlay("show");
+         //$("body").load(base_url+'index.php/SupplierController/ShowSuppliers');
+          window.location.replace(base_url+'index.php/SupplierController/ShowSuppliers');
        });
 
          // home paige
         $("#home").click(function(){
-          $.LoadingOverlay("show");
-         $("body").load(base_url+'index.php/PaymentController/Index');
+          //$.LoadingOverlay("show");
+          //$("body").load(base_url+'index.php/PaymentController/Index');
+         window.location.replace(base_url+'index.php/PaymentController/Index');
        });
+
+         // signup paige
+        $("#signup").click(function(){
+          //$.LoadingOverlay("show");
+         //$("body").load(base_url+'index.php/Admin/signup');
+         window.location.replace(base_url+'index.php/Admin/signup');
+       });
+
+
+
+        // user_id
+        $(".users").click(function(){
+         var user_id = $(this).attr('id');
+         //window.location.replace(base_url+'index.php/ShowUsers/index/'+user_id);
+          $.LoadingOverlay("show");
+         $("body").load(base_url+'index.php/ShowUsers/index/'+user_id);
+       });        
 
 
 
