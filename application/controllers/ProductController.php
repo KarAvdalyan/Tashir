@@ -23,7 +23,24 @@ class ProductController extends CI_Controller {
             $result = $this->ProductModel->GetProducts
          	($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode);
             $data['Products'] = $result;
-         	$this->load->view('show_product',$data);
+         	$this->load->view('search_table',$data);
+         
+         }
+
+          public function Index()
+         {
+            
+            $startDate=$this->input->post('start_date');
+            $endDate =$this->input->post('end_date');
+            $product_id=$this->input->post('product_id');
+            $product_description=$this->input->post('product_description');
+            $productName=$this->input->post('product_name');
+            $autocompleteMode=0;
+
+            $result = $this->ProductModel->GetProducts
+            ($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode);
+            $data['Products'] = $result;
+            $this->load->view('show_product',$data);
          
          }
 
@@ -51,7 +68,7 @@ class ProductController extends CI_Controller {
 
          public function ShowProductsAjax()
          {
-            $productName=$this->input->post('get_product_name');
+            $productName = $this->input->get('get_product_name', TRUE);
             $startDate="";
             $endDate ="";
             $product_id="";
@@ -80,7 +97,7 @@ class ProductController extends CI_Controller {
             $name='Hello Malmo';
             $registrationDate='12/dec/2017';
             $description ="Hello";
-            $this->ProductModel->updateProduct($productID,$name,$description,$registrationDate);
+            echo $this->ProductModel->updateProduct($productID,$name,$description,$registrationDate);
          }
 
 	}

@@ -38,7 +38,7 @@ class SupplierController extends CI_Controller {
 
          public function ShowSuppliersAjax()
          {
-            $projectName=$this->input->post('get_supplier_name');
+            $projectName = $this->input->get('get_supplier_name', TRUE);
             $startDate="";
             $endDate ="";
             $project_id="";
@@ -65,7 +65,7 @@ class SupplierController extends CI_Controller {
             $name='Hello Malmo';
             $registrationDate='12/dec/2017';
             $description ="Hello";
-            $this->SupplierModel->updateSupplier($supplierID,$name,$description,$registrationDate);
+            echo $this->SupplierModel->updateSupplier($supplierID,$name,$description,$registrationDate);
         }
 
         function DeleteSupplier()

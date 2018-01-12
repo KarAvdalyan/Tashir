@@ -15,7 +15,7 @@
         <!--  <input type="hidden" class="get_product_id"> -->
          <input    id="get_supplier_name" class="form-control"  type="text" placeholder="Անուն" ><br>
          <textarea id="get_supplier_discripshen" class="form-control" rows="3"  placeholder="Նկարագրություն"></textarea><br>
-         <input    id="get_supplier_date" class="form-control"  type="date"><br>
+         <input    id="get_supplier_date" class="form-control default_end_date"  type="date"><br>
          <input    id="insert_supplier"  class="btn btn-primary btn-md" type="submit" value="Ավելացնել"><br>
 
       </div>

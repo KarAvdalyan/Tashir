@@ -3,10 +3,9 @@ class PaymentController extends CI_Controller {
          
          public function __Construct()
          {
-         	parent::__Construct();
-         	
-         	$this->load->model('PaymentModel');
-
+            parent::__Construct();
+            
+            $this->load->model('PaymentModel');
          }
          
          public function Index()
@@ -26,9 +25,11 @@ class PaymentController extends CI_Controller {
             $supplierName=$this->input->post('supplier');
             $minPrice=$this->input->post('min_price');
             $maxPrice=$this->input->post('max_price');
+            $sortOrder=$this->input->post('sort_order');
             
             echo $this->PaymentModel->GetPayments
-         	($startDate,$endDate,$product_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice);
+            ($startDate,$endDate,$product_id,$product_description,$productName,$projectName,$supplierName,$minPrice,
+               $maxPrice,$sortOrder);
 
          }
 
@@ -85,7 +86,7 @@ class PaymentController extends CI_Controller {
             $quantity             = $this->input->post('quantity');
             $registrationDate     = $this->input->post('date');
            
-            $this->PaymentModel->updatePayment($paymentID,$productID,$projectID,$supplierID,$paymentDescription,$price,$quantity,$registrationDate);
+           echo $this->PaymentModel->updatePayment($paymentID,$productID,$projectID,$supplierID,$paymentDescription,$price,$quantity,$registrationDate);
         }
 
 

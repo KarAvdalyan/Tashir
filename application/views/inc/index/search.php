@@ -7,12 +7,12 @@
     <form>
      <div class="col-xs-2">
         <label>Սկիզբ</label>
-        <input class="form-control" id="start_date" type="date" name="start_date"> 
+        <input class="form-control default_start_date" id="start_date"  type="date" name="start_date"> 
      </div>
      
      <div class="col-xs-2">
      <label>Վերջ</label>
-        <input class="form-control" id="end_date" type="date" name="end_date">
+        <input class="form-control default_end_date" id="end_date"  type="date" name="end_date">
      </div>
      
      <div class="col-xs-2">
@@ -74,13 +74,13 @@
   
     <thead>
       <tr style="background-color:darkgray;text-align:center;">
-        <th style="text-align:center;" >Ամսաթիվ</th>
-        <th style="text-align:center;" >Պրոդուկտ</th>
+        <th id ="payment_reg" style="text-align:center;" ><input type="radio" style="border:0px;width:50%;height:1.2em;"  name="sortOrder" id ="payment_date">Ամսաթիվ</th>
+        <th style="text-align:center;width: 10%;" >Պրոդուկտ</th>
         <th style="text-align:center;" >ID</th>
         <th style="text-align:center;" >Նկարագիր</th>
         <th style="text-align:center;" >Պրոյեկտ</th>
         <th style="text-align:center;" >Մատակարար</th>
-        <th style="text-align:center;" >Գին</th>
+        <th style="text-align:center;" > <input type="radio" style="border:0px;width:50%;height:1.2em;" name="sortOrder" id ="payment_price">Գին</th>
         <th style="text-align:center;" >Քանակ</th>
         <th style="text-align:center;" >Փոփոխել</th>
         <th style="text-align:center;" >Հեռացնել</th>

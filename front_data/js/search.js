@@ -7,10 +7,13 @@ var weekAgo = new Date();
 weekAgo.setDate(weekAgo.getDate() - 7);
 weekAgo = FormatDate(weekAgo);
 
+$('.default_start_date').val(weekAgo);
+$('.default_end_date').val(today);
 
-$('#start_date').val(weekAgo);
+
+/*$('#start_date').val(weekAgo);
 $('#end_date').val(today);
-
+*/
 var $loading = $('#loading').hide();
 $(document)
   .ajaxStart(function () {
@@ -22,9 +25,9 @@ $(document)
 
    // auto complete for products
    $('#add_product_name').autoComplete({
-    minChars: 0,
+    minChars: 1,
     source: function(term, response){
-        $.getJSON(base_url+'index.php/ProductController/ShowProductsAjax',  term, 
+        $.getJSON(base_url+'index.php/ProductController/ShowProductsAjax',  {get_product_name:term}, 
           function(data)
           {
             result = [].map.call(data, function(obj)
@@ -38,9 +41,9 @@ $(document)
 
    // auto complete for projects
    $('#add_project_name').autoComplete({
-    minChars: 0,
+    minChars: 1,
     source: function(term, response){
-        $.getJSON(base_url+'index.php/ProjectController/ShowProjectsAjax',  term, 
+        $.getJSON(base_url+'index.php/ProjectController/ShowProjectsAjax',  {get_project_name:term}, 
           function(data)
           {
             result = [].map.call(data, function(obj)
@@ -54,9 +57,9 @@ $(document)
 
 // auto complete for suppliers
    $('#add_supplier_name').autoComplete({
-    minChars: 0,
+    minChars: 1,
     source: function(term, response){
-        $.getJSON(base_url+'index.php/SupplierController/ShowSuppliersAjax',  term, 
+        $.getJSON(base_url+'index.php/SupplierController/ShowSuppliersAjax',  {get_supplier_name:term}, 
           function(data)
           {
             result = [].map.call(data, function(obj)
@@ -143,9 +146,9 @@ $(document)
 
     //autocompletes for main search form  
     $('#product').autoComplete({
-    minChars: 0,
+    minChars: 1,
     source: function(term, response){
-        $.getJSON(base_url+'index.php/ProductController/ShowProductsAjax',  term, 
+        $.getJSON(base_url+'index.php/ProductController/ShowProductsAjax', {get_product_name:term} , 
           function(data)
           {
             result = [].map.call(data, function(obj)
@@ -158,9 +161,9 @@ $(document)
       });
 
     $('#project').autoComplete({
-    minChars: 0,
+    minChars: 1,
     source: function(term, response){
-        $.getJSON(base_url+'index.php/ProjectController/ShowProjectsAjax',  term, 
+        $.getJSON(base_url+'index.php/ProjectController/ShowProjectsAjax',  {get_project_name:term}, 
           function(data)
           {
             result = [].map.call(data, function(obj)
@@ -173,9 +176,9 @@ $(document)
       });
 
     $('#supplier').autoComplete({
-    minChars: 0,
+    minChars: 1,
     source: function(term, response){
-        $.getJSON(base_url+'index.php/SupplierController/ShowSuppliersAjax',  term, 
+        $.getJSON(base_url+'index.php/SupplierController/ShowSuppliersAjax',  {get_supplier_name:term}, 
           function(data)
           {
             result = [].map.call(data, function(obj)
@@ -195,27 +198,57 @@ $(document)
 
   });
 
+ // payments sort
+ $("#payment_reg").click(function(){
+     if($($this).attr("checked") == 'checked')  
+     {
+       ShowPayments(1);
+     }
+     else
+     {
+       ShowPayments(1);
+     }
+      
+
+  });
+
+ // payments sort
+ $("#payment_date").click(function(){
+       ShowPayments(1);
+  });
+
+ $("#payment_price").click(function(){
+       ShowPayments(2);
+  });
+
   //search when main form is loaded
   $( "#search_payment" ).trigger( "click" );
 
  //search_products
  $("#search_product").click(function(){
+         
          var start_date = $("#product_start_date").val();
          var end_date   = $("#product_end_date").val();
          var idd        = $("#product_idd").val();
          var description= $("#product_description").val();
          var product_name= $("#product_name").val();
 
-       $.ajax({
+alert ("hello");
+
+    /*   $.ajax({
          url:  base_url+'index.php/ProductController/ShowProducts',
          type: 'post',
          data:{start_date:start_date,end_date:end_date,idd:idd,description:description,
           product_name:product_name},
          success:function(d){
+          //  show  project
+          $.LoadingOverlay("show");
+           $("#search_table").html(d);
+         
           
          }
       });
-    
+    */
 
   });
 

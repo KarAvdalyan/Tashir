@@ -9,13 +9,13 @@ class PaymentModel extends CI_Model
 		
 	}
 
-	public function GetPayments($startDate,$endDate,$product_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice) 
+	public function GetPayments($startDate,$endDate,$product_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice,$sortOrder) 
 	{
 		try
 		{
 		   $sql = "call pr_search_payments('$startDate','$endDate','$product_id','$product_description',
-		   '$productName','$projectName','$supplierName','$minPrice','$maxPrice')";
-		   
+		   '$productName','$projectName','$supplierName','$minPrice','$maxPrice','$sortOrder')";
+		   //return $sql;
 		   $result = $this->db->query($sql);
 
 		   $output='';
@@ -37,7 +37,6 @@ class PaymentModel extends CI_Model
 		   		$output.=' </tr>';
 
 		   }
-		   throw new Exception($output, 0);	 
 	   	   return $output;
    	   	}
 
@@ -82,6 +81,7 @@ class PaymentModel extends CI_Model
 
 		   $a = $result->result_array();
 		   
+
 	   	   return $a;
 		}
 
@@ -161,21 +161,56 @@ class PaymentModel extends CI_Model
 	 {
 	 	try {
 
- 			$checkingResult = $this->db->query("select 1 from tbl_payments where id = 1");
+	 			$checkingResult = $this->db->query("select 1 from tbl_payments where id = 1");
 
-			if($checkingResult->num_rows() == 0)
-			{
-				throw new Exception("Գործարքը գտնված չէ։", 0);				
-			}
-        //throw new Exception("update tbl_payments set product_id = $productID, project_id = $projectID, supplier_id = $supplierID, description = $paymentDescription, price = $price, quantity = $quantity, registration_date = $registrationDate  where id = 1", 0);
-			$res = $this->db->query("update tbl_payments set product_id = $productID, project_id = $projectID, supplier_id = $supplierID, description = '$paymentDescription', price = $price, quantity = $quantity, registration_date = '$registrationDate'  where id = $paymentID");
-            
+				if($checkingResult->num_rows() == 0)
+				{
+					throw new Exception("Գործարքը գտնված չէ։", 0);				
+				}
+
+				if($productID=="" || $supplierID=="" || $projectID =="" 
+		 		  	 || $registrationDate=="" || $price =="" || $quantity=="")
+		 		{
+		 		  	throw new Exception("Տվյալները ճիշտ լրացված չեն։", 0);	 
+		 		}
+
+		 		  if($price<0 )
+		 		{
+		 		  	throw new Exception("Գինը չի կարող լինել բացասական մեծություն։", 0);	 	
+		 		}
+
+		 		  if($quantity<0)
+		 		{
+		 		  	throw new Exception("Քանակը չի կարող լինել բացասական մեծություն։", 0);	 	
+		 		}
+
+				  $checkingResult = $this->db->query("select 1 from tbl_products where id ='$productID' ");
+	 			  if ($checkingResult->num_rows() == 0)
+	 			{
+		  			 throw new Exception("Պրոդուկտը մուտքագրված չէ։", 0);	 
+	 			}
+
+	 			$checkingResult = $this->db->query("select 1 from tbl_projects where id ='$projectID' ");
+	 			  if ($checkingResult->num_rows() == 0)
+	 			{
+		  			 throw new Exception("Պրոյեկտը մուտքագրված չէ։", 0);	 
+	 			}
+
+	 			$checkingResult = $this->db->query("select 1 from tbl_suppliers where id ='$supplierID' ");
+	 			if ($checkingResult->num_rows() == 0)
+	 			{
+		  			 throw new Exception("Մատակարարը մուտքագրված չէ։", 0);	 
+	 			}
+
+				$res = $this->db->query("update tbl_payments set product_id = $productID, project_id = $projectID, supplier_id = $supplierID, description = '$paymentDescription', price = $price, quantity = $quantity, registration_date = '$registrationDate'  where id = $paymentID");
+	            
+	        	return $paymentID;
 			}
 			catch (Exception $e) 
 			{
 				echo $e->getMessage();
 			}
-	   
+   
 	 }
 
 	public function DeletePayment($paymentID) 

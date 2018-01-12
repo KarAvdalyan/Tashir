@@ -41,7 +41,7 @@ class ProjectController extends CI_Controller {
 
          public function ShowProjectsAjax()
          {
-            $projectName=$this->input->post('get_project_name');
+            $projectName = $this->input->get('get_project_name', TRUE);
             $startDate="";
             $endDate ="";
             $project_id="";
@@ -68,7 +68,7 @@ class ProjectController extends CI_Controller {
             $name='Hello Malmo';
             $registrationDate='12/dec/2017';
             $description ="Hello";
-            $this->ProjectModel->updateProject($projectID,$name,$description,$registrationDate);
+            echo $this->ProjectModel->updateProject($projectID,$name,$description,$registrationDate);
         }
 
         function DeleteProject()

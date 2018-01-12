@@ -16,9 +16,8 @@
 
 	}	
 
-function ShowPayments ()
+function ShowPayments (sort_order = 0)
       {
-          
          var start_date = $("#start_date").val();
 	       var end_date   = $("#end_date").val();
 	       var idd        = $("#idd").val();
@@ -28,13 +27,15 @@ function ShowPayments ()
 	       var supplier   = $("#supplier").val();
 	       var min_price  = $("#min_price").val();     
 	       var max_price  = $("#max_price").val();  
+         $.LoadingOverlay("show");
         /*get payments*/
        $.ajax({
          url:  base_url+'index.php/PaymentController/ShowPayments',
          type: 'post',
          data:{start_date:start_date,end_date:end_date,idd:idd,description:description,
-          product:product,project:project,supplier:supplier,min_price:min_price,max_price:max_price},
+          product:product,project:project,supplier:supplier,min_price:min_price,max_price:max_price,sort_order:sort_order},
          success:function(d){
+          $.LoadingOverlay("hide");
           $("#payments_result").html(d);
          }
       });
@@ -45,7 +46,7 @@ function ShowPayments ()
          type: 'post',
          dataType: 'json',
          data:{start_date:start_date,end_date:end_date,idd:idd,description:description,
-          product:product,supplier:supplier,min_price:min_price,max_price:max_price},
+          product:product,project:project,supplier:supplier,min_price:min_price,max_price:max_price},
          success:function(d){
           if (d.length!=0)
           {
@@ -54,7 +55,11 @@ function ShowPayments ()
 
             $("#result_max_price").text((+max_price).toFixed(2));
             $("#result_min_price").text((+min_price).toFixed(2));
-          //alert (result);            
+          }
+          else
+          {
+            $("#result_max_price").text('');
+            $("#result_min_price").text(''); 
           }
 
           

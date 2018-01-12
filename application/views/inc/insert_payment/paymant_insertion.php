@@ -22,7 +22,7 @@
          <input type="hidden" id="get_supplier_id">
 
          <input    id="get_product_id" class="form-control  " style="width:60%;" type="number" placeholder="Պրոդուկտ ID " >      
-         <input    id="add_product_name" class="form-control " type="text" placeholder="0Պրոդուկտի անուն" style="margin-top:8px;"  >
+         <input    id="add_product_name" class="form-control " type="text" placeholder="Պրոդուկտի անուն" style="margin-top:8px;"  >
          <div id ="productList"></div>
 
          <textarea id="payment_description" class="form-control" rows="3"  placeholder="Նկարագրություն" style="margin-top:8px;"></textarea>
@@ -35,9 +35,9 @@
 
          <input    id="price" class="form-control" style="width:50%; margin-top:8px;" type="number" placeholder="Գին"  >
          <input    id="quantity" class="form-control" style="width:40%; margin-top:8px;" type="number" placeholder="Քանակ">
-         <input    id="date" class="form-control"  type="date" style="margin-top:8px;">
+         <input    id="date" class="form-control default_end_date" type="date" style="margin-top:8px;">
          <input    id="add_payment" class="form-control"   type="submit" value="Ավելացնել" style="margin-top:8px;">
-         <input    id="" class="form-control update_payment" data-toggle="modal" data-target="#payment"  type="submit" value="Փոփոխել" style="margin-top:8px;">
+         <input    id="" class="form-control update_payment" type="submit" value="Փոփոխել" style="margin-top:8px;">
 
       </div>
       
@@ -67,7 +67,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">44Փակել</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Փակել</button>
         </div>
       </div>
     </div>

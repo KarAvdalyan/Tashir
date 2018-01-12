@@ -61,16 +61,16 @@ class ProductModel extends CI_Model
  	 public function updateProduct($productID,$name,$description,$registrationDate)
 	 {
 	 	try {
- 			$checkingResult = $this->db->query("select 1 from tbl_products where id = $productID");
+	 			$checkingResult = $this->db->query("select 1 from tbl_products where id = $productID");
 
-			if($checkingResult->num_rows() == 0)
-			{
-				throw new Exception("Պրոդուկտը գտնված չէ։", 0);				
-			}
+				if($checkingResult->num_rows() == 0)
+				{
+					throw new Exception("Պրոդուկտը գտնված չէ։", 0);				
+				}
 
-			$res = $this->db->query("update tbl_products set name =$name, description=$description, 
-			  	registration_date=$registration_date where id = $productID");
-
+				$res = $this->db->query("update tbl_products set name =$name, description=$description, 
+				  	registration_date=$registration_date where id = $productID");
+				return $productID;
 			}
 			catch (Exception $e) 
 			{

@@ -16,7 +16,7 @@
         <!--  <input type="hidden" class="get_product_id"> -->
          <input    id="get_product_name" class="form-control"  type="text" placeholder="eeԱնուն" ><br>
          <textarea id="get_product_discripshen" class="form-control" rows="3"  placeholder="Նկարագրություն"></textarea><br>
-         <input    id="get_product_date" class="form-control"  type="date"><br>
+         <input    id="get_product_date" class="form-control default_end_date"  type="date"><br>
          <input    id="insert_product"  class="btn btn-primary btn-md" type="submit" value="Ավելացնել"><br>
 
       </div>

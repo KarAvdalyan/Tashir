@@ -54,16 +54,16 @@ class SupplierModel extends CI_Model
 	 public function updateSupplier($supplierID,$name,$description,$registrationDate)
 	 {
 	 	try {
- 			$checkingResult = $this->db->query("select 1 from tbl_suppliers where id = $supplierID");
+	 			$checkingResult = $this->db->query("select 1 from tbl_suppliers where id = $supplierID");
 
-			if($checkingResult->num_rows() == 0)
-			{
-				throw new Exception("Մատակարարը գտնված չէ։", 0);				
-			}
+				if($checkingResult->num_rows() == 0)
+				{
+					throw new Exception("Մատակարարը գտնված չէ։", 0);				
+				}
 
-			$res = $this->db->query("update tbl_suppliers set name =$name, description=$description, 
-			  	registration_date=$registration_date where id = $projectID");
-
+				$res = $this->db->query("update tbl_suppliers set name =$name, description=$description, 
+				  	registration_date=$registration_date where id = $projectID");
+				return $supplierID;
 			}
 			catch (Exception $e) 
 			{

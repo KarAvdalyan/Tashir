@@ -12,8 +12,8 @@ $(document).ready(function(){
 
 
      $("#get_upd_product_name").keyup(function(){
-     	 // replace get_upd_product_name and update_product_name value
-     	 $("#update_product_name").val($(this).val());
+       // replace get_upd_product_name and update_product_name value
+       $("#update_product_name").val($(this).val());
      });
 
 
@@ -39,7 +39,7 @@ $(document).ready(function(){
     });
 
      $("#get_upd_project_name").keyup(function(){
-     	// replace get_upd_project_name and update_project_name value
+      // replace get_upd_project_name and update_project_name value
          $("#update_project_name").val($(this).val());
      });
 
@@ -67,8 +67,8 @@ $(document).ready(function(){
     });
 
      $("#get_upd_supplier_name").keyup(function(){
-     	// replace get_upd_supplier_name and update_supplier_name value
-     	$("#update_supplier_name").val($(this).val());
+      // replace get_upd_supplier_name and update_supplier_name value
+      $("#update_supplier_name").val($(this).val());
      })
 
 
@@ -123,11 +123,15 @@ $("#myTable").on("click",'tbody tr .update_save',function(){
                    type: 'post',
                    data:{payment_id:payment_id,get_product_id:get_product_id,get_project_id:get_project_id,get_supplier_id:get_supplier_id,payment_description:payment_description,price:price,quantity:quantity,date:date},
                    success:function(d){
-                       $('#payment').modal('toggle');
-
-                      
-                       ShowPayments();
-
+                       if(!Number.isInteger(parseInt(d)))
+                          {
+                            alert (d);
+                          }
+                          else
+                          {
+                            $('#payment').modal('toggle');
+                            ShowPayments();
+                          }
                    }
              });
          });
@@ -140,7 +144,7 @@ $("#myTable").on("click",'tbody tr .update_save',function(){
        $("#show_product").click(function(){
          //$.LoadingOverlay("show");
          //$("body").load(base_url+'index.php/ProductController/ShowProducts');
-         window.location.replace(base_url+'index.php/ProductController/ShowProducts');
+         window.location.replace(base_url+'index.php/ProductController/Index');
        });
 
        //  show  project

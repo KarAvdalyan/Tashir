@@ -57,16 +57,16 @@ class ProjectModel extends CI_Model
   	 public function updateProject($projectID,$name,$description,$registrationDate)
 	 {
 	 	try {
- 			$checkingResult = $this->db->query("select 1 from tbl_projects where id = $projectID");
+	 			$checkingResult = $this->db->query("select 1 from tbl_projects where id = $projectID");
 
-			if($checkingResult->num_rows() == 0)
-			{
-				throw new Exception("Պրոյեկտը գտնված չէ։", 0);				
-			}
+				if($checkingResult->num_rows() == 0)
+				{
+					throw new Exception("Պրոյեկտը գտնված չէ։", 0);				
+				}
 
-			$res = $this->db->query("update tbl_projects set name =$name, description=$description, 
-			  	registration_date=$registration_date where id = $projectID");
-
+				$res = $this->db->query("update tbl_projects set name =$name, description=$description, 
+				  	registration_date=$registration_date where id = $projectID");
+				return $projectID;
 			}
 			catch (Exception $e) 
 			{

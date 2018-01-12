@@ -37,12 +37,12 @@
     <form>
      <div class="col-xs-2">
         <label>Սկիզբ</label>
-        <input class="form-control" id="start_date" type="date" name="start_date"> 
+        <input class="form-control default_start_date" id="start_date"  type="date" name="start_date"> 
      </div>
      
      <div class="col-xs-2">
      <label>Վերջ</label>
-        <input class="form-control" id="end_date" type="date" name="end_date">
+        <input class="form-control default_start_date" id="end_date"  type="date" name="end_date">
      </div>
      
 
