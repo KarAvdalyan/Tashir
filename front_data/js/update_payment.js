@@ -172,7 +172,7 @@ $("#myTable").on("click",'tbody tr .update_save',function(){
         $("#signup").click(function(){
           //$.LoadingOverlay("show");
          //$("body").load(base_url+'index.php/Admin/signup');
-         window.location.replace(base_url+'index.php/Admin/signup');
+         window.location.replace(base_url+'index.php/AdminController/signup');
        });
 
 

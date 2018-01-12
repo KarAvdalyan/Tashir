@@ -1,12 +1,13 @@
 <?php
 
-class Admin extends CI_Controller {
+class AdminController extends CI_Controller {
 
 
     public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('admin_model');
+		//echo '<h1>'.$this->session->userdata('session_name').'</h1>';
 		
 	}
 
@@ -38,7 +39,7 @@ class Admin extends CI_Controller {
 			redirect(base_url('index.php/PaymentController/Index'));
 		}
 		else{
-			redirect(base_url('index.php/admin/index'));
+			redirect(base_url('index.php/AdminController/index'));
 		}
 
 	}
@@ -46,7 +47,7 @@ class Admin extends CI_Controller {
 	public function logout(){
 		$this->session->unset_userdata('session_name');
 		$this->session->unset_userdata('user_id');
-		redirect(base_url('index.php/admin/index'));
+		redirect(base_url('index.php/AdminController/index'));
 	}
 
 	public function validation_email(){

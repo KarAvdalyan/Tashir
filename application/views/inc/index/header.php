@@ -76,7 +76,7 @@ Move the mouse over the button to open the dropdown menu.
   <?php
   if($this->session->userdata('session_name') != true)
                { 
-               redirect(base_url('index.php/Admin/index'));
+               redirect(base_url('index.php/AdminController/index'));
                }
   ?>
 
@@ -149,7 +149,7 @@ Move the mouse over the button to open the dropdown menu.
     </ul>
 
                                                <!-- Signup -->
-    <a style="float:right;" class="btn btn-primary btn-md" href="<?= site_url('admin/logout'); ?>">Logout</a>
+    <a style="float:right;" class="btn btn-primary btn-md" href="<?= site_url('AdminController/logout'); ?>">Logout</a>
     <a id="signup" style="float:right;" class="btn btn-primary btn-md" href="#">Signup</a>
 
 

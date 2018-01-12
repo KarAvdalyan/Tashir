@@ -6,6 +6,7 @@ class PaymentController extends CI_Controller {
             parent::__Construct();
             
             $this->load->model('PaymentModel');
+            //echo '<script type="text/javascript">alert("'.$this->session->userdata('session_name').'");</script>';
          }
          
          public function Index()
