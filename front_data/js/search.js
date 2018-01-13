@@ -39,6 +39,21 @@ $(document)
           }
       });
 
+   $('#product_name').autoComplete({
+    minChars: 1,
+    source: function(term, response){
+        $.getJSON(base_url+'index.php/ProductController/ShowProductsAjax',  {get_product_name:term}, 
+          function(data)
+          {
+            result = [].map.call(data, function(obj)
+            {
+              return obj.name;
+            });
+            response(result);
+          });
+          }
+      });
+
    // auto complete for projects
    $('#add_project_name').autoComplete({
     minChars: 1,
@@ -55,8 +70,38 @@ $(document)
           }
       });
 
+   $('#project_name').autoComplete({
+    minChars: 1,
+    source: function(term, response){
+        $.getJSON(base_url+'index.php/ProjectController/ShowProjectsAjax',  {get_project_name:term}, 
+          function(data)
+          {
+            result = [].map.call(data, function(obj)
+            {
+              return obj.name;
+            });
+            response(result);
+          });
+          }
+      });
+
 // auto complete for suppliers
    $('#add_supplier_name').autoComplete({
+    minChars: 1,
+    source: function(term, response){
+        $.getJSON(base_url+'index.php/SupplierController/ShowSuppliersAjax',  {get_supplier_name:term}, 
+          function(data)
+          {
+            result = [].map.call(data, function(obj)
+            {
+              return obj.name;
+            });
+            response(result);
+          });
+          }
+      });
+
+    $('#supplier_name').autoComplete({
     minChars: 1,
     source: function(term, response){
         $.getJSON(base_url+'index.php/SupplierController/ShowSuppliersAjax',  {get_supplier_name:term}, 
@@ -227,30 +272,70 @@ $(document)
  //search_products
  $("#search_product").click(function(){
          
-         var start_date = $("#product_start_date").val();
-         var end_date   = $("#product_end_date").val();
-         var idd        = $("#product_idd").val();
-         var description= $("#product_description").val();
+         var start_date  = $("#product_start_date").val();
+         var end_date    = $("#product_end_date").val();
+         var product_id  = $("#product_idd").val();
+         var description = $("#product_description").val();
          var product_name= $("#product_name").val();
 
-alert ("hello");
-
-    /*   $.ajax({
+       $.ajax({
          url:  base_url+'index.php/ProductController/ShowProducts',
          type: 'post',
-         data:{start_date:start_date,end_date:end_date,idd:idd,description:description,
+         data:{start_date:start_date,end_date:end_date,product_id:product_id,description:description,
           product_name:product_name},
          success:function(d){
-          //  show  project
-          $.LoadingOverlay("show");
-           $("#search_table").html(d);
+           $(".table_search").html(d);
          
           
          }
       });
-    */
 
   });
 
+ //search_projects
+ $("#search_project").click(function(){
+         
+         var start_date  = $("#project_start_date").val();
+         var end_date    = $("#prjeuct_end_date").val();
+         var project_id  = $("#project_idd").val();
+         var description = $("#project_description").val();
+         var project_name= $("#project_name").val();
+
+       $.ajax({
+         url:  base_url+'index.php/ProjectController/ShowProjects',
+         type: 'post',
+         data:{start_date:start_date,end_date:end_date,project_id:project_id,description:description,
+          project_name:project_name},
+         success:function(d){
+          //  show  project
+           $(".table_search").html(d);
+         
+          
+         }
+      });
+
+  });
+
+ //search_supplier
+ $("#search_supplier").click(function(){
+         
+         var start_date  = $("#start_date").val();
+         var end_date    = $("#end_date").val();
+         var supplier_id  = $("#supplier_idd").val();
+         var description = $("#description").val();
+         var supplier_name= $("#supplier_name").val();
+
+       $.ajax({
+         url:  base_url+'index.php/SupplierController/ShowSuppliers',
+         type: 'post',
+         data:{start_date:start_date,end_date:end_date,supplier_id:supplier_id,description:description,
+          supplier_name:supplier_name},
+         success:function(d){
+           $(".table_search").html(d);
+          
+         }
+      });
+
+  });
 
  });

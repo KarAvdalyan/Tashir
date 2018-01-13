@@ -10,13 +10,11 @@
  <!-- search  -->
   
  <!--  insert Payment  -->
+
  <?php
-    if($this->session->userdata('user_id') == 2){
   $this->load->view('inc/index/insert_payment.php'); 
-}
-
-
   ?>
+
  <!--  insert Payment  -->
 
 

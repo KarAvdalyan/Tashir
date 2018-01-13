@@ -7,6 +7,7 @@ class ProductController extends CI_Controller {
          	
          	 $this->load->model('ProductModel');
              $this->load->library('serviceClass');
+             $this->userID=$this->session->userdata('user_id');
          }
          
          
@@ -16,13 +17,14 @@ class ProductController extends CI_Controller {
             $startDate=$this->input->post('start_date');
             $endDate =$this->input->post('end_date');
             $product_id=$this->input->post('product_id');
-            $product_description=$this->input->post('product_description');
+            $product_description=$this->input->post('description');
             $productName=$this->input->post('product_name');
             $autocompleteMode=0;
 
             $result = $this->ProductModel->GetProducts
-         	($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode);
-            $data['Products'] = $result;
+         	($startDate,$endDate,$product_id,$product_description,$productName,$this->userID,$autocompleteMode);
+            //echo $result;
+            $data['list'] = $result;
          	$this->load->view('search_table',$data);
          
          }
@@ -38,8 +40,9 @@ class ProductController extends CI_Controller {
             $autocompleteMode=0;
 
             $result = $this->ProductModel->GetProducts
-            ($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode);
-            $data['Products'] = $result;
+            ($startDate,$endDate,$product_id,$product_description,$productName,$this->userID,$autocompleteMode);
+            
+            $data['list'] = $result;
             $this->load->view('show_product',$data);
          
          }
@@ -54,7 +57,7 @@ class ProductController extends CI_Controller {
             $autocompleteMode=0;
 
             $result = $this->ProductModel->GetProducts
-            ($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode);
+            ($startDate,$endDate,$product_id,$product_description,$productName,$this->userID,$autocompleteMode);
             echo json_encode($result->row());
          }
 
@@ -74,9 +77,9 @@ class ProductController extends CI_Controller {
             $product_id="";
             $product_description="";
             $autocompleteMode=1;
-            
+
             $result = $this->ProductModel->GetProducts
-            ($startDate,$endDate,$product_id,$product_description,$productName,$autocompleteMode);
+            ($startDate,$endDate,$product_id,$product_description,$productName,$this->userID,$autocompleteMode);
             
             echo json_encode($result->result_array());
             
@@ -88,7 +91,7 @@ class ProductController extends CI_Controller {
             $name=$this->input->post('get_product_name');
             $registrationDate=$this->input->post('get_product_date');
             $description =$this->input->post('get_product_discripshen');
-            echo $this->ProductModel->SaveProduct($name,$description,$registrationDate);
+            echo $this->ProductModel->SaveProduct($name,$description,$registrationDate,$this->userID);
          }
 
         Public function updateProduct()
@@ -97,7 +100,7 @@ class ProductController extends CI_Controller {
             $name='Hello Malmo';
             $registrationDate='12/dec/2017';
             $description ="Hello";
-            echo $this->ProductModel->updateProduct($productID,$name,$description,$registrationDate);
+            echo $this->ProductModel->updateProduct($productID,$name,$description,$registrationDate,$this->userID);
          }
 
 	}

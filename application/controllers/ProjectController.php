@@ -7,11 +7,28 @@ class ProjectController extends CI_Controller {
          	
          	 $this->load->model('ProjectModel');
              $this->load->library('serviceClass');
+             $this->userID=$this->session->userdata('user_id');
          }
          
          
 
+         public function Index()
+         {
+            $startDate=$this->input->post('start_date');
+            $endDate =$this->input->post('end_date');
+            $project_id=$this->input->post('project_id');
+            $project_description=$this->input->post('project_description');
+            $projectName=$this->input->post('project_name');
+            $autocompleteMode=0;
 
+            
+            $result = $this->ProjectModel->GetProjects
+            ($startDate,$endDate,$project_id,$project_description,$projectName,$this->userID,$autocompleteMode);
+            
+            $data['list'] =  $result;
+            $this->load->view('show_project',$data);
+         
+         }
 
           public function ShowProjects()
          {
@@ -24,10 +41,10 @@ class ProjectController extends CI_Controller {
 
             
             $result = $this->ProjectModel->GetProjects
-            ($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode);
+            ($startDate,$endDate,$project_id,$project_description,$projectName,$this->userID,$autocompleteMode);
             
-            $data['Projects'] =  $result;
-            $this->load->view('show_project',$data);
+            $data['list'] =  $result;
+            $this->load->view('search_table',$data);
          
          }
 
@@ -48,7 +65,7 @@ class ProjectController extends CI_Controller {
             $project_description="";
             $autocompleteMode=1;
             $result =  $this->ProjectModel->GetProjects
-            ($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode);
+            ($startDate,$endDate,$project_id,$project_description,$projectName,$this->userID,$autocompleteMode);
                        
             echo $this->serviceclass->GetAutoCompleteList($result);
             
@@ -59,7 +76,7 @@ class ProjectController extends CI_Controller {
             $name=$this->input->post('get_project_name');
             $registrationDate=$this->input->post('get_project_date');
             $description =$this->input->post('get_project_discripshen');
-            echo $this->ProjectModel->SaveProject($name,$description,$registrationDate);
+            echo $this->ProjectModel->SaveProject($name,$description,$registrationDate,$this->userID);
          }
 
         Public function UpdateProject()
@@ -68,7 +85,7 @@ class ProjectController extends CI_Controller {
             $name='Hello Malmo';
             $registrationDate='12/dec/2017';
             $description ="Hello";
-            echo $this->ProjectModel->updateProject($projectID,$name,$description,$registrationDate);
+            echo $this->ProjectModel->updateProject($projectID,$name,$description,$registrationDate,$this->userID);
         }
 
         function DeleteProject()

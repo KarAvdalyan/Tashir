@@ -4,30 +4,43 @@ class ProductModel extends CI_Model
 	
 
 	public function GetProducts($startDate,$endDate,$product_id,$product_description,
-		$productName,$autocompleteMode=0) 
+		$productName,$userID,$autocompleteMode=0) 
 	{
 		try {
+
 			   $sql = "call pr_search_products('$startDate','$endDate','$product_id','$product_description',
-			   '$productName',$autocompleteMode)";
+			   '$productName',$userID,$autocompleteMode)";
+			   
 			   $result = $this->db->query($sql);
-		   		
+			   
+			   if (!$result)
+			   {
+			        $error = $this->db->error(); 
+			        throw new Exception($error['message']);
+			   }
 			   return $result;
 			}
 
 		catch (Exception $e) 
 			{
-				echo $e->getMessage();
+				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  GetProducts()");');
+				echo $e->getMessage().'  GetProducts()';
 			}
 	}	
 
 	
 
-	 public function SaveProduct($name,$description,$registrationDate)
+	 public function SaveProduct($name,$description,$registrationDate,$userID)
 	 {
 	 	try {
 	 		  if($name=="" || $registrationDate=="" )
 	 		  {
 	 		  	throw new Exception("Տվյալները ճիշտ լրացված չեն։", 0);	 
+	 		  }
+
+	 		  if($userID=="")
+	 		  {
+	 		  	throw new Exception("Մուտքագրողը լրացված չէ։", 0);	 	
 	 		  }
 			  
 			  $checkingResult = $this->db->query("select 1 from tbl_products where name ='$name' ");
@@ -39,13 +52,23 @@ class ProductModel extends CI_Model
 
 
 	  		  $this->db->trans_start();
-	  		  $this->db->query("insert into tbl_products(name,description,registration_date) 
-			  		values('$name','$description','$registrationDate');");
+
+	  		  $sql ="insert into tbl_products(name,description,registration_date,user_id) 
+			  		values('$name','$description','$registrationDate',$userID);";
+	  		  
+	  		
+
+ 	  		  if (!$this->db->query($sql))
+			  {
+			        $error = $this->db->error(); 
+			        throw new Exception($error['message']);
+			  }
 
 			  $result = $this->db->query("select max(id) as id from tbl_products;");
 
 	  		   $a = $result->result_array();
    	     	   $this->db->trans_complete();
+
    	     	   return $a[0]["id"];
 
 
@@ -53,12 +76,13 @@ class ProductModel extends CI_Model
 			catch (Exception $e) 
 			{
 				$this->db->trans_rollback();
-				echo $e->getMessage();
+				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  SaveProduct()");');
+				echo $e->getMessage().'  SaveProduct()';
 			}
 	   
 	 }	
 
- 	 public function updateProduct($productID,$name,$description,$registrationDate)
+ 	 public function updateProduct($productID,$name,$description,$registrationDate,$userID)
 	 {
 	 	try {
 	 			$checkingResult = $this->db->query("select 1 from tbl_products where id = $productID");
@@ -68,13 +92,25 @@ class ProductModel extends CI_Model
 					throw new Exception("Պրոդուկտը գտնված չէ։", 0);				
 				}
 
-				$res = $this->db->query("update tbl_products set name =$name, description=$description, 
-				  	registration_date=$registration_date where id = $productID");
+			    if($userID=="")
+	 		    {
+	 		     	throw new Exception("Մուտքագրողը լրացված չէ։", 0);	 	
+	 		    }
+
+				$result = $this->db->query("update tbl_products set name =$name, description=$description, 
+				  	registration_date=$registration_date,user_id=$userID where id = $productID");
+				
+				if (!$result)
+			    {
+			        $error = $this->db->error(); 
+			        throw new Exception($error['message']);
+			    }
 				return $productID;
 			}
 			catch (Exception $e) 
 			{
-				echo $e->getMessage();
+				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  updateProduct()");');
+				echo $e->getMessage().'  updateProduct()';
 			}
 	   
 	 }

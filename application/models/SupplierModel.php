@@ -4,22 +4,40 @@ class SupplierModel extends CI_Model
 	
 
 	public function GetSuppliers($startDate,$endDate,$supplier_id,$supplier_description,$supplierName,
-		$autocompleteMode=0) 
+		$userID,$autocompleteMode=0) 
 	{
-	   $sql = "call pr_search_suppliers('$startDate','$endDate','$supplier_id','$supplier_description',
-	   '$supplierName',$autocompleteMode)";
-	   $result = $this->db->query($sql);
+		try {
+			   $sql = "call pr_search_suppliers('$startDate','$endDate','$supplier_id','$supplier_description',
+			   '$supplierName',$autocompleteMode)";
+			   $result = $this->db->query($sql);
 
-	   return $result;
+			   if (!$result)
+			   {
+			        $error = $this->db->error(); 
+			        throw new Exception($error['message']);
+			   }
+			   return $result;
+		   	}
+		   	catch
+		   	{
+				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  GetSuppliers()");');
+				echo $e->getMessage().'  GetSuppliers()';
+			}
+
 	 
 	}	
 
-	public function SaveSupplier($name,$description,$registrationDate)
+	public function SaveSupplier($name,$description,$registrationDate,$userID)
 	 {
 	 	try {
 	 		  if($name=="" || $registrationDate=="" )
 	 		  {
 	 		  	throw new Exception("Տվյալները ճիշտ լրացված չեն։", 0);	 
+	 		  }
+
+	 		  if($userID=="")
+	 		  {
+	 		  	throw new Exception("Մուտքագրողը լրացված չէ։", 0);	 	
 	 		  }
 	 		  
 	 		  $checkingResult = $this->db->query("select 1 from tbl_suppliers where name ='$name' ");
@@ -31,9 +49,14 @@ class SupplierModel extends CI_Model
 
 	  		  $this->db->trans_start();
 			  
-			  	$this->db->query("insert into tbl_suppliers(name,description,registration_date) 
-			  		values('$name','$description','$registrationDate');");
-				
+		  	  $sql="insert into tbl_suppliers(name,description,registration_date) 
+			  		values('$name','$description','$registrationDate');";
+			  
+			  if (!$this->db->query($sql))
+			  {
+			        $error = $this->db->error(); 
+			        throw new Exception($error['message']);
+			  }
 				$result = $this->db->query("select max(id) as id from tbl_suppliers;");
 
 			   	$a = $result->result_array();
@@ -46,12 +69,13 @@ class SupplierModel extends CI_Model
 			catch (Exception $e) 
 			{
 				$this->db->trans_rollback();
-				echo $e->getMessage();
+				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  SaveSupplier()");');
+				echo $e->getMessage().'  SaveSupplier()';
 			}
 	   
 	 }
 
-	 public function updateSupplier($supplierID,$name,$description,$registrationDate)
+	 public function UpdateSupplier($supplierID,$name,$description,$registrationDate,$userID)
 	 {
 	 	try {
 	 			$checkingResult = $this->db->query("select 1 from tbl_suppliers where id = $supplierID");
@@ -61,13 +85,22 @@ class SupplierModel extends CI_Model
 					throw new Exception("Մատակարարը գտնված չէ։", 0);				
 				}
 
-				$res = $this->db->query("update tbl_suppliers set name =$name, description=$description, 
+				$sql = $this->db->query("update tbl_suppliers set name =$name, description=$description, 
 				  	registration_date=$registration_date where id = $projectID");
+				
+				if (!$this->db->query($sql))
+				{
+				    $error = $this->db->error(); 
+					throw new Exception($error['message']);
+				}
+
 				return $supplierID;
 			}
 			catch (Exception $e) 
 			{
-				echo $e->getMessage();
+				$this->db->trans_rollback();
+				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  UpdateSupplier()");');
+				echo $e->getMessage().'  UpdateSupplier()';
 			}
 	   
 	 }

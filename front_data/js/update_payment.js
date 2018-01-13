@@ -151,14 +151,14 @@ $("#myTable").on("click",'tbody tr .update_save',function(){
        $("#show_project").click(function(){
          //$.LoadingOverlay("show");
          //$("body").load(base_url+'index.php/ProjectController/ShowProjects');
-         window.location.replace(base_url+'index.php/ProjectController/ShowProjects');
+         window.location.replace(base_url+'index.php/ProjectController/Index');
        });
 
        // show  supplier
        $("#show_supplier").click(function(){
          //$.LoadingOverlay("show");
          //$("body").load(base_url+'index.php/SupplierController/ShowSuppliers');
-          window.location.replace(base_url+'index.php/SupplierController/ShowSuppliers');
+          window.location.replace(base_url+'index.php/SupplierController/Index');
        });
 
          // home paige

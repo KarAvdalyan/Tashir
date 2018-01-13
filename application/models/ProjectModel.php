@@ -3,28 +3,42 @@ class ProjectModel extends CI_Model
 {
 	
 
-	public function GetProjects($startDate,$endDate,$project_id,$project_description,$projectName,$autocompleteMode=0) 
+	public function GetProjects($startDate,$endDate,$project_id,$project_description,$projectName,$userID,$autocompleteMode=0) 
 	{
 		try {
 			   $sql = "call pr_search_projects('$startDate','$endDate','$project_id',
-			   '$project_description','$projectName',$autocompleteMode)";
+			   '$project_description','$projectName',$userID,$autocompleteMode)";
+
 			   $result = $this->db->query($sql);
-		   		return $result;
+
+			   if (!$result)
+			   {
+			        $error = $this->db->error(); 
+			        throw new Exception($error['message']);
+			   }
+
+		   	 	return $result;
 			}
 
 		catch (Exception $e) 
 			{
-				echo $e->getMessage();
+				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  GetProjects()");');
+				echo $e->getMessage().'  GetProjects()';
 			}
 	}	
 
-	 public function SaveProject($name,$description,$registrationDate)
+	 public function SaveProject($name,$description,$registrationDate,$userID)
 	 {
 	 	try {
 	 		
  			  if($name=="" || $registrationDate=="" )
 	 		  {
 	 		  	throw new Exception("Տվյալները ճիշտ լրացված չեն։", 0);	 
+	 		  }
+
+	 		  if($userID=="")
+	 		  {
+	 		  	throw new Exception("Մուտքագրողը լրացված չէ։", 0);	 	
 	 		  }
      	 	  
      	 	  $checkingResult = $this->db->query("select 1 from tbl_projects where name ='$name' ");
@@ -36,10 +50,14 @@ class ProjectModel extends CI_Model
 			  
 			  $this->db->trans_start();
 
-			  $this->db->query("insert into tbl_projects(name,description,registration_date) 
-			  		values('$name','$description','$registrationDate');");
+			  
+			  $result=$this->db->query("call pr_add_project('$name','$description','$registrationDate',$userID)");
 
-			  $result = $this->db->query("select max(id) as id from tbl_projects;");
+			   if (!$result)
+			   {
+			        $error = $this->db->error(); 
+			        throw new Exception($error['message']);
+			   }
 
 	  		   $a = $result->result_array();
    	     	   $this->db->trans_complete();
@@ -49,7 +67,8 @@ class ProjectModel extends CI_Model
 			catch (Exception $e) 
 			{
 			  $this->db->trans_rollback();
-			  echo $e->getMessage();
+			  $this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  SaveProject()");');
+			  echo $e->getMessage().'  SaveProject()';
 			}
 	   
 	 }
