@@ -18,6 +18,7 @@ class ProductModel extends CI_Model
 			        $error = $this->db->error(); 
 			        throw new Exception($error['message']);
 			   }
+			   //throw new Exception($sql,0);
 			   return $result;
 			}
 
@@ -82,7 +83,7 @@ class ProductModel extends CI_Model
 	   
 	 }	
 
- 	 public function updateProduct($productID,$name,$description,$registrationDate,$userID)
+ 	 public function UpdateProduct($productID,$name,$description,$registrationDate,$userID)
 	 {
 	 	try {
 	 			$checkingResult = $this->db->query("select 1 from tbl_products where id = $productID");
@@ -97,8 +98,8 @@ class ProductModel extends CI_Model
 	 		     	throw new Exception("Մուտքագրողը լրացված չէ։", 0);	 	
 	 		    }
 
-				$result = $this->db->query("update tbl_products set name =$name, description=$description, 
-				  	registration_date=$registration_date,user_id=$userID where id = $productID");
+				$result = $this->db->query("update tbl_products set name ='$name', description='$description', 
+				  	registration_date='$registrationDate',user_id=$userID where id = $productID");
 				
 				if (!$result)
 			    {

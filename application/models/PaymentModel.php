@@ -9,40 +9,30 @@ class PaymentModel extends CI_Model
 		
 	}
 
-	public function GetPayments($startDate,$endDate,$product_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice,$sortOrder) 
+	public function GetPayments($startDate,$endDate,$product_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice,$sortOrder,$userID) 
 	{
 		try
 		{
 		   $sql = "call pr_search_payments('$startDate','$endDate','$product_id','$product_description',
-		   '$productName','$projectName','$supplierName','$minPrice','$maxPrice','$sortOrder')";
+		   '$productName','$projectName','$supplierName','$minPrice','$maxPrice','$sortOrder',$userID)";
 		   //return $sql;
+		   //throw new Exception($error['message']);
 		   $result = $this->db->query($sql);
 
-		   $output='';
-		   //$a = $result->result_array();
-		   foreach ($result->result() as $row) {
-		   		$output.=' <tr>';
-		   		$output.='<td>'.$row->registration_date.'</td>';
-		   		$output.='<td>'.$row->productName.'</td>';
-		   		$output.='<td>'.$row->id.'</td>';
-		   		$output.='<td>'.$row->description.'</td>';
-		   		$output.='<td>'.$row->projectName.'</td>';
-		   		$output.='<td>'.$row->supplierName.'</td>';
-		   		 $output.='<td>'.number_format($row->price, 2, '.', '').'</td>';
-		   		$output.='<td>'.$row->quantity.'</td>';
-		   		
-		   		$output.='<td style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;" id ="'.$row->id.'" class="update_save" data-toggle="modal" data-target="#payment">Փոփոխել</td>';
-	   		    
-	   		    $output.='<td style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;" id="'.$row->id.'" class="delete_payment" >Հեռացնել</td>';
-		   		$output.=' </tr>';
-
+		  
+		   if (!$result)
+		   {
+		        $error = $this->db->error(); 
+		        throw new Exception($error['message']);
 		   }
-	   	   return $output;
+
+	   	   return $result;
    	   	}
 
 		catch (Exception $e) 
 		{
-			echo $e->getMessage();
+			$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  GetPayments()");');
+			echo $e->getMessage().'  GetPayments()';
 	    }
 
 	 }
@@ -71,12 +61,12 @@ class PaymentModel extends CI_Model
 
 	 }
 
- 	public function GetMinMaxPrices($startDate,$endDate,$payment_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice) 
+ 	public function GetMinMaxPrices($startDate,$endDate,$payment_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice,$userID) 
 	{
 		try 
 		{
 		   $sql = "call pr_get_min_max_prices('$startDate','$endDate','$payment_id','$product_description',
-		   '$productName','$projectName','$supplierName','$minPrice','$maxPrice')";
+		   '$productName','$projectName','$supplierName','$minPrice','$maxPrice',$userID)";
 		   $result = $this->db->query($sql);
 
 		   $a = $result->result_array();
@@ -92,7 +82,7 @@ class PaymentModel extends CI_Model
 
 	 }
 
-	 public function SavePayment($productID,$supplierID,$projectID,$description,$registrationDate,$price,$quantity)
+	 public function SavePayment($productID,$supplierID,$projectID,$description,$registrationDate,$price,$quantity,$userID)
 	 {
 	 	try {
 	 		
@@ -110,6 +100,11 @@ class PaymentModel extends CI_Model
 	 		  if($quantity<0)
 	 		  {
 	 		  	throw new Exception("Քանակը չի կարող լինել բացասական մեծություն։", 0);	 	
+	 		  }
+
+	 		  if($userID=="")
+	 		  {
+	 		  	throw new Exception("Մուտքագրողը լրացված չէ։", 0);	 	
 	 		  }
 
 			  $checkingResult = $this->db->query("select 1 from tbl_products where id ='$productID' ");
@@ -133,7 +128,7 @@ class PaymentModel extends CI_Model
      		  $this->db->trans_start();
  		  	  $a="insert into tbl_payments(product_id,supplier_id,project_id,description,registration_date,price,quantity) 
 			  		values($productID,$supplierID,$projectID,'$description','$registrationDate',
-			  		$price,$quantity);";
+			  		$price,$quantity,$userID);";
 			  		
 
  		  	 
@@ -157,7 +152,7 @@ class PaymentModel extends CI_Model
 	   
 	 }
 
-  	 public function updatePayment($paymentID,$productID,$projectID,$supplierID,$paymentDescription,$price,$quantity,$registrationDate)
+  	 public function updatePayment($paymentID,$productID,$projectID,$supplierID,$paymentDescription,$price,$quantity,$registrationDate,$userID)
 	 {
 	 	try {
 
@@ -177,6 +172,11 @@ class PaymentModel extends CI_Model
 		 		  if($price<0 )
 		 		{
 		 		  	throw new Exception("Գինը չի կարող լինել բացասական մեծություն։", 0);	 	
+		 		}
+
+		 		if($userID=="")
+		 		{
+		 			throw new Exception("Մուտքագրողը լրացված չէ։", 0);	 	
 		 		}
 
 		 		  if($quantity<0)

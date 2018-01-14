@@ -32,12 +32,12 @@
     <form>
      <div class="col-xs-2">
         <label>Սկիզբ</label>
-        <input class="form-control" id="product_start_date" type="date" name="product_start_date"> 
+        <input class="form-control default_start_date" id="product_start_date" type="date" name="product_start_date"> 
      </div>
      
      <div class="col-xs-2">
      <label>Վերջ</label>
-        <input class="form-control" id="product_end_date" type="date" name="product_end_date">
+        <input class="form-control default_end_date" id="product_end_date"  type="date" name="product_end_date">
      </div>
      
      <div class="col-xs-2">
@@ -52,7 +52,7 @@
      
      <div class="col-xs-2">
      <label>Նկարագիր</label>
-        <input class="form-control" id="product_description" placeholder="Նկարագիր" type="number" name="product_description">
+        <input class="form-control" id="product_description" placeholder="Նկարագիր" type="text" name="product_description">
      </div>
 
       <div style="margin-top:15px;">
@@ -67,7 +67,7 @@
 </div><br>
 
             
-  <table class="table table-bordered">
+  <table id="show_product_table" class="table table-bordered">
     <thead>
       <tr style="background-color:darkgray;text-align:center;">
         <th style="text-align:center;">ID</th>
@@ -78,20 +78,9 @@
         <th style="text-align:center;">Հեռացնել</th>
       </tr>
     </thead>
-    <tbody>
-      <?php foreach ($Products->result() as $value) { ?>
-      <tr style="text-align:center;">
-        <td contenteditable="true"><?= $value->id; ?></td>
-        <td contenteditable="true"><?= $value->name; ?></td>
-        <td contenteditable="true"><?= $value->description; ?></td>
-        <td contenteditable="true"><?= $value->registration_date; ?></td>
-        <!-- <td contenteditable="true"><input id="date" class="form-control" type="date" style="width:100%;height:25px;"
-          value='"'+ <?= $value->registration_date; ?> + '"'></td> -->
-        <td id=<?= $value->id ?>  style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Փոփոխել</td>
-        <td id=<?= $value->id ?> style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;">Հեռացնել</td>
-      </tr>
-     <?php } ?>
-    </tbody>
+  <tbody class="table_search">
+    <?php  $this->load->view('search_table.php'); ?>
+  </tbody>  
   </table>
 </div>
 

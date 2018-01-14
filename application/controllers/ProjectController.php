@@ -14,18 +14,18 @@ class ProjectController extends CI_Controller {
 
          public function Index()
          {
-            $startDate=$this->input->post('start_date');
-            $endDate =$this->input->post('end_date');
-            $project_id=$this->input->post('project_id');
-            $project_description=$this->input->post('project_description');
-            $projectName=$this->input->post('project_name');
+            $startDate=date('Y-m-d',strtotime("-7 days"));
+            $endDate =date("Y-m-d") ;
+            $project_id="";
+            $project_description="";
+            $projectName="";
             $autocompleteMode=0;
 
-            
             $result = $this->ProjectModel->GetProjects
             ($startDate,$endDate,$project_id,$project_description,$projectName,$this->userID,$autocompleteMode);
             
-            $data['list'] =  $result;
+            $data['list'] = $result;
+
             $this->load->view('show_project',$data);
          
          }
@@ -81,11 +81,11 @@ class ProjectController extends CI_Controller {
 
         Public function UpdateProject()
         {
-            $projectID=4;
-            $name='Hello Malmo';
-            $registrationDate='12/dec/2017';
-            $description ="Hello";
-            echo $this->ProjectModel->updateProject($projectID,$name,$description,$registrationDate,$this->userID);
+            $projectID=$this->input->post('id');
+            $name=$this->input->post('name');
+            $description=$this->input->post('description');
+            $registrationDate=$this->input->post('registrationDate');
+            echo $this->ProjectModel->UpdateProject($projectID,$name,$description,$registrationDate,$this->userID);
         }
 
         function DeleteProject()
