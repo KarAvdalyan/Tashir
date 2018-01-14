@@ -42,7 +42,7 @@
      
      <div class="col-xs-2">
      <label>Վերջ</label>
-        <input class="form-control default_start_date" id="project_end_date"  type="date" name="end_date">
+        <input class="form-control default_end_date" id="project_end_date"  type="date" name="end_date">
      </div>
      
 
@@ -72,7 +72,7 @@
 </div><br>
 
             
-  <table class="table table-bordered">
+  <table id="show_project_table" class="table table-bordered">
     <thead>
       <tr style="background-color:darkgray;text-align:center;">
         <th style="text-align:center;">ID</th>

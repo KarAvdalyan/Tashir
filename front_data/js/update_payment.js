@@ -105,6 +105,97 @@ $("#myTable").on("click",'tbody tr .update_save',function(){
      });
 
 
+     // get payment by id
+$("#show_product_table").on("click",'tbody tr .update_save',function(){
+            var $row = jQuery(this).closest('tr');
+            var $columns = $row.find('td');
+   
+            var id = $columns[0].innerHTML;
+            var name =$columns[1].innerHTML;
+            var description=$columns[2].innerHTML;
+            var registrationDate =$columns[3].innerHTML;
+            registrationDate = registrationDate.split("/").reverse().join("-");
+          
+             $.ajax({
+               url:  base_url+'index.php/ProductController/UpdateProduct',
+               type: 'post',
+               data:{id:id,name:name,description:description,registrationDate:registrationDate},
+               success:function(d){
+                alert ("Փոփոխությունը կատարված է։");
+                  if(!Number.isInteger(parseInt(d)))
+                  {
+                    alert (d);
+                  }
+                  else
+                  {
+                    ShowProducts();
+                  }
+               }
+                
+          }); 
+      
+     });
+
+$("#show_project_table").on("click",'tbody tr .update_save',function(){
+            var $row = jQuery(this).closest('tr');
+            var $columns = $row.find('td');
+   
+            var id = $columns[0].innerHTML;
+            var name =$columns[1].innerHTML;
+            var description=$columns[2].innerHTML;
+            var registrationDate =$columns[3].innerHTML;
+            registrationDate = registrationDate.split("/").reverse().join("-")
+          
+             $.ajax({
+               url:  base_url+'index.php/ProjectController/UpdateProject',
+               type: 'post',
+               data:{id:id,name:name,description:description,registrationDate:registrationDate},
+               success:function(d){
+                alert ("Փոփոխությունը կատարված է։");
+                  if(!Number.isInteger(parseInt(d)))
+                  {
+                    alert (d);
+                  }
+                  else
+                  {
+                    ShowProjects();
+                  }
+               }
+                
+          }); 
+      
+     });
+
+$("#show_supplier_table").on("click",'tbody tr .update_save',function(){
+            var $row = jQuery(this).closest('tr');
+            var $columns = $row.find('td');
+   
+            var id = $columns[0].innerHTML;
+            var name =$columns[1].innerHTML;
+            var description=$columns[2].innerHTML;
+            var registrationDate =$columns[3].innerHTML;
+            registrationDate = registrationDate.split("/").reverse().join("-")
+          
+             $.ajax({
+               url:  base_url+'index.php/SupplierController/UpdateSupplier',
+               type: 'post',
+               data:{id:id,name:name,description:description,registrationDate:registrationDate},
+               success:function(d){
+                alert ("Փոփոխությունը կատարված է։");
+                  if(!Number.isInteger(parseInt(d)))
+                  {
+                    alert (d);
+                  }
+                  else
+                  {
+                    ShowSuppliers();
+                  }
+               }
+                
+          }); 
+      
+     });
+
                //  Update  Payments
 
          $(".update_payment").on('click',function(){

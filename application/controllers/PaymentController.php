@@ -6,12 +6,27 @@ class PaymentController extends CI_Controller {
             parent::__Construct();
             
             $this->load->model('PaymentModel');
-            //echo '<script type="text/javascript">alert("'.$this->session->userdata('session_name').'");</script>';
+            $this->userID=$this->session->userdata('user_id');
          }
          
          public function Index()
          {
-            $this->load->view('index');
+            $startDate=date('Y-m-d',strtotime("-7 days"));
+            $endDate =date("Y-m-d") ;
+            $product_id="";
+            $product_description="";
+            $productName="";
+            $projectName="";
+            $supplierName="";
+            $minPrice="";
+            $maxPrice="";
+            $sortOrder=1;
+            
+            $result = $this->PaymentModel->GetPayments
+            ($startDate,$endDate,$product_id,$product_description,$productName,$projectName,$supplierName,$minPrice,
+               $maxPrice,$sortOrder,$this->userID);
+            $data['Payments'] = $result;  
+            $this->load->view('index',$data);
             
          }
 
@@ -28,9 +43,12 @@ class PaymentController extends CI_Controller {
             $maxPrice=$this->input->post('max_price');
             $sortOrder=$this->input->post('sort_order');
             
-            echo $this->PaymentModel->GetPayments
+            $result = $this->PaymentModel->GetPayments
             ($startDate,$endDate,$product_id,$product_description,$productName,$projectName,$supplierName,$minPrice,
-               $maxPrice,$sortOrder);
+               $maxPrice,$sortOrder,$this->userID);
+
+            $data['Payments'] = $result;
+            $this->load->view('search_table_payment',$data);
 
          }
 
@@ -56,7 +74,7 @@ class PaymentController extends CI_Controller {
             $maxPrice=$this->input->post('max_price');
 
             $result = $this->PaymentModel->GetMinMaxPrices
-            ($startDate,$endDate,$payment_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice);
+            ($startDate,$endDate,$payment_id,$product_description,$productName,$projectName,$supplierName,$minPrice,$maxPrice,$this->userID);
 
             echo json_encode($result); 
          }
@@ -72,7 +90,7 @@ class PaymentController extends CI_Controller {
 
            
             echo $this->PaymentModel->SavePayment($productID,$supplierID,$projectID,$description,$registrationDate,
-               $price,$quantity);
+               $price,$quantity,$this->userID);
          }
 
 
@@ -87,7 +105,7 @@ class PaymentController extends CI_Controller {
             $quantity             = $this->input->post('quantity');
             $registrationDate     = $this->input->post('date');
            
-           echo $this->PaymentModel->updatePayment($paymentID,$productID,$projectID,$supplierID,$paymentDescription,$price,$quantity,$registrationDate);
+           echo $this->PaymentModel->updatePayment($paymentID,$productID,$projectID,$supplierID,$paymentDescription,$price,$quantity,$registrationDate,$this->userID);
         }
 
 

@@ -87,7 +87,7 @@
       </tr>
     </thead>
     <tbody id ="payments_result">
-        
+        <?php  $this->load->view('search_table_payment.php'); ?>
     </tbody>
   </table>
 

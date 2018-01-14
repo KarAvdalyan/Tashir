@@ -13,11 +13,11 @@ class SupplierController extends CI_Controller {
          public function Index($startDate="''",$endDate ="''",$supplier_id="''",$supplier_description="''",
             $supplierName="''")
          {
-            $startDate=$this->input->post('start_date');
-            $endDate =$this->input->post('end_date');
-            $supplier_id=$this->input->post('supplier_id');
-            $supplier_description=$this->input->post('description');
-            $supplierName=$this->input->post('supplier_name');
+            $startDate=date('Y-m-d',strtotime("-7 days")) ;
+            $endDate =date("Y-m-d");
+            $supplier_id="";
+            $supplier_description="";
+            $supplierName="";
             $autocompleteMode=0;
             
             $result = $this->SupplierModel->GetSuppliers
@@ -78,10 +78,10 @@ class SupplierController extends CI_Controller {
 
         Public function UpdateSupplier()
         {
-            $supplierID=4;
-            $name='Hello Malmo';
-            $registrationDate='12/dec/2017';
-            $description ="Hello";
+            $supplierID=$this->input->post('id');
+            $name=$this->input->post('name');
+            $description=$this->input->post('description');
+            $registrationDate=$this->input->post('registrationDate');
             echo $this->SupplierModel->UpdateSupplier($supplierID,$name,$description,$registrationDate,$this->userID);
         }
 

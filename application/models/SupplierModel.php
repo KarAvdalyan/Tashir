@@ -16,11 +16,12 @@ class SupplierModel extends CI_Model
 			        $error = $this->db->error(); 
 			        throw new Exception($error['message']);
 			   }
+			   
 			   return $result;
 		   	}
-		   	catch
+	   	catch(Exception $e)
 		   	{
-				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  GetSuppliers()");');
+			   $this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  GetSuppliers()");');
 				echo $e->getMessage().'  GetSuppliers()';
 			}
 
@@ -85,9 +86,16 @@ class SupplierModel extends CI_Model
 					throw new Exception("Մատակարարը գտնված չէ։", 0);				
 				}
 
-				$sql = $this->db->query("update tbl_suppliers set name =$name, description=$description, 
-				  	registration_date=$registration_date where id = $projectID");
-				
+				if($userID=="")
+	 		    {
+	 		     	throw new Exception("Մուտքագրողը լրացված չէ։", 0);	 	
+	 		    }
+
+				$sql ="update tbl_suppliers set name ='$name', description='$description', 
+				  	registration_date='$registrationDate',user_id=$userID where id = $supplierID";
+
+				//throw new Exception($sql, 0);	 	
+
 				if (!$this->db->query($sql))
 				{
 				    $error = $this->db->error(); 
@@ -99,7 +107,7 @@ class SupplierModel extends CI_Model
 			catch (Exception $e) 
 			{
 				$this->db->trans_rollback();
-				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  UpdateSupplier()");');
+				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().' UpdateSupplier()");');
 				echo $e->getMessage().'  UpdateSupplier()';
 			}
 	   

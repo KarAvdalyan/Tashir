@@ -27,7 +27,7 @@ function ShowPayments (sort_order = 0)
 	       var supplier   = $("#supplier").val();
 	       var min_price  = $("#min_price").val();     
 	       var max_price  = $("#max_price").val();  
-         $.LoadingOverlay("show");
+         //$.LoadingOverlay("show");
         /*get payments*/
        $.ajax({
          url:  base_url+'index.php/PaymentController/ShowPayments',
@@ -40,7 +40,22 @@ function ShowPayments (sort_order = 0)
          }
       });
 
-       /*get min/max prices*/
+       GetMinMaxPrices();
+
+   }
+
+   /*get min/max prices*/
+   function GetMinMaxPrices()
+   {
+         var start_date = $("#start_date").val();
+         var end_date   = $("#end_date").val();
+         var idd        = $("#idd").val();
+         var description= $("#description").val();
+         var product    = $("#product").val();
+         var project    = $("#project").val();
+         var supplier   = $("#supplier").val();
+         var min_price  = $("#min_price").val();     
+         var max_price  = $("#max_price").val();  
        $.ajax({
          url:  base_url+'index.php/PaymentController/GetMinMaxPrices',
          type: 'post',
@@ -66,4 +81,67 @@ function ShowPayments (sort_order = 0)
          }
           
     });
+   }
+
+   function ShowProducts()
+   {
+         var start_date  = $("#product_start_date").val();
+         var end_date    = $("#product_end_date").val();
+         var product_id  = $("#product_idd").val();
+         var description = $("#product_description").val();
+         var product_name= $("#product_name").val();
+
+       $.ajax({
+         url:  base_url+'index.php/ProductController/ShowProducts',
+         type: 'post',
+         data:{start_date:start_date,end_date:end_date,product_id:product_id,description:description,
+          product_name:product_name},
+         success:function(d){
+           $(".table_search").html(d);
+         
+          
+         }
+      });
+   }
+
+   function ShowProjects()
+   {
+         var start_date  = $("#project_start_date").val();
+         var end_date    = $("#prjeuct_end_date").val();
+         var project_id  = $("#project_idd").val();
+         var description = $("#project_description").val();
+         var project_name= $("#project_name").val();
+
+       $.ajax({
+         url:  base_url+'index.php/ProjectController/ShowProjects',
+         type: 'post',
+         data:{start_date:start_date,end_date:end_date,project_id:project_id,description:description,
+          project_name:project_name},
+         success:function(d){
+          //  show  project
+           $(".table_search").html(d);
+         
+          
+         }
+      });
+   }
+
+   function ShowSuppliers()
+   {
+      var start_date  = $("#start_date").val();
+         var end_date    = $("#end_date").val();
+         var supplier_id  = $("#supplier_idd").val();
+         var description = $("#description").val();
+         var supplier_name= $("#supplier_name").val();
+
+       $.ajax({
+         url:  base_url+'index.php/SupplierController/ShowSuppliers',
+         type: 'post',
+         data:{start_date:start_date,end_date:end_date,supplier_id:supplier_id,description:description,
+          supplier_name:supplier_name},
+         success:function(d){
+           $(".table_search").html(d);
+          
+         }
+      });
    }

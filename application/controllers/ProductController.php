@@ -13,12 +13,11 @@ class ProductController extends CI_Controller {
          
          public function ShowProducts()
          {
-            
-            $startDate=$this->input->post('start_date');
-            $endDate =$this->input->post('end_date');
-            $product_id=$this->input->post('product_id');
-            $product_description=$this->input->post('description');
-            $productName=$this->input->post('product_name');
+            $startDate=date('Y-m-d',strtotime("-7 days"));
+            $endDate =date("Y-m-d") ;
+            $product_id="";
+            $product_description="";
+            $productName="";
             $autocompleteMode=0;
 
             $result = $this->ProductModel->GetProducts
@@ -94,13 +93,13 @@ class ProductController extends CI_Controller {
             echo $this->ProductModel->SaveProduct($name,$description,$registrationDate,$this->userID);
          }
 
-        Public function updateProduct()
+        Public function UpdateProduct()
         {
-            $productID=4;
-            $name='Hello Malmo';
-            $registrationDate='12/dec/2017';
-            $description ="Hello";
-            echo $this->ProductModel->updateProduct($productID,$name,$description,$registrationDate,$this->userID);
+            $productID=$this->input->post('id');
+            $name=$this->input->post('name');
+            $description=$this->input->post('description');
+            $registrationDate=$this->input->post('registrationDate');
+            echo $this->ProductModel->UpdateProduct($productID,$name,$description,$registrationDate,$this->userID);
          }
 
 	}

@@ -67,7 +67,7 @@
 </div><br>
 
             
-  <table class="table table-bordered">
+  <table id="show_product_table" class="table table-bordered">
     <thead>
       <tr style="background-color:darkgray;text-align:center;">
         <th style="text-align:center;">ID</th>

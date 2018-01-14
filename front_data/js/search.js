@@ -253,7 +253,7 @@ $(document)
      {
        ShowPayments(1);
      }
-      
+       GetMinMaxPrices();
 
   });
 
@@ -266,76 +266,22 @@ $(document)
        ShowPayments(2);
   });
 
-  //search when main form is loaded
-  $( "#search_payment" ).trigger( "click" );
 
  //search_products
  $("#search_product").click(function(){
-         
-         var start_date  = $("#product_start_date").val();
-         var end_date    = $("#product_end_date").val();
-         var product_id  = $("#product_idd").val();
-         var description = $("#product_description").val();
-         var product_name= $("#product_name").val();
-
-       $.ajax({
-         url:  base_url+'index.php/ProductController/ShowProducts',
-         type: 'post',
-         data:{start_date:start_date,end_date:end_date,product_id:product_id,description:description,
-          product_name:product_name},
-         success:function(d){
-           $(".table_search").html(d);
-         
-          
-         }
-      });
-
+        ShowProducts();
   });
 
  //search_projects
  $("#search_project").click(function(){
-         
-         var start_date  = $("#project_start_date").val();
-         var end_date    = $("#prjeuct_end_date").val();
-         var project_id  = $("#project_idd").val();
-         var description = $("#project_description").val();
-         var project_name= $("#project_name").val();
-
-       $.ajax({
-         url:  base_url+'index.php/ProjectController/ShowProjects',
-         type: 'post',
-         data:{start_date:start_date,end_date:end_date,project_id:project_id,description:description,
-          project_name:project_name},
-         success:function(d){
-          //  show  project
-           $(".table_search").html(d);
-         
-          
-         }
-      });
-
+         ShowProjects();
   });
 
  //search_supplier
  $("#search_supplier").click(function(){
-         
-         var start_date  = $("#start_date").val();
-         var end_date    = $("#end_date").val();
-         var supplier_id  = $("#supplier_idd").val();
-         var description = $("#description").val();
-         var supplier_name= $("#supplier_name").val();
-
-       $.ajax({
-         url:  base_url+'index.php/SupplierController/ShowSuppliers',
-         type: 'post',
-         data:{start_date:start_date,end_date:end_date,supplier_id:supplier_id,description:description,
-          supplier_name:supplier_name},
-         success:function(d){
-           $(".table_search").html(d);
-          
-         }
-      });
-
+         ShowSuppliers();
   });
 
+ GetMinMaxPrices();
+ 
  });
