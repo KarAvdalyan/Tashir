@@ -16,7 +16,6 @@ class PaymentModel extends CI_Model
 		   $sql = "call pr_search_payments('$startDate','$endDate','$product_id','$product_description',
 		   '$productName','$projectName','$supplierName','$minPrice','$maxPrice','$sortOrder',$userID)";
 		   //return $sql;
-		   //throw new Exception($error['message']);
 		   $result = $this->db->query($sql);
 
 		  

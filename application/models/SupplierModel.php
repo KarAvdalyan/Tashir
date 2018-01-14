@@ -107,7 +107,7 @@ class SupplierModel extends CI_Model
 			catch (Exception $e) 
 			{
 				$this->db->trans_rollback();
-				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().' UpdateSupplier()");');
+				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  UpdateSupplier()");');
 				echo $e->getMessage().'  UpdateSupplier()';
 			}
 	   

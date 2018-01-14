@@ -271,9 +271,9 @@ $("#show_supplier_table").on("click",'tbody tr .update_save',function(){
         // user_id
         $(".users").click(function(){
          var user_id = $(this).attr('id');
-         //window.location.replace(base_url+'index.php/ShowUsers/index/'+user_id);
-          $.LoadingOverlay("show");
-         $("body").load(base_url+'index.php/ShowUsers/index/'+user_id);
+         window.location.replace(base_url+'index.php/ShowUsers/index/'+user_id);
+          //$.LoadingOverlay("show");
+          //$("body").load(base_url+'index.php/ShowUsers/index/'+user_id);
        });        
 
 

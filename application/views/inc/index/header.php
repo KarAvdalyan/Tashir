@@ -26,6 +26,7 @@
   
   <script type="text/javascript" src="<?= 
   base_url('front_data/resources/jquery-loading-overlay-master/src/loadingoverlay.min.js'); ?>"></script>
+  <script type="text/javascript" src="<?= base_url('front_data/js/users.js'); ?>"></script>
 
 <style>Hoverable Dropdown
 Move the mouse over the button to open the dropdown menu.
@@ -157,4 +158,13 @@ Move the mouse over the button to open the dropdown menu.
 
   </div>
 </nav>
+
+
+<?php
+
+// foreach ($show_user as $row) {
+//   echo $row['last_name'];
+// }
+
+?>
 
