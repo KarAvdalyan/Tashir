@@ -61,31 +61,32 @@ input[type=text], input[type=password],input[type=email] {
 
 <h2 style="text-align:center;">Օգտատերերի ստեղծում</h2>
 
-<form style="text-align:center;" action="/action_page.php" style="border:1px solid #ccc">
-  <div class="container">
+
+  <div style="border:1px solid #ccc;text-align:center;" class="container">
 
     <label><b>Անուն</b></label>
-    <input type="text" placeholder="Մուտքագրել անունը" name="first_name" required>
+    <input type="text" placeholder="Մուտքագրել անունը" id="first_name"  required>
     
     <label><b>Ազգանուն</b></label>
-    <input type="text" placeholder="Մուտքագրել ազգանունը" name="last_name" required>
+    <input type="text" placeholder="Մուտքագրել ազգանունը" id="last_name" required>
     
     <label><b>Էլ․ հասցե</b></label>
-    <input type="email" placeholder="Մուտքագրել Էլ․ հասցեն" name="email" required>
+    <input type="email" placeholder="Մուտքագրել Էլ․ հասցեն" id="email"  required>
 
     <label><b>Գաղտնաբառ</b></label>
-    <input type="password" placeholder="Մուտքագրեք  գաղտնաբառը" name="password" required>
+    <input type="password" placeholder="Մուտքագրեք  գաղտնաբառը" id="password"  required>
 
     <label><b>Կրկնել գախտնաբառը</b></label>
-    <input type="password" placeholder="Կրկին անգամ մուտքագրեք ձեր գաղտնաբառը" name="repeat_password" required>
-   
+    <input type="password" placeholder="Կրկին անգամ մուտքագրեք ձեր գաղտնաբառը" id="repeat_password"  required>
+    <input type="hidden"  id="security_code"   value="<?= $security_code; ?>">
 
     <div class="clearfix">
     
-      <button type="submit" class="signupbtn">Ստեղծել օգտատեր</button>
+      <button id="insert_user" type="submit" class="signupbtn">Ստեղծել օգտատեր</button>
     </div>
   </div>
-</form>
+
+
 
 </body>
 </html>

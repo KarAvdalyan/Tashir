@@ -64,6 +64,13 @@ span.psw {
     }
 }
 </style>
+<head>
+         <script src="<?= base_url('front_data/js/jquery.min.js'); ?>"></script>
+         <script type="text/javascript" src="<?= base_url('front_data/js/users.js'); ?>"></script>
+         <script type="text/javascript">
+          var base_url="<?= base_url(); ?>"
+         </script>
+</head>
 <body>
 
 <h2 style="text-align:center;">Մուտք գործելու համակարգ</h2>
@@ -75,7 +82,7 @@ span.psw {
 
   <div class="container">
     <label><b>Էլ․ հասցե</b></label>
-    <input type="text" placeholder="Մուտքագրեք ձեր  Էլ․ հասցեն" name="email" required>
+    <input type="text" placeholder="Մուտքագրեք ձեր  Էլ․ հասցեն" name="email" value="<?php if(!empty($_POST['email'])){echo $_POST['email']; } ?>" required>
 
     <label><b>Գախտնաբառ</b></label>
     <input type="password" placeholder="Մուտքագրեք ձեր Գաղտնաբառը" name="password" required>
@@ -88,7 +95,7 @@ span.psw {
    
     <span style="float:left;"  class="psw"><a style="text-decoration:none;" href="<?= base_url('index.php/AdminController/index'); ?>">Լոգին </a></span>
     <span  class="psw">Մոռացել եք ձեր անվ․ <a style="text-decoration:none;"  href="<?= base_url('index.php/AdminController/validation_email'); ?>">ծածկագիրը?&nbsp&nbsp&nbsp </a></span>
-    <span style="margin-right:10%;" class="psw">Փոփոխել ձեր <a style="text-decoration:none;" href="<?= base_url('index.php/Admin/replace_password'); ?>">Գաղտնաբառը?&nbsp&nbsp&nbsp&nbsp </a></span>
+    <span style="margin-right:10%;" class="psw">Փոփոխել ձեր <a style="text-decoration:none;" href="<?= base_url('index.php/AdminController/replace_password'); ?>">Գաղտնաբառը?&nbsp&nbsp&nbsp&nbsp </a></span>
   
 </form>
 

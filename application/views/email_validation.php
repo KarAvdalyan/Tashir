@@ -64,31 +64,38 @@ span.psw {
     }
 }
 </style>
+<head>
+         <script src="<?= base_url('front_data/js/jquery.min.js'); ?>"></script>
+         <script type="text/javascript" src="<?= base_url('front_data/js/users.js'); ?>"></script>
+         <script type="text/javascript">
+          var base_url="<?= base_url(); ?>"
+         </script>
+</head>
 <body>
 
 <h2 style="text-align:center;">Վերականգնել ձեր անվտանգության ծածկագիրը</h2>
+<div style="margin-left:30%;text-align:center;width:40%;">
 
-<form method="post" action="<?php echo base_url('index.php/AdminController/check'); ?>" style="margin-left:30%;text-align:center;width:40%;">
   <div class="imgcontainer">
     <img src="<?= base_url('front_data/img/email_validation.jpg'); ?>" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">
     <label><b>Էլ․ հասցե</b></label>
-    <input type="email" placeholder="Մուտքագրեք ձեր  Էլ․ հասցեն" name="email" required>
+    <input type="email" placeholder="Մուտքագրեք ձեր  Էլ․ հասցեն" id="email" name="email" required>
 
-    <button type="submit">Ստուգել</button>
+    <button id="edit_security_code" type="submit">Ստուգել</button>
    
   </div>
 
   <div class="container" style="background-color:#f1f1f1">
    
-    <span style="float:left;"  class="psw"><a style="text-decoration:none;" href="<?= base_url('index.php/admin/index'); ?>">Լոգին </a></span>
-    <span  class="psw">Մոռացել եք ձեր անվ․ <a style="text-decoration:none;"  href="<?= base_url('index.php/Admin/validation_email'); ?>">ծածկագիրը?&nbsp&nbsp&nbsp </a></span>
+    <span style="float:left;"  class="psw"><a style="text-decoration:none;" href="<?= base_url('index.php/AdminController/index'); ?>">Լոգին </a></span>
+    <span  class="psw">Մոռացել եք ձեր անվ․ <a style="text-decoration:none;"  href="<?= base_url('index.php/AdminController/validation_email'); ?>">ծածկագիրը?&nbsp&nbsp&nbsp </a></span>
     <span style="margin-right:10%;" class="psw">Փոփոխել ձեր <a style="text-decoration:none;" href="<?= base_url('index.php/AdminController/replace_password'); ?>">Գաղտնաբառը?&nbsp&nbsp&nbsp&nbsp </a></span>
  
   </div>
-</form>
+</div>
 
 </body>
 </html>

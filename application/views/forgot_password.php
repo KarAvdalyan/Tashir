@@ -64,11 +64,18 @@ span.psw {
     }
 }
 </style>
+<head>
+         <script src="<?= base_url('front_data/js/jquery.min.js'); ?>"></script>
+         <script type="text/javascript" src="<?= base_url('front_data/js/users.js'); ?>"></script>
+         <script type="text/javascript">
+          var base_url="<?= base_url(); ?>"
+         </script>
+</head>
 <body>
 
 <h2 style="text-align:center;">Հայտարարել նոր գաղտնաբառ</h2>
 
-<form method="post" action="<?php echo base_url('index.php/AdminController/check'); ?>" style="margin-left:30%;text-align:center;width:40%;">
+<form method="post" action="<?php echo base_url('index.php/AdminController/edit_password'); ?>" style="margin-left:30%;text-align:center;width:40%;">
   <div class="imgcontainer">
     <img src="<?= base_url('front_data/img/forgot_psw.jpg'); ?>" alt="Avatar" class="avatar">
   </div>
@@ -76,13 +83,13 @@ span.psw {
   <div class="container">
    
     <label><b>Անվտագության ծածկագիր</b></label>
-    <input type="text" placeholder="Մուտքագրեք ձեր Անվտագության ծածկագիրը" name="security_code" required>
+    <input id="security_code" type="text" placeholder="Մուտքագրեք ձեր Անվտագության ծածկագիրը" value="<?php if(!empty($_POST['security_code'])){echo $_POST['security_code']; } ?>" name="security_code" required>
 
     <label><b>Գախտնաբառ</b></label>
-    <input type="password" placeholder="Մուտքագրեք ձեր գաղտնաբառը" name="password" required>
+    <input type="password" placeholder="Մուտքագրեք ձեր գաղտնաբառը" name="password" id="password" class="password"  required>
 
     <label><b>Կրկնել գախտնաբառը</b></label>
-    <input type="password" placeholder="Կրկին անգամ մուտքագրեք ձեր գաղտնաբառը" name="repeat_password" required>
+    <input type="password" placeholder="Կրկին անգամ մուտքագրեք ձեր գաղտնաբառը" id="repeat_password" name="repeat_password" class="password"  required>
         
     <button type="submit">Հաստատել</button>
    

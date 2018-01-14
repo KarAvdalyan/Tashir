@@ -7,7 +7,7 @@ class AdminController extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('admin_model');
-		//echo '<h1>'.$this->session->userdata('session_name').'</h1>';
+		$this->load->helper('email');
 		
 	}
 
@@ -18,15 +18,21 @@ class AdminController extends CI_Controller {
 		if($this->session->userdata('session_name') !=true){
 		$this->load->view('login');	                                                         }
 	    else{
-	    	return    redirect(base_url('index.php/PaymentController/Index'));
+	    	 return    redirect(base_url('index.php/PaymentController/Index'));
+	    	 
+		     
 	    }                                                                                             
 	}
 
 	
 
 	public function check(){
+
 		$email    = $this->input->post('email');
 		$password = $this->input->post('password');
+
+		if(valid_email($email) and !empty($email)){
+
 		$userID = $this->admin_model->check_model($email,$password);
 		if($userID!= -1){
 	        $session_data = array(
@@ -38,11 +44,22 @@ class AdminController extends CI_Controller {
 	 	    $this->session->set_userdata($session_data);
 			redirect(base_url('index.php/PaymentController/Index'));
 		}
-		else{
+		else
+		{
 			redirect(base_url('index.php/AdminController/index'));
 		}
 
+        }
+        else
+        {
+           echo '<script type="text/javascript">alert("Խնդրում ենք մուտքագրեք Էլ․ փոստ։");</script>';
+           $this->load->view('login');
+        }
+
 	}
+     
+
+	
 
 	public function logout(){
 		$this->session->unset_userdata('session_name');
@@ -58,8 +75,86 @@ class AdminController extends CI_Controller {
 		$this->load->view('forgot_password');
 	}
 
+    public function security_code(){
+    	$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*_";
+        return $security_code = substr( str_shuffle( $chars ), 0, 8 );
+    }
+
 	public function signup(){
-		$this->load->view('signup');
+		
+        $data['security_code'] = $this->security_code();
+		$this->load->view('signup',$data);
+	}
+
+	public function add_user(){
+
+		$first_name    = $this->input->post('first_name');
+		$last_name     = $this->input->post('last_name');
+		$email         = $this->input->post('email');
+		$password      = $this->input->post('password');
+		$security_code = $this->input->post('security_code');		
+        
+        $this->admin_model->add_user_model($first_name,$last_name,$email,$password,$security_code);
+	}
+
+	
+
+	public function edit_user(){
+
+	}
+
+	
+
+	public function delete_user(){
+
+	}
+
+    public function check_email(){
+
+        $email = $this->input->post('email');
+		return $this->admin_model->check_email_model($email);
+    }
+    
+	public function edit_security_code(){
+		 
+		 if($this->check_email()==1)
+		 {  
+		 	 $email = $this->input->post('email');
+		 	 $security_code = $this->security_code(); //mail
+		 	 $this->admin_model->edit_security_code_model($security_code,$email);
+		 	echo 1;
+		 }else{
+		 	echo 2;
+		 }
+	}
+
+    public function check_security_code()
+
+    {
+        echo $security_code = $this->input->post('security_code');
+        $this->admin_model->check_security_code($security_code);
+    }
+
+	public function edit_password(){
+
+		$security_code   = $this->input->post('security_code');
+		$password        = $this->input->post('password');
+        $repeat_password = $this->input->post('repeat_password');
+
+		if($repeat_password == $password)
+		{
+			 $this->admin_model->edit_password_model($security_code,$password);
+             $this->load->view('login');
+		 	 echo "<style>#repeat_password{border-color:red;}</style>";
+		 }
+
+		 else
+		 {
+		 	$this->load->view('forgot_password');
+		 	$a = '#repeat_password{border-color:red;}';
+		 	echo "<style>".$a."</style>";
+		 }
+       
 	}
 
 

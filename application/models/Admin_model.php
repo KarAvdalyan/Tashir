@@ -11,4 +11,82 @@ class Admin_model extends CI_Model {
 	 	return -1;
 	}
 
+
+	public function add_user_model($first_name,$last_name,$email,$password,$security_code){
+
+		 $data = array(
+         'first_name'    => $first_name,
+         'last_name'     => $last_name,
+         'email'         => $email,
+         'password'      => md5($password),
+         'security_code' => $security_code
+		 );
+		 $this->db->insert('tbl_users',$data);
+		 echo $this->db->insert_id();
+	}
+
+	public function show_user_model()
+	{
+		$query = $this->db->query("select * from tbl_users");
+		return $query->result_array();
+	}
+
+	public function edit_user_model()
+	{
+
+	}
+
+	public function delete_user_model()
+	{
+
+	}
+
+	public function check_email_model($email)
+	{
+    	 
+		 $sql = "select 1 as result from tbl_users where email='$email' ";
+    	 $query = $this->db->query($sql);
+    	
+    	 if(isset($query->row()->result)){
+    	 return  $query->row()->result;
+
+    	}else{
+    		echo 'false';
+    	}
+
+    }
+
+    public function edit_security_code_model($security_code,$email){
+             
+           $this->db->set('security_code', $security_code);
+           $this->db->where('email', $email);
+           $this->db->update('tbl_users');
+
+	}
+
+    public function check_security_code($security_code)
+
+    {
+         $sql = "select 1 as result from tbl_users where security_code='$security_code' ";
+    	 $query = $this->db->query($sql);
+    	
+    	 if(isset($query->row()->result)){
+    	 return  $query->row()->result;
+
+    	}else{
+    		echo 'false';
+    	}  
+    }
+
+	public function edit_password_model($security_code,$password){
+
+		  $this->db->set('password', md5($password));
+          $this->db->where('security_code', $security_code);
+          $this->db->update('tbl_users');
+	}
+
+
+
+
+
 }
