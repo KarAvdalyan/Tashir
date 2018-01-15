@@ -1,5 +1,6 @@
 <?php
-class ProductController extends CI_Controller {
+include "ShowUsersController.php";
+class ProductController extends ShowUsersController {
          
          public function __Construct()
          {
@@ -8,11 +9,13 @@ class ProductController extends CI_Controller {
          	 $this->load->model('ProductModel');
              $this->load->library('serviceClass');
              $this->userID=$this->session->userdata('user_id');
+            
          }
          
          
          public function ShowProducts()
          {
+            $this->show_user_list();
             $startDate=date('Y-m-d',strtotime("-7 days"));
             $endDate =date("Y-m-d") ;
             $product_id="";

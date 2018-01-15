@@ -25,11 +25,7 @@ class Admin_model extends CI_Model {
 		 echo $this->db->insert_id();
 	}
 
-	public function show_user_model()
-	{
-		$query = $this->db->query("select * from tbl_users");
-		return $query->result_array();
-	}
+	
 
 	public function edit_user_model()
 	{

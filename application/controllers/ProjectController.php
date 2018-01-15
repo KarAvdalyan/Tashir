@@ -1,5 +1,6 @@
 <?php
-class ProjectController extends CI_Controller {
+include "ShowUsersController.php";
+class ProjectController extends ShowUsersController {
          
          public function __Construct()
          {
@@ -32,6 +33,7 @@ class ProjectController extends CI_Controller {
 
           public function ShowProjects()
          {
+            $this->show_user_list();
             $startDate=$this->input->post('start_date');
             $endDate =$this->input->post('end_date');
             $project_id=$this->input->post('project_id');

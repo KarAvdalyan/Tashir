@@ -162,9 +162,11 @@ Move the mouse over the button to open the dropdown menu.
 
 <?php
 
-// foreach ($show_user as $row) {
-//   echo $row['last_name'];
-// }
+foreach ($show_user as $row) {
+  echo $row['last_name'];
+}
+
+$conn = mysqli_connect();
 
 ?>
 

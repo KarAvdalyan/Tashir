@@ -102,7 +102,7 @@ class AdminController extends CI_Controller {
 	public function edit_user(){
 
 	}
-
+   
 	
 
 	public function delete_user(){
