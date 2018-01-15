@@ -276,7 +276,7 @@ $("#show_supplier_table").on("click",'tbody tr .update_save',function(){
           //$("body").load(base_url+'index.php/ShowUsers/index/'+user_id);
        });        
 
-
+        $('#element').confirmation('show');
 
 
 

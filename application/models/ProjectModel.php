@@ -47,31 +47,70 @@ class ProjectModel extends CI_Model
  			  {
 	  			 throw new Exception("Նշված անունով պրոյեկտ արդեն կա։", 0);	 
  			  }
-			  
-			  $this->db->query("SET AUTOCOMMIT=0");
-			  $this->db->trans_start();
 
-			  
-			  $sql ="call pr_add_project('$name','$description','$registrationDate',$userID)";
-			  $result=$this->db->query($sql);
-			
-			   if (!$result)
-			   {
+
+	  		  $sql ="call pr_add_project('$name','$description','$registrationDate',$userID)";
+	  		  
+	  		
+	  		  $result = $this->db->query($sql);
+
+ 	  		  if (!$result)
+			  {
 			        $error = $this->db->error(); 
 			        throw new Exception($error['message']);
-			   }
+			  }
 
-	  		   $a = $result->result_array();
+			  $projectID=$result->row()->id;
+			  
+			   //$this->db->query("SET AUTOCOMMIT=0");
+			   //$this->db->trans_start();
 
-   	     	   $this->db->trans_complete();
+			  
+/*			  	$result=$this->db->query("select  permission_type from tbl_permissions where user_id = $userID and permission_type = 3  limit 1;");
+
+			  	if(!$result)
+			  	{
+			  		$permissionType= 3;
+			  	}
+			  	else
+		  		{
+		  			$permissionType=2;	
+		  		}
+			  	
+
+		  		$sql ="insert into tbl_projects(name,description,registration_date,user_id) 
+				    values ('$name','$description','$registrationDate',$userID);";
+			  	$this->db->query($sql);
+			  					
+			  	$sql="select max(id) as project_id from tbl_projects;";
+			  	$result=$this->db->query($sql);
+
+			  	
+
+			  	$projectID = $result->row()->project_id;
+		  		
+		  		$sql ="insert into tbl_permissions(user_id,project_id,permission_type) 
+				    values ($userID,$projectID,$permissionType); ";
+			  	$this->db->query($sql);
+
+
+
+			  	$sql ="insert into tbl_permissions(user_id,project_id,permission_type) 
+				select id,$projectID,permission_type from tbl_users where user_id in( select user_id from tbl_permissions where permission_type=3 group by user_id)";
+				$this->db->query($sql);*/
+
+
+
+   	     	   //$this->db->trans_complete();
    	     	   //throw new Exception($sql, 0);	 
 
-			   return $a[0]['id'];
+			   return $projectID;
 
 			}
 			catch (Exception $e) 
 			{
-			  $this->db->trans_rollback();
+			  //$this->db->trans_rollback();
+			  //$this->db->trans_complete();
 			  $this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  SaveProject()");');
 			  echo $e->getMessage().'  SaveProject()';
 			}

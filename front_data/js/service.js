@@ -27,7 +27,7 @@ function ShowPayments (sort_order = 0)
 	       var supplier   = $("#supplier").val();
 	       var min_price  = $("#min_price").val();     
 	       var max_price  = $("#max_price").val();  
-         //$.LoadingOverlay("show");
+         $.LoadingOverlay("show");
         /*get payments*/
        $.ajax({
          url:  base_url+'index.php/PaymentController/ShowPayments',

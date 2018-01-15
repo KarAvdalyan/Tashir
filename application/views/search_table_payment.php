@@ -10,6 +10,7 @@
         <td ><?= $row->quantity; ?></td>
         <td style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;" id =<?= $row->id; ?> class="update_save" data-toggle="modal" data-target="#payment">Փոփոխել</td>
         <td style="cursor:pointer;background-color:#5e8eb7;color:white;text-align:center;vertical-align:inherit;" id= <?= $row->id; ?> class="delete_payment" data-toggle="confirmation" >Հեռացնել</td>
+        <button class="btn btn-default" data-toggle="confirmation">Confirmation</button>
     </tr>
      <?php } ?>
  

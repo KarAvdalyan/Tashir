@@ -15,7 +15,7 @@ class ProductController extends ShowUsersController {
          
          public function ShowProducts()
          {
-            $this->show_user_list();
+            //$this->show_user_list();
             $startDate=date('Y-m-d',strtotime("-7 days"));
             $endDate =date("Y-m-d") ;
             $product_id="";

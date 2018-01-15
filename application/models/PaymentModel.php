@@ -125,11 +125,11 @@ class PaymentModel extends CI_Model
  			  }
 			
      		  $this->db->trans_start();
- 		  	  $a="insert into tbl_payments(product_id,supplier_id,project_id,description,registration_date,price,quantity) 
+ 		  	  $a="insert into tbl_payments(product_id,supplier_id,project_id,description,registration_date,price,quantity,user_id) 
 			  		values($productID,$supplierID,$projectID,'$description','$registrationDate',
 			  		$price,$quantity,$userID);";
 			  		
-
+		  	//throw new Exception($a, 0);	
  		  	 
  		  	 $this->db->query($a);
  		  	 

@@ -33,7 +33,7 @@ class ProjectController extends ShowUsersController {
 
           public function ShowProjects()
          {
-            $this->show_user_list();
+            //$this->show_user_list();
             $startDate=$this->input->post('start_date');
             $endDate =$this->input->post('end_date');
             $project_id=$this->input->post('project_id');

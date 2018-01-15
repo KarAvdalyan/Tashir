@@ -245,7 +245,7 @@ $(document)
 
  // payments sort
  $("#payment_reg").click(function(){
-     if($($this).attr("checked") == 'checked')  
+     if($("#payment_reg").attr("checked") == 'checked')  
      {
        ShowPayments(1);
      }

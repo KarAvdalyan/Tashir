@@ -8,7 +8,7 @@ class PaymentController extends ShowUsersController {
             
             $this->load->model('PaymentModel');
             $this->userID=$this->session->userdata('user_id');
-            $this->show_user_list();
+            //$this->show_user_list();
          }
          
          public function Index()
