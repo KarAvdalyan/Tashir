@@ -14,11 +14,11 @@ class ProductController extends CI_Controller {
          
          public function ShowProducts()
          {
-            $startDate=date('Y-m-d',strtotime("-7 days"));
-            $endDate =date("Y-m-d") ;
-            $product_id="";
-            $product_description="";
-            $productName="";
+            $startDate=$this->input->post('start_date');
+            $endDate =$this->input->post('end_date');
+            $product_id=$this->input->post('product_id');
+            $product_description=$this->input->post('product_description');
+            $productName=$this->input->post('product_name');
             $autocompleteMode=0;
 
             $result = $this->ProductModel->GetProducts
@@ -32,11 +32,12 @@ class ProductController extends CI_Controller {
           public function Index()
          {
             
-            $startDate=$this->input->post('start_date');
-            $endDate =$this->input->post('end_date');
-            $product_id=$this->input->post('product_id');
-            $product_description=$this->input->post('product_description');
-            $productName=$this->input->post('product_name');
+            
+            $startDate=date('Y-m-d',strtotime("-7 days"));
+            $endDate =date("Y-m-d") ;
+            $product_id="";
+            $product_description="";
+            $productName="";
             $autocompleteMode=0;
 
             $result = $this->ProductModel->GetProducts
