@@ -8,6 +8,7 @@ class ProductController extends CI_Controller {
              $this->load->model('ProductModel');
              $this->load->library('serviceClass');
              $this->userID=$this->session->userdata('user_id');
+             date_default_timezone_set('Asia/Yerevan');
             
          }
          
@@ -34,6 +35,7 @@ class ProductController extends CI_Controller {
             
             
             $startDate=date('Y-m-d',strtotime("-7 days"));
+            date_default_timezone_set('Asia/Yerevan');
             $endDate =date("Y-m-d") ;
             $product_id="";
             $product_description="";

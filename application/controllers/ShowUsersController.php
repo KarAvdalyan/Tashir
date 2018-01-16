@@ -7,6 +7,7 @@ class ShowUsersController extends CI_Controller {
 		parent::__construct();
 		$this->load->model('ShowUsersModel');
 		$this->load->helper('email');
+		date_default_timezone_set('Asia/Yerevan');
 	}
 
 

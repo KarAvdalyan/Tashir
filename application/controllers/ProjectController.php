@@ -9,6 +9,7 @@ class ProjectController extends CI_Controller {
          	 $this->load->model('ProjectModel');
              $this->load->library('serviceClass');
              $this->userID=$this->session->userdata('user_id');
+             date_default_timezone_set('Asia/Yerevan');
          }
          
          

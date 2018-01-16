@@ -8,6 +8,7 @@ class SupplierController extends CI_Controller {
          	 $this->load->model('SupplierModel');
              $this->load->library('serviceClass');
              $this->userID=$this->session->userdata('user_id');
+             date_default_timezone_set('Asia/Yerevan');
          }
          
          public function Index($startDate="''",$endDate ="''",$supplier_id="''",$supplier_description="''",

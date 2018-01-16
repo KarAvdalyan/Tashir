@@ -8,6 +8,7 @@ class PaymentController extends CI_Controller {
             
             $this->load->model('PaymentModel');
             $this->userID=$this->session->userdata('user_id');
+            date_default_timezone_set('Asia/Yerevan');
           
          }
          
