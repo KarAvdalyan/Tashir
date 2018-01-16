@@ -3,9 +3,9 @@ class ProductController extends CI_Controller {
          
          public function __Construct()
          {
-         	parent::__Construct();
-         	
-         	 $this->load->model('ProductModel');
+            parent::__Construct();
+            
+             $this->load->model('ProductModel');
              $this->load->library('serviceClass');
              $this->userID=$this->session->userdata('user_id');
             
@@ -22,10 +22,10 @@ class ProductController extends CI_Controller {
             $autocompleteMode=0;
 
             $result = $this->ProductModel->GetProducts
-         	($startDate,$endDate,$product_id,$product_description,$productName,$this->userID,$autocompleteMode);
+            ($startDate,$endDate,$product_id,$product_description,$productName,$this->userID,$autocompleteMode);
             //echo $result;
             $data['list'] = $result;
-         	$this->load->view('search_table',$data);
+            $this->load->view('search_table',$data);
          
          }
 
@@ -103,6 +103,12 @@ class ProductController extends CI_Controller {
             echo $this->ProductModel->UpdateProduct($productID,$name,$description,$registrationDate,$this->userID);
          }
 
-	}
+         function DeleteProduct()
+         {
+            $id = $this->input->post('delete_id');
+            $this->ProductModel->DeleteProduct($id);
+         }
+
+   }
       
 

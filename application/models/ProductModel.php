@@ -145,18 +145,12 @@ class ProductModel extends CI_Model
 	   
 	 }
 
-	 public function DeleteProduct($productID) 
+	 public function DeleteProduct($id) 
 	 {
-		try
-		{
-			$sql = "delete from tbl_products where id=$productID)";
-	   		$result = $this->db->query($sql);
-		}
+		$this->db->delete('tbl_products', array('ID' => 1)); 
+		
 	   
- 		catch (Exception $e) 
-		{
-			echo $e->getMessage();
-	    }
+ 		
 
 	 }	
 }
