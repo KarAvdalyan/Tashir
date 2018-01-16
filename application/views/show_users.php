@@ -1,6 +1,6 @@
 
  <!-- header -->
- <?php  //$this->load->view('inc/index/header.php'); ?>
+ <?php  $this->load->view('inc/index/header.php'); ?>
  <!-- header -->
 
 
@@ -20,14 +20,16 @@
       </tr>
     </thead>
     <tbody>
+      <?php  foreach ($user_data as $row) { ?>
       <tr>
-      	<td>25</td>
-        <td>Վարդան</td>
-        <td>Վարդանյան</td>
-        <td>vardan@mail.ru</td>
-        <td style="cursor:pointer;">Փոփոխել</td>
-        <td style="cursor:pointer;" >Հեռացնել</td>
+      	<td><?= $row['id']; ?></td>
+        <td contenteditable="true" id="first_name"><?= $row['first_name']; ?></td>
+        <td contenteditable="true" id="last_name"><?= $row['last_name']; ?></td>
+        <td contenteditable="true" id="email"><?= $row['email']; ?></td>
+        <td style="cursor:pointer;" class="edit_user" id="<?=  $row['id']; ?>">Փոփոխել</td>
+        <td style="cursor:pointer;" class="delete_user" id="<?=  $row['id']; ?>" >Հեռացնել</td>
       </tr>
+      <?php } ?>
     </tbody>
   </table>
 
@@ -75,7 +77,7 @@
     <div class="modal-body">
 
        <div class="col-xs-6">
-         <input id="get_project_name" class="form-control" type="text" placeholder="Անուն"><br>
+         <input id="get_project_name"  class="form-control" type="text" placeholder="Անուն"><br>
          <textarea id="get_project_discripshen" class="form-control" rows="3" placeholder="Նկարագրություն"></textarea><br>
          <input id="get_project_date" class="form-control" type="date"><br>
          <input id="insert_project" class="btn btn-primary btn-md" type="submit" value="Ավելացնել"><br>

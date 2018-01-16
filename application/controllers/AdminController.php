@@ -93,26 +93,23 @@ class AdminController extends CI_Controller {
 		$email         = $this->input->post('email');
 		$password      = $this->input->post('password');
 		$security_code = $this->input->post('security_code');		
-        
+        if(valid_email($email) && !empty($email))
+        {
         $this->admin_model->add_user_model($first_name,$last_name,$email,$password,$security_code);
-	}
-
-	
-
-	public function edit_user(){
+        }
 
 	}
-   
-	
 
-	public function delete_user(){
 
-	}
 
     public function check_email(){
 
         $email = $this->input->post('email');
-		return $this->admin_model->check_email_model($email);
+		 if($this->admin_model->check_email_model($email)){
+			echo 'oko';
+		}else{
+			echo base_url('index.php/AdminController/signup');
+		}
     }
     
 	public function edit_security_code(){

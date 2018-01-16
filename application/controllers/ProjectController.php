@@ -1,6 +1,6 @@
 <?php
-include "ShowUsersController.php";
-class ProjectController extends ShowUsersController {
+
+class ProjectController extends CI_Controller {
          
          public function __Construct()
          {

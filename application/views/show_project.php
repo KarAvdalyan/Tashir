@@ -5,7 +5,7 @@
 
 
  <!-- header -->
- <?php // $this->load->view('inc/index/header.php'); ?>
+ <?php  $this->load->view('inc/index/header.php'); ?>
  <!-- header -->
 
  <!-- add_project -->

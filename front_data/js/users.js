@@ -17,8 +17,15 @@ $(document).ready(function(){
                  type: 'post',
                  data: {first_name:first_name,last_name:last_name,email:email,password:password,security_code:security_code},
                  success:function(d){
-                      window.location.replace(base_url+'index.php/ShowUsers/index/'+d);
-                      alert(d);
+                  if(d!=0)
+                   {
+                      window.location.replace(base_url+'index.php/ShowUsersController/show_user_data/'+d);  
+                   }
+                   else
+                   {
+                    $("#email").css("border-color","red");
+                   }
+                   
                  }
            });
                    }else {alert('Ձեր գաղտանաբառերը չեն համնկնում։');}
@@ -87,8 +94,38 @@ $(document).ready(function(){
            	    }
            });
        });
-                                      
 
-   //window.location.replace(base_url+'index.php/AdminController/show_user');
+          // edit user
+      $('.edit_user').click(function(){
+          var first_name = $('#first_name').text();
+          var last_name  = $('#last_name').text();
+          var email      = $('#email').text();
+          var edit_user  = $(this).attr('id');
+          //alert(user_id);
+          $.ajax({
+             url:  base_url+'index.php/ShowUsersController/edit_user',
+             type: 'post',
+             data:{first_name:first_name,last_name:last_name,email:email,edit_user:edit_user},
+             success:function(d){
+                // alert('Ձեր փոփոխությունը կատարված Է');
+                alert(d);
+             }
+          });
+      });
+                                      
+          //  delete user 
+       $('.delete_user').click(function(){
+           var delete_user = $(this).attr('id');
+           $(this).parent().remove();
+
+           $.ajax({
+              url:  base_url+'index.php/ShowUsersController/delete_user',
+              type: 'post',
+              data: {delete_user:delete_user},
+              success:function(d){
+                window.location.replace(base_url+'index.php/AdminController/signup');
+              }
+           });
+       });
 
 	});

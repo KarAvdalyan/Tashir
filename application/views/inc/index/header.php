@@ -1,3 +1,4 @@
+<?php include "script.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,9 +85,9 @@ Move the mouse over the button to open the dropdown menu.
   ?>
 
 
-<nav class="navbar navbar-default" id="header">
-  <h1 style="text-align:center;"><?=  $this->session->userdata('session_name').'<br>'; ?></h1>
-  <div class="container-fluid">
+<nav class="navbar navbar-default" id="header"><br>
+  
+  <div style="margin-top:-14px;" class="container-fluid">
 
 <ul class="nav navbar-nav">
                                            <!--  Home paige -->
@@ -138,9 +139,9 @@ Move the mouse over the button to open the dropdown menu.
     <div class="dropdown-content">
 
                                   <!-- Show users button -->
-              <a id="show_users1"  class="btn btn-info btn-md users" href="#/show_users1">user1</a>
-              <a id="show_users2"  class="btn btn-info btn-md users" href="#/show_users2">user1</a>
-             
+                                  <?php while ($row = mysqli_fetch_array($show)){ ?>
+              <a id="<?= $row['id']; ?>"  class="btn btn-info btn-md users" href="#/<?= $row['id']; ?>"><?= $row['first_name']; ?></a>
+                                          <?php } ?>
     </div>
 </div>
 
@@ -152,21 +153,14 @@ Move the mouse over the button to open the dropdown menu.
     </ul>
 
                                                <!-- Signup -->
+
+                   
     <a style="float:right;" class="btn btn-primary btn-md" href="<?= site_url('AdminController/logout'); ?>">Logout</a>
     <a id="signup" style="float:right;" class="btn btn-primary btn-md" href="#">Signup</a>
+    <button style="float:right;" type="button" class="btn btn-danger"><?php  print_r($show_user_info[2].' '.$show_user_info[3]); ?></button>
 
 
   </div>
 </nav>
 
-
-<?php
-
-foreach ($show_user as $row) {
-  echo $row['last_name'];
-}
-
-$conn = mysqli_connect();
-
-?>
 

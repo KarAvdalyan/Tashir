@@ -1,6 +1,4 @@
 <?php
-
-
 class ShowUsersController extends CI_Controller {
 
 
@@ -8,20 +6,36 @@ class ShowUsersController extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('ShowUsersModel');
-		$this->show_user_list();
+		$this->load->helper('email');
 	}
 
 
-     public function show_user_list()
+	public function show_user_data($get_user_id)
 	{
-		$data['show_user'] = $this->ShowUsersModel->show_user_model();
-		$this->load->view('inc/index/header',$data);
+        $data['user_data'] = $this->ShowUsersModel->show_user_model($get_user_id);
+        $this->load->view('show_users',$data);
 	}
 
-	public function show_user_data($id){
-       
-        $this->load->view('show_users');
-        echo $id;
+	public function delete_user()
+	{
+		   $user_id = $this->input->post('delete_user');
+           $this->ShowUsersModel->delete_user_model($user_id);
+	}
+
+	public function edit_user(){
+		
+		    $email      = $this->input->post('email');
+        
+        if(valid_email($email) and !empty($email))
+        {
+        	$first_name = $this->input->post('first_name');
+		    $last_name  = $this->input->post('last_name');
+		    $user_id    = $this->input->post('edit_user');
+
+        	$this->ShowUsersModel->edit_user_model($first_name,$last_name,$email,$user_id);
+        }
+
+        
 	}
 
 

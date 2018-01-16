@@ -1,6 +1,5 @@
 <?php
-include "ShowUsersController.php";
-class SupplierController extends ShowUsersController {
+class SupplierController extends CI_Controller {
          
          public function __Construct()
          {
@@ -31,7 +30,6 @@ class SupplierController extends ShowUsersController {
          public function ShowSuppliers($startDate="''",$endDate ="''",$supplier_id="''",$supplier_description="''",
          	$supplierName="''")
          {
-            //$this->show_user_list();
             $startDate=$this->input->post('start_date');
             $endDate =$this->input->post('end_date');
             $supplier_id=$this->input->post('supplier_id');

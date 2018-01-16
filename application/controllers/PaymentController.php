@@ -1,6 +1,6 @@
 <?php
 include "ShowUsersController.php";
-class PaymentController extends ShowUsersController {
+class PaymentController extends CI_Controller {
          
          public function __Construct()
          {
@@ -8,7 +8,7 @@ class PaymentController extends ShowUsersController {
             
             $this->load->model('PaymentModel');
             $this->userID=$this->session->userdata('user_id');
-            //$this->show_user_list();
+          
          }
          
          public function Index()
