@@ -109,7 +109,7 @@ class ProductController extends CI_Controller {
          function DeleteProduct()
          {
             $id = $this->input->post('delete_id');
-            $this->ProductModel->DeleteProduct($id);
+            echo $this->ProductModel->DeleteProduct($id);
          }
 
    }

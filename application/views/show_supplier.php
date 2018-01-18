@@ -80,7 +80,7 @@
       </tr>
     </thead>
     <tbody class="table_search">
-     
+     <?php  $this->load->view('search_table.php'); ?>
     </tbody>
   </table>
 </div>

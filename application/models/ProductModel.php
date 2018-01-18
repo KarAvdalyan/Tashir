@@ -151,10 +151,15 @@ class ProductModel extends CI_Model
 		{
 			$sql = "delete from tbl_products where id=$id";
 			//throw new Exception("delete from tbl_products where id=$id");
-			if (!$this->db->affected_rows()) {
-			    throw new Exception("delete from tbl_products where id=$id");
-			}
-	   		$this->db->query($sql);
+			
+	   		$result = $this->db->query($sql);
+
+			if (!$result)
+		    {
+		        $error = $this->db->error(); 
+		        throw new Exception($error['message']);
+		    }
+		    return $id;
 		}
 	   
  		catch (Exception $e) 

@@ -34,6 +34,7 @@ $(document).ready(function(){
                   {
                     $('#get_product_id').val(JSON.parse(d)); 
                     $('#add_product').modal('toggle');
+                    ShowProducts();
                   }
                }
                 
