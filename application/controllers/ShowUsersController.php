@@ -13,8 +13,25 @@ class ShowUsersController extends CI_Controller {
 
 	public function show_user_data($get_user_id)
 	{
+		$data['user_permissions'] = $this->ShowUsersModel->show_user_permissions($get_user_id);
         $data['user_data'] = $this->ShowUsersModel->show_user_model($get_user_id);
         $this->load->view('show_users',$data);
+	}
+
+	public function show_user_permissions($get_user_id)
+	{
+        $data['user_permissions'] = $this->ShowUsersModel->show_user_permissions($get_user_id);
+        $data['user_data'] = $this->ShowUsersModel->show_user_model($get_user_id);
+        $this->load->view('show_users',$data);
+	}
+
+	public function AddPermission()
+	{
+	    $project_id           = $this->input->post('project_id');
+	    $permission_type      = $this->input->post('permission_type');
+	    $user_id              = $this->input->post('user_id');
+
+		echo $this->ShowUsersModel->AddPermission($project_id,$permission_type,$user_id);
 	}
 
 	public function delete_user()

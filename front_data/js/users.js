@@ -128,23 +128,50 @@ $(document).ready(function(){
            });
        });
 
+  
+         $('#add_permission').click(function(){
+          var project_id  = $('#get_project_permission').val();
+          var permission_type='';
+          
+          if($('#user_type_read').attr('checked')=="checked")
+            permission_type=1;
 
-      if($('#user_type_read').attr('checked')="checked")
-        get_user_type=1;//miayn ditel
-      
-      if($('#user_type_edit').attr('checked')="checked")
-        get_user_type=2;//dite/popoxel
+          if($('#user_type_edit').attr('checked')=="checked")
+            permission_type=2;
 
-      
+          var user_id = $('#user_details tr .userClass').text();
 
-     $("#user_type_read").click(function(){
-      $('#user_type_edit').removeAttr('checked')
+           $.ajax({
+              url:  base_url+'index.php/ShowUsersController/AddPermission',
+              type: 'post',
+              data: {project_id:project_id,permission_type:permission_type,user_id:user_id},
+              success:function(d){
+                if(!Number.isInteger(parseInt(d)))
+                  {
+                    alert (d);
+                  }
+                  else
+                  {
+                    $('#get_product_id').val(JSON.parse(d)); 
+                    $('#add_project_user').modal('toggle');
+                    window.location.replace(base_url+'index.php/ShowUsersController/show_user_data/'+d);  
+                    //ShowProducts();
+                  }
+              }
+           });
+       });
+
+
+      $("#user_type_read").click(function(){
+      $('#user_type_edit').removeAttr('checked');
       $(this).attr('checked', 'checked');
      })
 
      $("#user_type_edit").click(function(){
-      $('#user_type_read').removeAttr('checked')
+      $('#user_type_read').removeAttr('checked');
       $(this).attr('checked', 'checked');
      })
-     
+
+   
+
 	});

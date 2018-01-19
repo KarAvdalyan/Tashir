@@ -8,6 +8,90 @@ class ShowUsersModel extends CI_Model {
 		return $query->result_array();
 	  }
 
+   public function show_user_permissions($get_user_id)
+	 {
+	 	try {
+	 		  if($get_user_id=="")
+	 		  {
+	 		  	throw new Exception("Օգտագործողը գտնված չէ", 0);	 
+	 		  }
+
+	  		  $sql ="select U.id, PJ.name, permission_type from tbl_users U 
+				inner join tbl_permissions P on P.user_id=U.id
+				inner join tbl_projects PJ on PJ.id=P.user_id where U.id='$get_user_id' ";
+
+			  $result=$this->db->query($sql);
+ 	  		  
+ 	  		  if (!$result)
+			  {
+			        $error = $this->db->error(); 
+			        throw new Exception($error['message']);
+			  }
+	  		  
+	  		   $a = $result->result_array();
+
+   	     	   return $a;
+
+
+			}
+			catch (Exception $e) 
+			{
+				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  show_user_permissions()");');
+				echo $e->getMessage().'  show_user_permissions()';
+			}
+	   
+	 }
+
+	 public function AddPermission($project_id,$permission_type,$user_id)
+	 {
+	 	try {
+	 		  if($project_id=="" || $permission_type=="" || $user_id=="")
+	 		  {
+	 		  	throw new Exception("Տվյալները ճիշտ լրացված չեն։", 0);	 
+	 		  }
+			  
+			  //throw new Exception($sql,0);
+			  $checkingResult = $this->db->query("select 1 from tbl_permissions where project_id=
+			  	$project_id and user_id=$user_id");
+ 	/*		  
+ 			  if ($checkingResult->num_rows() > 0)
+ 			  {
+	  			 throw new Exception("Նշված պրոյեկտին հասանելիություն արդեն տրամադրված է:", 0);	 
+ 			  }*/
+
+
+	  		  $this->db->trans_start();
+
+	  		  $sql ="insert into tbl_permissions (user_id,project_id,permission_type)
+				values($user_id,$project_id,$permission_type);";
+	  		  
+	  		
+
+ 	  		  if (!$this->db->query($sql))
+			  {
+			        $error = $this->db->error(); 
+			        throw new Exception($error['message']);
+			  }
+	  		  
+
+			  $result = $this->db->query("select max(id) as id from tbl_permissions;");
+
+	  		   $a = $result->result_array();
+   	     	   $this->db->trans_complete();
+
+   	     	   return $a[0]["id"];
+
+
+			}
+			catch (Exception $e) 
+			{
+				$this->db->trans_rollback();
+				$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  AddPermission()");');
+				echo $e->getMessage().'  AddPermission()';
+			}
+	   
+	 }	
+
 
    public function delete_user_model($user_id)
    {

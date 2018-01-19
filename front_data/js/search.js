@@ -173,6 +173,21 @@ $(document)
         }); 
   });
 
+  $("#project").on('input keypress blur change', function() { 
+      var name = $(this).val();
+           $.ajax({
+             url:  base_url+'index.php/ProjectController/GetProjectIdByName',
+             type: 'post',
+             dataType: 'json',
+             data:{name:name},
+             success:function(d){
+              $('#get_project_permission').val((d=="0")?"":d);
+             
+          }
+              
+        }); 
+  });
+
  $("#add_supplier_name").on('input keypress blur change', function() { 
       var name = $(this).val();
            $.ajax({

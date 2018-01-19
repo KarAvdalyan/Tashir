@@ -19,10 +19,10 @@
         <th>Հեռացնել</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="user_details">
       <?php  foreach ($user_data as $row) { ?>
       <tr>
-      	<td><?= $row['id']; ?></td>
+      	<td class ="userClass"><?= $row['id']; ?></td>
         <td contenteditable="true" id="first_name"><?= $row['first_name']; ?></td>
         <td contenteditable="true" id="last_name"><?= $row['last_name']; ?></td>
         <td contenteditable="true" id="email"><?= $row['email']; ?></td>
@@ -48,6 +48,18 @@
         <th>Հեռացնել</th>
       </tr>
     </thead>
+   <!--  <tbody id="user_permissions">
+      <?php  foreach ($user_permissions as $row) { ?>
+      <tr>
+        <td ><?= $row['id']; ?></td>
+        <td contenteditable="true" id="project_name"><?= $row['name']; ?></td>
+        <td id="last_name"><?= $row['last_name']; ?></td>
+        <td contenteditable="true" id="email"><?= $row['email']; ?></td>
+        <td style="cursor:pointer;" class="edit_user" id="<?=  $row['id']; ?>">Փոփոխել</td>
+        <td style="cursor:pointer;" class="delete_user" id="<?=  $row['id']; ?>" >Հեռացնել</td>
+      </tr>
+      <?php } ?>
+    </tbody> -->
     <tbody>
       <tr>
       	<td>35</td>
@@ -77,10 +89,11 @@
     <div class="modal-body">
 
        <div class="col-xs-6">
-         <input id="get_project_name"  class="form-control" type="text" placeholder="Անուն"><br>
+         <input type="hidden" id="get_project_permission">
+         <input id="project"  class="form-control" type="text" placeholder="Անուն"><br>
          <!-- <textarea id="get_project_discripshen" class="form-control" rows="3" placeholder="Նկարագրություն"></textarea><br> -->
          <input id="get_project_date" class="form-control default_end_date" type="date"><br>
-         <input id="insert_project" class="btn btn-primary btn-md" type="submit" value="Ավելացնել"><br>
+         <input id="add_permission" class="btn btn-primary btn-md" type="submit" value="Ավելացնել"><br>
        </div>
          <label id="user_type_read" class="radio-inline"><input name="limit" type="radio" value="">Դիտել/փոփոխել</label>
          <label id="user_type_edit" class="radio-inline"><input name="limit" type="radio" value="">Դիտել</label>
