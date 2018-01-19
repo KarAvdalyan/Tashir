@@ -33,5 +33,5 @@
     </div>
   </div>
   <!--setting default date -->
-<script type="text/javascript">$("#get_product_date").val(FormatDate(new Date()));</script>
+<!-- <script type="text/javascript">$("#get_product_date").val(FormatDate(new Date()));</script> -->
   <!-- add_product -->

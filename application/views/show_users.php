@@ -78,12 +78,12 @@
 
        <div class="col-xs-6">
          <input id="get_project_name"  class="form-control" type="text" placeholder="Անուն"><br>
-         <textarea id="get_project_discripshen" class="form-control" rows="3" placeholder="Նկարագրություն"></textarea><br>
-         <input id="get_project_date" class="form-control" type="date"><br>
+         <!-- <textarea id="get_project_discripshen" class="form-control" rows="3" placeholder="Նկարագրություն"></textarea><br> -->
+         <input id="get_project_date" class="form-control default_end_date" type="date"><br>
          <input id="insert_project" class="btn btn-primary btn-md" type="submit" value="Ավելացնել"><br>
        </div>
-         <label class="radio-inline"><input name="limit" type="radio" value="">Դիտել/փոփոխել</label>
-         <label class="radio-inline"><input name="limit" type="radio" value="">Դիտել</label>
+         <label id="user_type_read" class="radio-inline"><input name="limit" type="radio" value="">Դիտել/փոփոխել</label>
+         <label id="user_type_edit" class="radio-inline"><input name="limit" type="radio" value="">Դիտել</label>
     </div>
 
         <div class="modal-footer">

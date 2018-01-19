@@ -20,7 +20,8 @@
 
       </div>
       
-     
+     <label id="user_type_read" class="radio-inline"><input name="limit" type="radio" value="">Դիտել/փոփոխել</label>
+         <label id="user_type_edit" class="radio-inline"><input name="limit" type="radio" value="">Դիտել</label>
 
     </div>
 
@@ -32,7 +33,8 @@
     </div>
   </div>
 
+  
   <!-- add_project -->
 
     <!--setting default date -->
-  <script type="text/javascript">$("#get_project_date").val(FormatDate(new Date()));</script>
+  <!-- <script type="text/javascript">$("#get_project_date").val(FormatDate(new Date()));</script> -->

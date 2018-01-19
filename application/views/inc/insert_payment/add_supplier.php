@@ -35,4 +35,4 @@
   <!-- add_supplier -->
 
   <!--setting default date -->
-  <script type="text/javascript">$("#get_supplier_date").val(FormatDate(new Date()));</script>
+  <!-- <script type="text/javascript">$("#get_supplier_date").val(FormatDate(new Date()));</script> -->

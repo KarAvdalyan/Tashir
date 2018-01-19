@@ -128,4 +128,23 @@ $(document).ready(function(){
            });
        });
 
+
+      if($('#user_type_read').attr('checked')="checked")
+        get_user_type=1;//miayn ditel
+      
+      if($('#user_type_edit').attr('checked')="checked")
+        get_user_type=2;//dite/popoxel
+
+      
+
+     $("#user_type_read").click(function(){
+      $('#user_type_edit').removeAttr('checked')
+      $(this).attr('checked', 'checked');
+     })
+
+     $("#user_type_edit").click(function(){
+      $('#user_type_read').removeAttr('checked')
+      $(this).attr('checked', 'checked');
+     })
+     
 	});
