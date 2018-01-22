@@ -141,20 +141,30 @@ class SupplierModel extends CI_Model
 	   
 	 }
 
-	 public function DeleteSupplier($supplierID) 
+	 public function DeleteSupplier($id) 
 	 {
 		try
 		{
-			$sql = "delete from tbl_suppliers where id=$supplierID)";
+			$sql = "delete from tbl_suppliers where id=$id";
+			//throw new Exception("delete from tbl_suppliers where id=$id");
+			
 	   		$result = $this->db->query($sql);
+
+			if (!$result)
+		    {
+		        $error = $this->db->error(); 
+		        throw new Exception($error['message']);
+		    }
+		    return $id;
 		}
 	   
  		catch (Exception $e) 
 		{
-			echo $e->getMessage();
+			$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  DeleteSupplier()");');
+			echo $e->getMessage().'  DeleteSupplier()';
 	    }
 
-	 }			
+	 }		
 }
 
 

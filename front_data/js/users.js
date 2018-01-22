@@ -1,4 +1,4 @@
-$(document).ready(function(){
+﻿$(document).ready(function(){
 
 
        // insert user
@@ -107,8 +107,8 @@ $(document).ready(function(){
              type: 'post',
              data:{first_name:first_name,last_name:last_name,email:email,edit_user:edit_user},
              success:function(d){
-                // alert('Ձեր փոփոխությունը կատարված Է');
-                alert(d);
+                 alert('Ձեր փոփոխությունը կատարված Է');
+                //  alert(d);
              }
           });
       });
@@ -128,6 +128,90 @@ $(document).ready(function(){
            });
        });
 
+
+     // edit permission
+        $("#user_permissions").on("click",'tr .edit_permission',function(){
+          user_id=$('.userClass').text();
+          var row = jQuery(this).closest('tr');
+          var columns = row.find('td');
+          var project_id = columns[0].innerHTML;
+
+          var label1=row.find('.set_permission');
+          var label2=row.find('.set_permission_second');
+          var input1=label1.find('input');
+          var input2=label2.find('input');
+
+          var permission_type='';
+          
+          if(input1.attr('checked')=="checked")
+            permission_type=2;
+
+          if(input2.attr('checked')=="checked")
+            permission_type=1;
+          
+          $.LoadingOverlay("show");
+
+          $.ajax({
+             url:  base_url+'index.php/ShowUsersController/edit_user_permission',
+             type: 'post',
+             data:{project_id:project_id,user_id:user_id,permission_type:permission_type},
+             success:function(d){
+              //alert(d);
+                  if(!Number.isInteger(parseInt(d)))
+                  {
+                    alert (d);
+                  }
+                  else
+                  {
+                    $('#get_product_id').val(JSON.parse(d)); 
+                    $('#add_project_user').modal('toggle');
+                    window.location.replace(base_url+'index.php/ShowUsersController/show_user_data/'+d);  
+                    //ShowProducts();
+                  }
+                  $.LoadingOverlay("hide");
+             }
+          });
+      });
+                       
+     // delete permission
+        $("#user_permissions").on("click",'tr .delete_permission',function(){
+        if(confirm("Ցանկանում եք հեռացնել?"))
+        {
+              user_id=$('.userClass').text();
+              var row = jQuery(this).closest('tr');
+              var columns = row.find('td');
+              var project_id = columns[0].innerHTML;
+
+              var label1=row.find('.set_permission');
+              var label2=row.find('.set_permission_second');
+              var input1=label1.find('input');
+              var input2=label2.find('input');
+
+              $.LoadingOverlay("show");
+              $.ajax({
+                 url:  base_url+'index.php/ShowUsersController/delete_user_permission',
+                 type: 'post',
+                 data:{project_id:project_id,user_id:user_id},
+                 success:function(d){
+                  //alert(d);
+                      if(!Number.isInteger(parseInt(d)))
+                      {
+                        alert (d);
+                        
+                      }
+                      else
+                      {
+                        $('#get_product_id').val(JSON.parse(d)); 
+                        $('#add_project_user').modal('toggle');
+                        window.location.replace(base_url+'index.php/ShowUsersController/show_user_data/'+d);  
+                        
+                      }
+                      $.LoadingOverlay("hide");
+                 }
+              });
+          }
+      });
+                       
   
          $('#add_permission').click(function(){
           var project_id  = $('#get_project_permission').val();
@@ -140,12 +224,13 @@ $(document).ready(function(){
             permission_type=2;
 
           var user_id = $('#user_details tr .userClass').text();
-
+          $.LoadingOverlay("show");
            $.ajax({
               url:  base_url+'index.php/ShowUsersController/AddPermission',
               type: 'post',
               data: {project_id:project_id,permission_type:permission_type,user_id:user_id},
               success:function(d){
+
                 if(!Number.isInteger(parseInt(d)))
                   {
                     alert (d);
@@ -155,13 +240,14 @@ $(document).ready(function(){
                     $('#get_product_id').val(JSON.parse(d)); 
                     $('#add_project_user').modal('toggle');
                     window.location.replace(base_url+'index.php/ShowUsersController/show_user_data/'+d);  
-                    //ShowProducts();
+                    
                   }
+                  $.LoadingOverlay("hide");
               }
            });
        });
 
-
+     
       $("#user_type_read").click(function(){
       $('#user_type_edit').removeAttr('checked');
       $(this).attr('checked', 'checked');
@@ -172,6 +258,18 @@ $(document).ready(function(){
       $(this).attr('checked', 'checked');
      })
 
-   
+    $("#user_permissions").on("click",'tr td .set_permission',function(){
+      $(this).find('input').attr('checked', 'checked');
+      var row = jQuery(this).closest('tr');
+      var label=row.find('.set_permission_second');
+      label.find('input').removeAttr('checked');   
+     });
+
+      $("#user_permissions").on("click",'tr td .set_permission_second',function(){
+      $(this).find('input').attr('checked', 'checked');
+      var row = jQuery(this).closest('tr');
+      var label=row.find('.set_permission');
+      label.find('input').removeAttr('checked');   
+     });
 
 	});

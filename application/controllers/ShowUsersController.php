@@ -34,6 +34,24 @@ class ShowUsersController extends CI_Controller {
 		echo $this->ShowUsersModel->AddPermission($project_id,$permission_type,$user_id);
 	}
 
+	public function edit_user_permission()
+	{
+	    $project_id           = $this->input->post('project_id');
+	    $permission_type      = $this->input->post('permission_type');
+	    $user_id              = $this->input->post('user_id');
+
+		echo $this->ShowUsersModel->edit_user_permission($project_id,$permission_type,$user_id);
+	}
+
+	public function delete_user_permission()
+	{
+	    $project_id           = $this->input->post('project_id');
+	    $user_id              = $this->input->post('user_id');
+
+		echo $this->ShowUsersModel->delete_user_permission($project_id,$user_id);
+	}
+	
+
 	public function delete_user()
 	{
 		   $user_id = $this->input->post('delete_user');

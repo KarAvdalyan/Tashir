@@ -93,8 +93,8 @@ class ProjectController extends CI_Controller {
 
         function DeleteProject()
         {
-            $projectID=2;
-            $this->ProjectModel->DeletePayment($projectID);
+            $id = $this->input->post('delete_id');
+            echo $this->ProjectModel->DeleteProject($id);
         }
 
 	}

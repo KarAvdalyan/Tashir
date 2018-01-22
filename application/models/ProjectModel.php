@@ -8,7 +8,7 @@ class ProjectModel extends CI_Model
 		try {
 			   $sql = "call pr_search_projects('$startDate','$endDate','$project_id',
 			   '$project_description','$projectName',$userID,$autocompleteMode)";
-
+				//throw new Exception($sql, 0);	
 			   $result = $this->db->query($sql);
 
 			   if (!$result)
@@ -16,7 +16,7 @@ class ProjectModel extends CI_Model
 			        $error = $this->db->error(); 
 			        throw new Exception($error['message']);
 			   }
-			   //throw new Exception($sql, 0);	
+			   
 		   	 	return $result;
 			}
 
@@ -180,20 +180,30 @@ class ProjectModel extends CI_Model
 	 }
 
 
-	 public function DeleteProject($projectID) 
+		 public function DeleteProject($id) 
 	 {
 		try
 		{
-			$sql = "delete from tbl_projects where id=$projectID)";
+			$sql = "delete from tbl_projects where id=$id";
+			//throw new Exception("delete from tbl_projects where id=$id");
+			
 	   		$result = $this->db->query($sql);
+
+			if (!$result)
+		    {
+		        $error = $this->db->error(); 
+		        throw new Exception($error['message']);
+		    }
+		    return $id;
 		}
 	   
  		catch (Exception $e) 
 		{
-			echo $e->getMessage();
+			$this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  DeleteProject()");');
+			echo $e->getMessage().'  DeleteProject()';
 	    }
 
-	 }		
+	 }
 }
 
 

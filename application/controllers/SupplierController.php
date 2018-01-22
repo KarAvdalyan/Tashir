@@ -56,14 +56,14 @@ class SupplierController extends CI_Controller {
 
          public function ShowSuppliersAjax()
          {
-            $projectName = $this->input->get('get_supplier_name', TRUE);
+            $supplierName = $this->input->get('get_supplier_name', TRUE);
             $startDate="";
             $endDate ="";
-            $project_id="";
-            $project_description="";
+            $supplier_id="";
+            $supplier_description="";
             $autocompleteMode=1;
             $result =  $this->SupplierModel->GetSuppliers
-            ($startDate,$endDate,$project_id,$project_description,$projectName,$this->userID,$autocompleteMode);
+            ($startDate,$endDate,$supplier_id,$supplier_description,$suppliertName,$this->userID,$autocompleteMode);
                        
             echo $this->serviceclass->GetAutoCompleteList($result);
             
@@ -86,11 +86,11 @@ class SupplierController extends CI_Controller {
             echo $this->SupplierModel->UpdateSupplier($supplierID,$name,$description,$registrationDate,$this->userID);
         }
 
-        function DeleteSupplier()
-        {
-            $supplierID=2;
-            $this->SupplierModel->DeleteSupplier($projectID);
-        }
+         function DeleteSupplier()
+         {
+            $id = $this->input->post('delete_id');
+            echo $this->SupplierModel->DeleteSupplier($id);
+         }
 
 	}
       

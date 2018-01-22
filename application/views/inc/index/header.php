@@ -23,7 +23,7 @@
   <script type="text/javascript" src="<?= base_url('front_data/js/search.js'); ?>"></script>
   <script type="text/javascript" src="<?= base_url('front_data/js/delete.js'); ?>"></script> 
   <script type="text/javascript" src="<?= base_url('front_data/resources/jquery-loading-overlay-master/extras/loadingoverlay_progress/loadingoverlay_progress.min.js'); ?>"></script> 
-  
+*  
   <script type="text/javascript" src="<?= 
   base_url('front_data/resources/jquery-loading-overlay-master/src/loadingoverlay.min.js'); ?>"></script>
   <script type="text/javascript" src="<?= base_url('front_data/js/users.js'); ?>"></script>
@@ -93,8 +93,7 @@ Move the mouse over the button to open the dropdown menu.
                  <button id="home"  type="button" class="btn btn-primary btn-md" >Գլխավոր</button>
 
 
-                                           <!-- Insert  data -->
-
+           <!-- Insert  data -->
 <div class="dropdown">
   <button class="dropbtn btn btn-primary btn-md">Մւտքագրել</button>
   <div class="dropdown-content">
@@ -132,7 +131,7 @@ Move the mouse over the button to open the dropdown menu.
     </div>
 </div>
 
-                                       <!-- show  users -->
+<?php  if($this->session->userdata('user_id') == 1) { ?>
  <div class="dropdown">
   <button class="dropbtn btn btn-primary btn-md">Օգտատերերի դիտում</button>
     <div class="dropdown-content">
@@ -143,7 +142,7 @@ Move the mouse over the button to open the dropdown menu.
                                           <?php } ?>
     </div>
 </div>
-
+<?php } ?>
 
 
 
@@ -155,7 +154,9 @@ Move the mouse over the button to open the dropdown menu.
 
                    
     <a style="float:right;" class="btn btn-primary btn-md" href="<?= site_url('AdminController/logout'); ?>">Logout</a>
+    <?php  if($this->session->userdata('user_id') == 1) { ?>
     <a id="signup" style="float:right;" class="btn btn-primary btn-md" href="#">Signup</a>
+    <?php } ?>
     <button style="float:right;" type="button" class="btn btn-danger"><?php  print_r($show_user_info[2].' '.$show_user_info[3]); ?></button>
 
 

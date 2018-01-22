@@ -20,8 +20,6 @@
 
       </div>
       
-     <label id="user_type_read" class="radio-inline"><input name="limit" type="radio" value="">Դիտել/փոփոխել</label>
-         <label id="user_type_edit" class="radio-inline"><input name="limit" type="radio" value="">Դիտել</label>
 
     </div>
 

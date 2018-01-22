@@ -35,7 +35,7 @@
 
               <!-- user information -->
   <h3 style="text-align:center;">Օգտատիրոջ մուտքի սահմանափակաումներ</h3>
-  <h4 style="text-align:center;cursor:pointer;" data-toggle="modal" data-target="#add_project_user">Ավելացնել</h4>
+  <button style="margin-bottom: 10px;  text-align:center;cursor:pointer;" data-toggle="modal" data-target="#add_project_user">Ավելացնել հասանելիություն</button>
        
   <table class="table table-bordered">
     <thead>
@@ -48,29 +48,21 @@
         <th>Հեռացնել</th>
       </tr>
     </thead>
-   <!--  <tbody id="user_permissions">
+     <tbody id="user_permissions">
       <?php  foreach ($user_permissions as $row) { ?>
       <tr>
         <td ><?= $row['id']; ?></td>
         <td contenteditable="true" id="project_name"><?= $row['name']; ?></td>
-        <td id="last_name"><?= $row['last_name']; ?></td>
-        <td contenteditable="true" id="email"><?= $row['email']; ?></td>
-        <td style="cursor:pointer;" class="edit_user" id="<?=  $row['id']; ?>">Փոփոխել</td>
-        <td style="cursor:pointer;" class="delete_user" id="<?=  $row['id']; ?>" >Հեռացնել</td>
+        <td ><label   class="radio-inline set_permission"><input <?php if ($row['permission_type']==2) { ?> checked="checked" <?php } ?> name="limit_permission<?=  $row['id']; ?>" type="radio" >Դիտել/փոփոխել</label>
+         </td>
+        <td ><label   class="radio-inline set_permission_second"><input
+        <?php if ($row['permission_type']==1) { ?> checked="checked" <?php } ?> name="limit_permission<?=  $row['id']; ?>" type="radio" value="">Դիտել</label></td>
+        <td style="cursor:pointer;" class="edit_permission" id="<?=  $row['id']; ?>">Փոփոխել</td>
+        <td style="cursor:pointer;" class="delete_permission" id="<?=  $row['id']; ?>" >Հեռացնել</td>
       </tr>
       <?php } ?>
-    </tbody> -->
-    <tbody>
-      <tr>
-      	<td>35</td>
-        <td>Կարաս ՍՊԸ</td>
-        <td><label class="radio-inline"><input name="limit" type="radio" value="">Դիտել</label></td>
-        <td><label class="radio-inline"><input name="limit" type="radio" value="">Դիտել/փոփոխել</label></td>
-        <td style="cursor:pointer;">Փոփոխել</td>
-        <td style="cursor:pointer;" >Հեռացնել</td>
-      </tr>
-    </tbody>
-  </table>
+    </tbody> 
+   </table>
 
 
 </div>
@@ -95,8 +87,8 @@
          <input id="get_project_date" class="form-control default_end_date" type="date"><br>
          <input id="add_permission" class="btn btn-primary btn-md" type="submit" value="Ավելացնել"><br>
        </div>
-         <label id="user_type_read" class="radio-inline"><input name="limit" type="radio" value="">Դիտել/փոփոխել</label>
-         <label id="user_type_edit" class="radio-inline"><input name="limit" type="radio" value="">Դիտել</label>
+         <label id="user_type_edit" class="radio-inline"><input name="limit" type="radio" value="">Դիտել/փոփոխել</label>
+         <label id="user_type_read" class="radio-inline"><input name="limit" type="radio" value="">Դիտել</label>
     </div>
 
         <div class="modal-footer">
