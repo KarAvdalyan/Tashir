@@ -25,6 +25,7 @@ class SupplierController extends CI_Controller {
             ($startDate,$endDate,$supplier_id,$supplier_description,$supplierName,$this->userID,$autocompleteMode);
 
             $data['list'] = $result;
+            $data['userID']=$this->userID;
             $this->load->view('show_supplier',$data);
          
          } 
@@ -42,6 +43,7 @@ class SupplierController extends CI_Controller {
          	($startDate,$endDate,$supplier_id,$supplier_description,$supplierName,$this->userID,$autocompleteMode);
 
             $data['list'] = $result;
+            $data['userID']=$this->userID;
          	$this->load->view('search_table',$data);
          
          }
@@ -63,7 +65,7 @@ class SupplierController extends CI_Controller {
             $supplier_description="";
             $autocompleteMode=1;
             $result =  $this->SupplierModel->GetSuppliers
-            ($startDate,$endDate,$supplier_id,$supplier_description,$suppliertName,$this->userID,$autocompleteMode);
+            ($startDate,$endDate,$supplier_id,$supplier_description,$supplierName,$this->userID,$autocompleteMode);
                        
             echo $this->serviceclass->GetAutoCompleteList($result);
             

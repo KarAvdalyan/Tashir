@@ -26,10 +26,10 @@ class ProductController extends CI_Controller {
             ($startDate,$endDate,$product_id,$product_description,$productName,$this->userID,$autocompleteMode);
             //echo $result;
             $data['list'] = $result;
+            $data['userID']=$this->userID;
             $this->load->view('search_table',$data);
          
          }
-
           public function Index()
          {
             
@@ -45,6 +45,7 @@ class ProductController extends CI_Controller {
             $result = $this->ProductModel->GetProducts
             ($startDate,$endDate,$product_id,$product_description,$productName,$this->userID,$autocompleteMode);
             
+            $data['userID']=$this->userID;
             $data['list'] = $result;
             $this->load->view('show_product',$data);
          

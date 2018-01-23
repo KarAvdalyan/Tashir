@@ -23,7 +23,7 @@
   <script type="text/javascript" src="<?= base_url('front_data/js/search.js'); ?>"></script>
   <script type="text/javascript" src="<?= base_url('front_data/js/delete.js'); ?>"></script> 
   <script type="text/javascript" src="<?= base_url('front_data/resources/jquery-loading-overlay-master/extras/loadingoverlay_progress/loadingoverlay_progress.min.js'); ?>"></script> 
-*  
+ 
   <script type="text/javascript" src="<?= 
   base_url('front_data/resources/jquery-loading-overlay-master/src/loadingoverlay.min.js'); ?>"></script>
   <script type="text/javascript" src="<?= base_url('front_data/js/users.js'); ?>"></script>

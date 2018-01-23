@@ -34,22 +34,22 @@
      
      <div class="form-group row">
     <form>
-     <div class="col-xs-2">
+     <div class="col-xs-2" style="margin-top:15px;">
         <label>Սկիզբ</label>
         <input class="form-control default_start_date" id="start_date"  type="date" name="start_date"> 
      </div>
      
-     <div class="col-xs-2">
+     <div class="col-xs-2"  style="margin-top:15px;">
      <label>Վերջ</label>
         <input class="form-control default_end_date" id="end_date"  type="date" name="end_date">
      </div>
           
-     <div class="col-xs-2">
+     <div class="col-xs-2" style="margin-top:15px;">
      <label>ID</label>
         <input class="form-control" id="supplier_idd" placeholder="ID" type="number" name="supplier_idd">
      </div>
      
-     <div class="col-xs-2">
+     <div class="col-xs-2" style="margin-top:15px;" >
      <label>Նկարագիր</label>
         <input class="form-control" id="description" placeholder="Նկարագիր" type="text" name="description">
      </div>

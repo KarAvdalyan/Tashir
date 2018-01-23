@@ -8,9 +8,10 @@ class SupplierModel extends CI_Model
 	{
 		try {
 			   $sql = "call pr_search_suppliers('$startDate','$endDate','$supplier_id','$supplier_description',
-			   '$supplierName',$autocompleteMode)";
+			   '$supplierName',$userID,$autocompleteMode)";
 			   $result = $this->db->query($sql);
 
+		   	   //throw new Exception($sql);
 			   if (!$result)
 			   {
 			        $error = $this->db->error(); 
@@ -19,6 +20,7 @@ class SupplierModel extends CI_Model
 			   
 			   return $result;
 		   	}
+
 	   	catch(Exception $e)
 		   	{
 			   $this->db->query('insert into tbl_log(description) values("'.$e->getMessage().'  GetSuppliers()");');
@@ -50,8 +52,8 @@ class SupplierModel extends CI_Model
 
 	  		  $this->db->trans_start();
 			  
-		  	  $sql="insert into tbl_suppliers(name,description,registration_date) 
-			  		values('$name','$description','$registrationDate');";
+		  	  $sql="insert into tbl_suppliers(name,description,registration_date,user_id) 
+			  		values('$name','$description','$registrationDate',$userID);";
 			  
 			  if (!$this->db->query($sql))
 			  {

@@ -27,6 +27,7 @@ class ProjectController extends CI_Controller {
             ($startDate,$endDate,$project_id,$project_description,$projectName,$this->userID,$autocompleteMode);
             
             $data['list'] = $result;
+            $data['userID']=$this->userID;
 
             $this->load->view('show_project',$data);
          
@@ -47,6 +48,7 @@ class ProjectController extends CI_Controller {
             ($startDate,$endDate,$project_id,$project_description,$projectName,$this->userID,$autocompleteMode);
             
             $data['list'] =  $result;
+            $data['userID']=$this->userID;
             $this->load->view('search_table',$data);
          
          }
