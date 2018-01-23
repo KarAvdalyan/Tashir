@@ -75,6 +75,7 @@ $(document).ready(function(){
                   {
                     $('#get_project_id').val(JSON.parse(d));  
                     $('#add_project').modal('toggle');
+                    ShowProjects();
                   }
 
                }
@@ -120,6 +121,7 @@ $(document).ready(function(){
                   {
                     $('#get_supplier_id').val(JSON.parse(d));  
                     $('#add_supplier').modal('toggle');
+                    ShowSuppliers();
                   }
 
                }

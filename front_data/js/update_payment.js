@@ -121,7 +121,7 @@ $("#show_product_table").on("click",'tbody tr .update_save',function(){
                type: 'post',
                data:{id:id,name:name,description:description,registrationDate:registrationDate},
                success:function(d){
-                //alert ("Փոփոխությունը կատարված է։");
+                alert ("Փոփոխությունը կատարված է։");
                   if(!Number.isInteger(parseInt(d)))
                   {
                     alert (d);

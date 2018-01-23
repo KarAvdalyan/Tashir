@@ -1,5 +1,5 @@
 <!-- add_project -->
-  <div class="modal fade" id="add_project" role="dialog">
+  <div style="z-index: 2042" class="modal fade" id="add_project" role="dialog">
     <div class="modal-dialog ">
       <div class="modal-content">
         <div class="modal-header">

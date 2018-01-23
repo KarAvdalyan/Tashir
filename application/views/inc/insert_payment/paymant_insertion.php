@@ -27,7 +27,7 @@
 
          <textarea id="payment_description" class="form-control" rows="3"  placeholder="Նկարագրություն" style="margin-top:8px;"></textarea>
          
-         <input    id="add_project_name" class="form-control"  type="text" placeholder="1Պրոյեկտի անուն" style="margin-top:8px;">
+         <input    id="add_project_name" class="form-control"  type="text" placeholder="Պրոյեկտի անուն" style="margin-top:8px;">
          <div id ="projectList"></div>
          
         <input    id="add_supplier_name" class="form-control"  type="text" placeholder="Մատակարարի անուն" style="margin-top:8px;">
