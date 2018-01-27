@@ -18,6 +18,7 @@
     var base_url="<?= base_url(); ?>"
   </script>
   <script type="text/javascript" src="<?= base_url('front_data/js/service.js'); ?>"></script>
+  <script type="text/javascript" src="<?= base_url('front_data/js/ExcelDownloadUpload.js'); ?>"></script>
   <script type="text/javascript" src="<?= base_url('front_data/js/insert_payment.js'); ?>"></script>
   <script type="text/javascript" src="<?= base_url('front_data/js/update_payment.js'); ?>"></script>
   <script type="text/javascript" src="<?= base_url('front_data/js/search.js'); ?>"></script>

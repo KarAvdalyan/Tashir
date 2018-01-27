@@ -70,20 +70,22 @@
 
   <!-- show search -->
 
+<a id="dlink"  style="display:none;"></a> 
+<input class="form-control col-sm-1"  style="width:115px"  type="button" onclick="tableToExcel('myTable', 'name', 'myfile.xls')" value="Export to Excel">
  <table id="myTable" class="table table-bordered" >
   
     <thead>
       <tr style="background-color:darkgray;text-align:center;">
-        <th id ="payment_reg" style="text-align:center;" ><input type="radio" style="border:0px;width:50%;height:1.2em;"  name="sortOrder" id ="payment_date">Ամսաթիվ</th>
+        <th id ="payment_reg" style="text-align:center;" ><input class="deleteFromExcel" type="radio" style="border:0px;width:50%;height:1.2em;"  name="sortOrder" id ="payment_date">Ամսաթիվ</th>
         <th style="text-align:center;width: 10%;" >Պրոդուկտ</th>
         <th style="text-align:center;" >ID</th>
         <th style="text-align:center;" >Նկարագիր</th>
         <th style="text-align:center;" >Պրոյեկտ</th>
         <th style="text-align:center;" >Մատակարար</th>
-        <th style="text-align:center;" > <input type="radio" style="border:0px;width:50%;height:1.2em;" name="sortOrder" id ="payment_price">Գին</th>
+        <th style="text-align:center;" > <input class="deleteFromExcel" type="radio" style="border:0px;width:50%;height:1.2em;" name="sortOrder" id ="payment_price">Գին</th>
         <th style="text-align:center;" >Քանակ</th>
-        <th style="text-align:center;" >Փոփոխել</th>
-        <th style="text-align:center;" >Հեռացնել</th>
+        <th style="text-align:center;" class="deleteFromExcel">Փոփոխել</th>
+        <th style="text-align:center;" class="deleteFromExcel">Հեռացնել</th>
       </tr>
     </thead>
     <tbody id ="payments_result">
