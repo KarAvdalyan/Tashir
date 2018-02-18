@@ -1,4 +1,4 @@
-<?php
+ <?php
 include "ShowUsersController.php";
 class PaymentController extends CI_Controller {
          
@@ -119,6 +119,8 @@ class PaymentController extends CI_Controller {
             $paymentID = $this->input->post('delete_payment_id');
             $this->PaymentModel->DeletePayment($paymentID);
          }
+
+         
 
 }
 

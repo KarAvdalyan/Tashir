@@ -71,7 +71,17 @@
  </form>
 </div><br>
 
-            
+              
+  
+<div xlass="row">
+    <div class="col-lg-12 col-sm-12">
+        <div class="form-group text-right">
+            <a id="dlink" ></a> 
+            <input   type="button" onclick="tableToExcel('show_project_table', 'name', 
+            'projects_'+FormatDateAsFileName(new Date()))" value="Export to Excel">
+        </div>
+    </div>
+</div>   
   <table id="show_project_table" class="table table-bordered">
     <thead>
       <tr style="background-color:darkgray;text-align:center;">

@@ -76,6 +76,8 @@ if ( ! function_exists('form_open'))
 			$action = $CI->config->site_url($action);
 		}
 
+		
+
 		$attributes = _attributes_to_string($attributes);
 
 		if (stripos($attributes, 'method=') === FALSE)
@@ -87,6 +89,7 @@ if ( ! function_exists('form_open'))
 		{
 			$attributes .= ' accept-charset="'.strtolower(config_item('charset')).'"';
 		}
+
 
 		$form = '<form action="'.$action.'"'.$attributes.">\n";
 
