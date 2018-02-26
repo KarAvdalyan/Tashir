@@ -23,20 +23,6 @@ class ImportController extends CI_Controller {
         $this->load->model('Import_model', 'import');
     }
 
-    // upload xlsx|xls file
-    public function index() {
-        /*$data['page'] = 'import';
-        $data['title'] = 'Import XLSX | TechArise';
-        $this->load->view('import/index', $data);*/
-        echo "hello";
-    }
-    /*public function display() {
-        $data['page'] = 'import';
-        $data['title'] = 'Import XLSX | TechArise';
-        $data['employeeInfo'] = $this->import->employeeList();
-        $this->load->view('import/display', $data);
-    }*/    
-    // import excel data
     public function save() {
             
         $this->load->library('excel');

@@ -155,7 +155,7 @@ class PaymentModel extends CI_Model
 	 {
 	 	try {
 
-	 			$checkingResult = $this->db->query("select 1 from tbl_payments where id = 1");
+	 			$checkingResult = $this->db->query("select 1 from tbl_payments where id = $paymentID");
 
 				if($checkingResult->num_rows() == 0)
 				{

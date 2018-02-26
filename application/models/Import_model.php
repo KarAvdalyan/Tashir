@@ -1,4 +1,4 @@
-<?php
+ <?php
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -28,13 +28,6 @@ class Import_model extends CI_Model {
         $data = $this->_batchImport;
         $this->db->insert_batch('tmp_payments', $data);
     }
-    // get employee list
-    public function employeeList() {
-        $this->db->select(array('e.id', 'e.first_name', 'e.last_name', 'e.email', 'e.dob', 'e.contact_no'));
-        $this->db->from('import as e');
-        $query = $this->db->get();
-        return $query->result_array();
-    }
 
     public function ReadFiles($path,$import_xls_file,$userID) {
         try {
@@ -42,12 +35,12 @@ class Import_model extends CI_Model {
             $this->db->trans_start();
                
             $this->db->query(" truncate table tmp_payments;");   
-                $a="LOAD DATA LOCAL INFILE 'C:\\Users/Arsen/Desktop/".$import_xls_file."' INTO TABLE tmp_payments
+                $a="LOAD DATA LOCAL INFILE '".$path.$import_xls_file."' INTO TABLE tmp_payments
                         CHARACTER SET 'utf8'
                         FIELDS TERMINATED BY ';'
-                        LINES TERMINATED BY '\n'
+                        LINES TERMINATED BY '\r\n'
                         IGNORE 1 LINES
-                        (productName, supplierName, projectName, description,price,quantity);";
+                        (emptyColumn,productName, supplierName, projectName, description,price,quantity);";
                         
                 //throw new Exception($a, 0);   
                  

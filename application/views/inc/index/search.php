@@ -74,8 +74,8 @@
       <div class="col-lg-12 col-sm-12">
          <div class="form-group"><label for="image">Ներբեռնել excel</label><input type="file" name="userfile" id="userfile" class="form-control filestyle" value="" data-icon="false"></div>
       </div>
-      <div onclick="ImportPayments()" class="col-lg-12 col-sm-12">
-         <div class="form-group text-right"><input type="button" name="importfile" value="Import" id="importfile-id" class="btn btn-primary"></div>
+      <div class="col-lg-12 col-sm-12">
+         <div  class="form-group text-right"><input onclick="ImportPayments()" type="button" name="importfile" value="Import" id="importfile-id" class="btn btn-primary"></div>
       </div>
    </div>
 </div>
