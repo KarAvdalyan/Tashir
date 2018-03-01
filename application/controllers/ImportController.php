@@ -62,11 +62,11 @@ class ImportController extends CI_Controller {
             
             $arrayCount = count($allDataInSheet);
             $flag = 0;
-            $createArray = array('productName', 'supplierName', 'projectName', 'description', 'price','quantity',
-                'registration_date');
-            $makeArray = array('productName' => 'productName', 'supplierName' => 'supplierName', 
-                'projectName' => 'projectName', 'description' => 'description', 'price' => 'price', 
-                'quantity' => 'quantity','registration_date'=>'registration_date');
+            $createArray = array('Պրոդուկտ', 'Մատակարար', 'Պրոյեկտ', 'Նկարագրություն', 'Գին','Քանակ',
+                'Ամսաթիվ');
+            $makeArray = array('Պրոդուկտ' => 'Պրոդուկտ', 'Մատակարար' => 'Մատակարար', 
+                'Պրոյեկտ' => 'Պրոյեկտ', 'Նկարագրություն' => 'Նկարագրություն', 'Գին' => 'Գին', 
+                'Քանակ' => 'Քանակ','Ամսաթիվ'=>'Ամսաթիվ');
             $SheetDataKey = array();
             foreach ($allDataInSheet as $dataInSheet) {
                 foreach ($dataInSheet as $key => $value) {
@@ -85,13 +85,13 @@ class ImportController extends CI_Controller {
             //}
             if ($flag == 1) {
                 for ($i = 2; $i <= $arrayCount; $i++) {
-                    $productName = $SheetDataKey['productName'];
-                    $supplierName = $SheetDataKey['supplierName'];
-                    $projectName = $SheetDataKey['projectName'];
-                    $description = $SheetDataKey['description'];
-                    $price = $SheetDataKey['price'];
-                    $quantity = $SheetDataKey['quantity'];
-                    $registration_date = $SheetDataKey['registration_date'];
+                    $productName = $SheetDataKey['Պրոդուկտ'];
+                    $supplierName = $SheetDataKey['Մատակարար'];
+                    $projectName = $SheetDataKey['Պրոյեկտ'];
+                    $description = $SheetDataKey['Նկարագրություն'];
+                    $price = $SheetDataKey['Գին'];
+                    $quantity = $SheetDataKey['Քանակ'];
+                    $registration_date = $SheetDataKey['Ամսաթիվ'];
                     $productName = filter_var(trim($allDataInSheet[$i][$productName]), FILTER_SANITIZE_STRING);
                     $supplierName = filter_var(trim($allDataInSheet[$i][$supplierName]), FILTER_SANITIZE_STRING);
                     $projectName = trim($allDataInSheet[$i][$projectName]);
