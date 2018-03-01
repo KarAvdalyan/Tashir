@@ -49,7 +49,7 @@
          <td ><?php if($row->missingProject==1){?><font color="red"><?php } ?><?= $row->projectName; ?><?php if($row->missingProject==1){ ?></font><?php } ?></td>
         <td ><?php if($row->missingSupplier==1){?><font color="red"><?php } ?><?= $row->supplierName; ?><?php if($row->missingSupplier==1){ ?></font><?php } ?></td>
         <td ><?php if($row->price==0){?><font color="red"><?php } ?><?= number_format($row->price, 2, '.', ''); ?><?php if($row->price==0){ ?></font><?php } ?></td>
-        <td ><?= $row->quantity; ?></td>
+        <td ><?php if($row->quantity==0){?><font color="red"><?php } ?><?= $row->quantity; ?><?php if($row->quantity==0){ ?></font><?php } ?></td>
     </tr>
      <?php } ?>
  

@@ -34,7 +34,7 @@ class Import_model extends CI_Model {
               header('Content-Type: text/html; charset=utf-8');
             $this->db->trans_start();
                
-            $this->db->query(" truncate table tmp_payments;");   
+            /*$this->db->query(" truncate table tmp_payments;");   
                 $a="LOAD DATA LOCAL INFILE '".$path.$import_xls_file."' INTO TABLE tmp_payments
                         CHARACTER SET 'utf8'
                         FIELDS TERMINATED BY ';'
@@ -44,7 +44,7 @@ class Import_model extends CI_Model {
                         
                 //throw new Exception($a, 0);   
                  
-                $this->db->query($a);
+                $this->db->query($a);*/
 
                 $query=$this->db->query("call pr_read_payments('$import_xls_file',$userID);");
                 $result=$query->row()->result;   
@@ -85,7 +85,7 @@ class Import_model extends CI_Model {
                    left join tbl_products PD on PD.name=TP.productName
                    left join tbl_projects PJ on PJ.name=TP.projectName
                    left join tbl_suppliers SP on SP.name=TP.supplierName
-                where ifnull(PD.id,0)=0 or ifnull(PJ.id,0)=0 or ifnull(SP.id,0)=0;";
+                where ifnull(PD.id,0)=0 or ifnull(PJ.id,0)=0 or ifnull(SP.id,0)=0 or price=0 or quantity=0;";
            //return $sql;
            $result = $this->db->query($sql);
 
@@ -104,6 +104,11 @@ class Import_model extends CI_Model {
             echo $e->getMessage().'  GetUnReadedPayments()';
         }
 
+     }
+
+     public function DeleteTmpTable()
+     {
+        $this->db->query(" truncate table tmp_payments;");   
      }
 
 

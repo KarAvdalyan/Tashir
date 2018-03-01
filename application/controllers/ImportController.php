@@ -24,6 +24,7 @@ class ImportController extends CI_Controller {
     }
 
     public function save() {
+        $this->import->DeleteTmpTable();
             
         $this->load->library('excel');
          try {
@@ -46,7 +47,72 @@ class ImportController extends CI_Controller {
                 } else {
                     $import_xls_file = 0;
                 }
-                
+
+            $inputFileName = $path . $import_xls_file;
+
+            try {
+                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+                $objPHPExcel = $objReader->load($inputFileName);
+            } catch (Exception $e) {
+                die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
+                        . '": ' . $e->getMessage());
+            }
+            $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+            
+            $arrayCount = count($allDataInSheet);
+            $flag = 0;
+            $createArray = array('Պրոդուկտ', 'Մատակարար', 'Պրոյեկտ', 'Նկարագրություն', 'Գին','Քանակ','Ամսաթիվ');
+            $makeArray = array('Պրոդուկտ' => 'Պրոդուկտ', 'Մատակարար' => 'Մատակարար', 'Պրոյեկտ' => 'Պրոյեկտ', 
+                'Նկարագրություն' => 'Նկարագրություն', 'Գին' => 'Գին', 'Քանակ' => 'Քանակ','Ամսաթիվ'=>'Ամսաթիվ');
+            $SheetDataKey = array();
+            foreach ($allDataInSheet as $dataInSheet) {
+                foreach ($dataInSheet as $key => $value) {
+                    if (in_array(trim($value), $createArray)) {
+                        $value = preg_replace('/\s+/', '', $value);
+                        $SheetDataKey[trim($value)] = $key;
+                    } else {
+                        
+                    }
+                }
+            }
+            $data = array_diff_key($makeArray, $SheetDataKey);
+           
+            if (empty($data)) {
+                $flag = 1;
+            }
+            if ($flag == 1) {
+                for ($i = 2; $i <= $arrayCount; $i++) {
+                    $productName = $SheetDataKey['Պրոդուկտ'];
+                    $supplierName = $SheetDataKey['Մատակարար'];
+                    $projectName = $SheetDataKey['Պրոյեկտ'];
+                    $description = $SheetDataKey['Նկարագրություն'];
+                    $price = $SheetDataKey['Գին'];
+                    $quantity = $SheetDataKey['Քանակ'];
+                    $registration_date = $SheetDataKey['Ամսաթիվ'];
+                    $productName = filter_var(trim($allDataInSheet[$i][$productName]), FILTER_SANITIZE_STRING);
+                    $supplierName = filter_var(trim($allDataInSheet[$i][$supplierName]), FILTER_SANITIZE_STRING);
+                    $projectName = trim($allDataInSheet[$i][$projectName]);
+                    $description = filter_var(trim($allDataInSheet[$i][$description]), FILTER_SANITIZE_STRING);
+                    $price = filter_var(trim($allDataInSheet[$i][$price]), FILTER_SANITIZE_STRING);
+                    $quantity = filter_var(trim($allDataInSheet[$i][$quantity]), FILTER_SANITIZE_STRING);
+
+
+                    $date =  trim($allDataInSheet[$i][$registration_date]);
+                    $d = explode("-",$date); 
+                    $registration_date = date('Y-m-d', strtotime($d[2]."-".$d[0]."-".$d[1]));
+                    $fetchData[] = array('Պրոդուկտ' => $productName, 'Մատակարար' => $supplierName, 'Պրոյեկտ' => 
+                        $projectName, 'Նկարագրություն' => $description, 'Գին' => $price, 'Քանակ' => $quantity, 
+                        'Ամսաթիվ'=>$registration_date);
+                }              
+                $this->import->setBatchImport($fetchData);
+                $this->import->importData();
+            } else {
+                echo "Please import correct file";
+            }
+        
+        //$this->load->view('import/display', $data);
+
                 $result = $this->import->ReadFiles($path,$import_xls_file,$this->userID);
                 echo $result;
 
